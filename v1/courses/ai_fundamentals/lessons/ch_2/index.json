@@ -1,0 +1,36 @@
+{
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "The Machine Learning Paradigm",
+      "description": "Compare classical programming with machine learning, exploring Supervised, Unsupervised, and Reinforcement Learning paradigms.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Core Paradigms"
+    },
+    {
+      "id": "l2",
+      "title": "Data Preprocessing & Feature Engineering",
+      "description": "Master data preparation essentials: handling missing values, encoding categorical variables, normalization, and standardization.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Data Pipeline"
+    },
+    {
+      "id": "l3",
+      "title": "Linear Regression & Classification",
+      "description": "Explore mathematical foundations: line fitting with Mean Squared Error (MSE) and binary classification with Logistic Regression.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Foundational Models"
+    },
+    {
+      "id": "l4",
+      "title": "Model Evaluation & Bias-Variance Tradeoff",
+      "description": "Diagnose underfitting vs overfitting, use train/val/test splits, and master evaluation metrics like Precision, Recall, and F1-Score.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Evaluation & Generalization"
+    }
+  ]
+}

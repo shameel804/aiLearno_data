@@ -1,0 +1,58 @@
+{
+  "id": "l4",
+  "chapterId": "ch_2",
+  "title": "Model Evaluation & Bias-Variance Tradeoff",
+  "description": "Diagnose underfitting vs overfitting, use train/val/test splits, and master evaluation metrics like Precision, Recall, and F1-Score.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Evaluation & Generalization",
+  "slides": [
+    {
+      "id": "s_ch2_l4_1",
+      "type": "text",
+      "title": "The Bias-Variance Tradeoff ⚖️",
+      "content": "# Generalization: Underfitting vs Overfitting\n\n```\n    Underfitting               Optimal Fit               Overfitting\n   (High Bias)                                          (High Variance)\n\n       o     o                      o     o                  o-.-o\n     /     /                      /       \\                /      \\\n   /     /                      /           \\             /   /\\   \\\n  /    o                      o       o       o          o---/  \\---o\n\nToo simple; fails to learn    Captures underlying       Memorizes noise & outliers;\nthe true trend. High train    patterns accurately.       zero train error, terrible\nand test error.               Low test error.           test error.\n```\n\n* **High Bias (Underfitting):** Model is too simplistic (e.g. fitting a straight line to a complex sine wave).\n* **High Variance (Overfitting):** Model is excessively complex, memorizing noise rather than generalizable signals."
+    },
+    {
+      "id": "s_ch2_l4_2",
+      "type": "quiz",
+      "title": "Concept Check: Diagnosis 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch2_l4_1",
+        "type": "multiple_choice",
+        "question": "A model achieves 99.8% accuracy on the training set, but drops to 61.2% accuracy on the unseen test set. What problem is occurring?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "High Bias (Underfitting)",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "High Variance (Overfitting)",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Optimal Generalization",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Zero-shot transfer failure",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "A massive gap between near-perfect training accuracy and poor validation/test accuracy is the classic signature of overfitting (high variance).",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch2_l4_3",
+      "type": "text",
+      "title": "Evaluation Metrics: Precision, Recall & F1 🎯",
+      "content": "Accuracy can be deceptively high on imbalanced datasets (e.g., if 99% of transactions are legitimate, predicting all 'legitimate' yields 99% accuracy while missing all fraud!).\n\n| Metric | Formula | Practical Meaning |\n| :--- | :--- | :--- |\n| **Precision** | $\\frac{TP}{TP + FP}$ | Out of all predicted positives, how many were truly positive? (Minimizes false alarms) |\n| **Recall** | $\\frac{TP}{TP + FN}$ | Out of all actual positives, how many did we capture? (Minimizes missed detections) |\n| **F1-Score** | $2 \\cdot \\frac{P \\cdot R}{P + R}$ | Harmonic mean balancing Precision and Recall |"
+    }
+  ]
+}

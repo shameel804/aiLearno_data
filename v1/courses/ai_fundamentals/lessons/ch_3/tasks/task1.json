@@ -1,0 +1,15 @@
+{
+  "id": "task1",
+  "chapterId": "ch_3",
+  "title": "Implement a Dense Layer Forward Pass",
+  "description": "Write a pure Python matrix-vector forward pass for a single dense layer with ReLU activation.",
+  "estimatedMinutes": 10,
+  "problemStatement": "Implement a function `dense_layer_forward(inputs: list[float], weights: list[list[float]], biases: list[float]) -> list[float]` where `weights[i]` contains the incoming weights for neuron `i`. The function must compute the dot product for each neuron, add its bias, and apply ReLU activation (`max(0.0, val)`).",
+  "hints": [
+    "Iterate over each neuron index i from 0 to len(weights) - 1.",
+    "Compute z = sum(w * x for w, x in zip(weights[i], inputs)) + biases[i].",
+    "Apply ReLU: max(0.0, z)."
+  ],
+  "expectedOutput": "List of activated floats after passing through the dense layer.",
+  "solutionCode": "def dense_layer_forward(inputs: list[float], weights: list[list[float]], biases: list[float]) -> list[float]:\n    outputs = []\n    for neuron_w, b in zip(weights, biases):\n        z = sum(w * x for w, x in zip(neuron_w, inputs)) + b\n        outputs.append(max(0.0, z))\n    return outputs"
+}

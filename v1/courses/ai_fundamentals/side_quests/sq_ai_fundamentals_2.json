@@ -1,0 +1,112 @@
+{
+  "id": "sq_ai_fundamentals_2",
+  "title": "Model Output Foretelling: Neurons & Gradients",
+  "triggerChapterIndex": 3,
+  "metadata": {
+    "type": "prediction"
+  },
+  "questions": [
+    {
+      "id": "sq_ai_fundamentals_2_q1",
+      "type": "code_output",
+      "question": "What is the exact numerical output of this ReLU activation call in Python?",
+      "codeSnippet": "def relu(x):\n    return max(0.0, x)\nprint(relu(-7.5))",
+      "correctOutput": "0.0",
+      "correctAnswer": "0.0",
+      "options": [
+        "0.0",
+        "-7.5",
+        "7.5",
+        "1.0"
+      ],
+      "explanation": "ReLU thresholds negative inputs to 0.0: max(0.0, -7.5) = 0.0.",
+      "xpReward": 25,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_2_q2",
+      "type": "code_output",
+      "question": "What is the output of this linear perceptron combination before activation?",
+      "codeSnippet": "inputs = [2.0, 3.0]\nweights = [1.5, -2.0]\nbias = 1.0\nz = sum(x * w for x, w in zip(inputs, weights)) + bias\nprint(z)",
+      "correctOutput": "-2.0",
+      "correctAnswer": "-2.0",
+      "options": [
+        "-2.0",
+        "3.0",
+        "4.0",
+        "0.0"
+      ],
+      "explanation": "z = (2.0 * 1.5) + (3.0 * -2.0) + 1.0 = 3.0 - 6.0 + 1.0 = -2.0.",
+      "xpReward": 25,
+      "difficulty": 2
+    },
+    {
+      "id": "sq_ai_fundamentals_2_q3",
+      "type": "code_output",
+      "question": "What is the updated weight value after one gradient descent step with learning rate 0.1?",
+      "codeSnippet": "w = 5.0\ngrad = 4.0\nlr = 0.1\nw_new = w - lr * grad\nprint(w_new)",
+      "correctOutput": "4.6",
+      "correctAnswer": "4.6",
+      "options": [
+        "4.6",
+        "5.4",
+        "0.4",
+        "4.0"
+      ],
+      "explanation": "w_new = 5.0 - (0.1 * 4.0) = 5.0 - 0.4 = 4.6.",
+      "xpReward": 25,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_2_q4",
+      "type": "code_output",
+      "question": "What is the output of the Sigmoid function at z = 0?",
+      "codeSnippet": "import math\ndef sigmoid(z):\n    return 1.0 / (1.0 + math.exp(-z))\nprint(round(sigmoid(0), 2))",
+      "correctOutput": "0.5",
+      "correctAnswer": "0.5",
+      "options": [
+        "0.5",
+        "0.0",
+        "1.0",
+        "-0.5"
+      ],
+      "explanation": "At z = 0, exp(0) = 1, so 1 / (1 + 1) = 0.5.",
+      "xpReward": 25,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_2_q5",
+      "type": "code_output",
+      "question": "What is the Mean Squared Error for the single prediction y_pred = 4 against ground truth y_true = 7?",
+      "codeSnippet": "y_true = 7.0\ny_pred = 4.0\nmse = (y_true - y_pred) ** 2\nprint(mse)",
+      "correctOutput": "9.0",
+      "correctAnswer": "9.0",
+      "options": [
+        "9.0",
+        "3.0",
+        "-3.0",
+        "16.0"
+      ],
+      "explanation": "(7.0 - 4.0)^2 = 3.0^2 = 9.0.",
+      "xpReward": 25,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_2_q6",
+      "type": "code_output",
+      "question": "What is the total number of trainable weights (excluding biases) in a layer with 3 inputs and 4 neurons?",
+      "codeSnippet": "n_inputs = 3\nn_neurons = 4\ntotal_weights = n_inputs * n_neurons\nprint(total_weights)",
+      "correctOutput": "12",
+      "correctAnswer": "12",
+      "options": [
+        "12",
+        "7",
+        "16",
+        "24"
+      ],
+      "explanation": "Each of the 4 neurons maintains 3 incoming connection weights: 3 * 4 = 12 weights.",
+      "xpReward": 25,
+      "difficulty": 1
+    }
+  ]
+}

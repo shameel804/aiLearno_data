@@ -1,0 +1,58 @@
+{
+  "id": "l3",
+  "chapterId": "ch_3",
+  "title": "Multi-Layer Perceptrons (MLPs)",
+  "description": "Stack neurons into Input, Hidden, and Output layers to break linear separation limits like the XOR problem.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Network Architecture",
+  "slides": [
+    {
+      "id": "s_ch3_l3_1",
+      "type": "text",
+      "title": "Overcoming the XOR Problem 🧩",
+      "content": "# The Fall and Rise of Neural Networks\n\nIn 1969, Minsky and Papert proved that a single perceptron cannot learn the simple **XOR (exclusive OR)** logic gate, because XOR is not linearly separable:\n\n```\n  x2\n   1 |   (0,1) [+]     (1,1) [-]\n     | \n   0 |   (0,0) [-]     (1,0) [+]\n     +---------------------------\n         0              1     x1\n```\n\nNo single straight line can separate the `[+]` points from the `[-]` points! The solution? **Hidden Layers**. Stacking an intermediate layer projects the inputs into a transformed space where XOR becomes linearly separable."
+    },
+    {
+      "id": "s_ch3_l3_2",
+      "type": "quiz",
+      "title": "Concept Check: XOR Separation 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch3_l3_1",
+        "type": "multiple_choice",
+        "question": "Why could a single-layer perceptron without hidden layers not solve the XOR function?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "XOR requires floating point numbers",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "XOR cannot be separated by a single linear decision hyperplane",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Perceptrons can only output negative numbers",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "XOR requires recurrent feedback loops",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "A single linear boundary cannot partition the diagonally placed positive and negative points of XOR. At least one hidden layer is mathematically required.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch3_l3_3",
+      "type": "tip",
+      "title": "Universal Approximation Theorem 🌟",
+      "content": "## Universal Approximation Theorem (Hornik, 1989)\nA standard feedforward neural network with just **a single hidden layer** containing a finite number of non-linear neurons can approximate *any continuous function* on compact subsets of $\\mathbb{R}^n$ to arbitrary precision!\n\nWhile one very wide hidden layer is theoretically sufficient, in practice, **deep networks** (many layers) learn hierarchical representations much more efficiently with far fewer parameters."
+    }
+  ]
+}

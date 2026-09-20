@@ -1,0 +1,52 @@
+{
+  "id": "l1",
+  "chapterId": "ch_5",
+  "title": "Why MLPs Struggle with Images",
+  "description": "Understand the parameter explosion of flattening 2D/3D images into 1D vectors and the need for spatial invariance.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Vision Challenges",
+  "slides": [
+    {
+      "id": "s_ch5_l1_1",
+      "type": "text",
+      "title": "The Curse of Flattening 🖼️",
+      "content": "# The Limits of Fully Connected Networks for Vision\n\nSuppose you want to process a modest smartphone photo: $1000 \\times 1000$ pixels with 3 RGB color channels.\n\n* **Input Size:** $1000 \\times 1000 \\times 3 = 3,000,000$ input values!\n* If the first hidden layer has just 1,000 neurons, you would need:\n  $$3,000,000 \\times 1,000 = 3,000,000,000 \\text{ (3 Billion!)} \\text{ parameters}$$\n\n### The Need for Spatial Inductive Bias:\n1. **Locality:** Adjacent pixels are strongly correlated; distant pixels are less related.\n2. **Translation Invariance:** A cat in the top-left corner should be recognized with the exact same features as a cat in the bottom-right corner!"
+    },
+    {
+      "id": "s_ch5_l1_2",
+      "type": "quiz",
+      "title": "Concept Check: Spatial Invariance 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch5_l1_1",
+        "type": "multiple_choice",
+        "question": "What is 'translation invariance' in computer vision?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Translating the programming code into C++",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Recognizing an object regardless of where it shifts within the image frame",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Translating foreign image captions into English",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Inverting the RGB color channels to grayscale",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Translation invariance means that whether an object appears in the center, top-right, or bottom-left, the network identifies it equally well.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

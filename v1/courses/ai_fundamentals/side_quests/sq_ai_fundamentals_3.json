@@ -1,0 +1,94 @@
+{
+  "id": "sq_ai_fundamentals_3",
+  "title": "Rapid Sprint: Foundations to Transformers",
+  "triggerChapterIndex": 5,
+  "metadata": {
+    "type": "speed"
+  },
+  "questions": [
+    {
+      "id": "sq_ai_fundamentals_3_q1",
+      "type": "true_false",
+      "question": "A* search is guaranteed to return the optimal path if the heuristic function h(n) is admissible.",
+      "isTrue": true,
+      "correctAnswer": "true",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "True. Admissibility guarantees optimal tree search by never overestimating cost to goal.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_3_q2",
+      "type": "true_false",
+      "question": "The XOR function can be solved by a single-layer perceptron without hidden layers.",
+      "isTrue": false,
+      "correctAnswer": "false",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "False. XOR is not linearly separable and requires at least one non-linear hidden layer.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_3_q3",
+      "type": "true_false",
+      "question": "ReLU activation avoids the vanishing gradient problem for positive inputs because its derivative is constant 1.0.",
+      "isTrue": true,
+      "correctAnswer": "true",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "True. For z > 0, d(ReLU)/dz = 1.0, preserving gradient magnitude through deep layers.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_3_q4",
+      "type": "true_false",
+      "question": "Convolutional layers share weights across the entire image through sliding kernels, dramatically reducing parameter count.",
+      "isTrue": true,
+      "correctAnswer": "true",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "True. Weight sharing across spatial locations is the core mechanism of CNNs.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_3_q5",
+      "type": "true_false",
+      "question": "Standard Recurrent Neural Networks (RNNs) can process all tokens in a 1,000-word paragraph simultaneously in parallel.",
+      "isTrue": false,
+      "correctAnswer": "false",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "False. RNNs process sequences one step at a time because each hidden state depends on the previous step.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "sq_ai_fundamentals_3_q6",
+      "type": "true_false",
+      "question": "Self-attention in Transformers computes pair-wise interactions between all tokens in a sequence in O(N^2) time and memory.",
+      "isTrue": true,
+      "correctAnswer": "true",
+      "options": [
+        "True",
+        "False"
+      ],
+      "explanation": "True. The attention matrix comparing every token with every other token scales quadratically O(N^2) with sequence length.",
+      "xpReward": 15,
+      "difficulty": 1
+    }
+  ]
+}

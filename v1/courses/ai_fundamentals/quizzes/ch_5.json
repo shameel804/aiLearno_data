@@ -1,0 +1,300 @@
+{
+  "id": "quiz_ch_5",
+  "chapterId": "ch_5",
+  "title": "Chapter 5 Quiz: Computer Vision & CNNs",
+  "description": "Demonstrate mastery of convolutional layers, kernel operations, pooling, receptive fields, and modern vision backbones.",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "What is the primary advantage of Convolutional Neural Networks (CNNs) over standard fully connected MLPs for image processing?",
+      "options": [
+        "CNNs use zero parameters",
+        "CNNs exploit spatial locality and weight sharing, drastically reducing parameters",
+        "CNNs only accept black and white images",
+        "CNNs do not require backpropagation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "By reusing local convolutional kernels across the entire image (weight sharing), CNNs dramatically reduce parameter count while preserving 2D structure.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "question": "In a 2D convolutional layer, what is a 'kernel' or 'filter'?",
+      "options": [
+        "A hardware cooling fan",
+        "A small matrix of learnable weights that slides across the input calculating local dot products",
+        "An image compression algorithm",
+        "A loss function"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A kernel is a matrix of weights (e.g. 3x3 or 5x5) that slides across the input to extract localized visual features.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "question": "If you convolve a 6x6 grayscale image with a 3x3 filter without padding (valid padding) and stride=1, what is the output spatial dimension?",
+      "options": [
+        "6x6",
+        "4x4",
+        "3x3",
+        "2x2"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Output dimension = (N - F) / stride + 1 = (6 - 3) / 1 + 1 = 4x4.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "question": "What is the primary purpose of 'Same' padding (zero padding) in convolutional networks?",
+      "options": [
+        "To make the image completely black",
+        "To preserve the spatial dimensions of the input feature map across layers",
+        "To double the learning rate",
+        "To eliminate all negative weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Padding borders with zeros preserves spatial resolution and prevents border pixels from being under-sampled.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "question": "What operation is performed by a Max Pooling layer?",
+      "options": [
+        "Averages all pixels in the window",
+        "Selects the maximum activation value within each window region",
+        "Multiplies inputs by a learnable bias",
+        "Calculates gradient vectors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Max pooling retains the maximum value in each sub-region, providing downsampling and translation tolerance.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q6",
+      "type": "true_false",
+      "question": "Standard Pooling layers (like Max Pooling and Average Pooling) contain zero learnable parameters.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Pooling operations apply fixed mathematical reductions (max or average) without learnable weights.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "question": "What visual features do early convolutional layers in a deep CNN typically learn to detect?",
+      "options": [
+        "Entire human faces and cars",
+        "Simple low-level features such as oriented edges, color gradients, and textures",
+        "Natural language text captions",
+        "Audio waveforms"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Early layers capture basic oriented edges and lines; deeper layers compose these into shapes, textures, parts, and full objects.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "question": "What critical architectural innovation allowed ResNet (Residual Networks) to successfully train networks over 100 layers deep?",
+      "options": [
+        "Recurrent memory cells",
+        "Skip (Residual Identity) connections: H(x) = F(x) + x",
+        "Exclusively using Sigmoid activations",
+        "Removing all convolutions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Skip connections bypass layers by adding identity shortcuts, allowing gradients to flow unimpeded directly through the network.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q9",
+      "type": "true_false",
+      "question": "Transfer learning involves taking a CNN pre-trained on a massive dataset (like ImageNet) and fine-tuning it for a custom task.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Pre-trained weights provide rich visual feature extractors, requiring minimal data to adapt to new domains.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "question": "What is the 'receptive field' of a neuron in a convolutional neural network?",
+      "options": [
+        "The physical area of the silicon chip",
+        "The region in the input image that directly influences the activation of that neuron",
+        "The total RAM allocated for training",
+        "The loss value at that layer"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The receptive field is the patch of raw input pixels that contributes to a particular neuron's activation.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q11",
+      "type": "mcq",
+      "question": "Which historic CNN architecture won the 2012 ImageNet challenge and kicked off the modern deep learning boom?",
+      "options": [
+        "LeNet-5",
+        "AlexNet",
+        "ResNet-50",
+        "YOLO"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AlexNet (Krizhevsky et al., 2012) crushed existing computer vision benchmarks using GPUs and ReLU activations.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q12",
+      "type": "mcq",
+      "question": "In a color RGB image with 3 channels, what are the dimensions of a single 3x3 convolutional filter?",
+      "options": [
+        "3 x 3 x 1",
+        "3 x 3 x 3",
+        "9 x 9 x 3",
+        "1 x 1 x 3"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A convolutional filter must match the depth (channel count) of its input, so a 3x3 filter for RGB is 3 x 3 x 3 = 27 weights.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q13",
+      "type": "fill_blank",
+      "question": "The technique of slightly rotating, cropping, flipping, and scaling training images to artificially expand dataset size is called Data ______.",
+      "options": [
+        "Augmentation",
+        "Leakage",
+        "Clustering",
+        "Quantization"
+      ],
+      "correctAnswer": "Augmentation",
+      "explanation": "Data Augmentation increases visual diversity and prevents overfitting by applying realistic geometric and photometric distortions.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q14",
+      "type": "true_false",
+      "question": "A 1x1 convolution is useless in deep CNNs because it does not examine neighboring pixels.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 1,
+      "explanation": "False. 1x1 convolutions compute linear combinations across channels, serving as cross-channel pooling and dimensionality reducers.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q15",
+      "type": "mcq",
+      "question": "What is the primary visual task performed by an Object Detection model (such as YOLO)?",
+      "options": [
+        "Classifying the entire image into one word",
+        "Identifying what objects exist AND predicting bounding box coordinates for each",
+        "Translating text into audio",
+        "Upscaling pixel resolution"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Object detection predicts both class labels and spatial bounding boxes (x, y, w, h) for multiple objects in an image.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q16",
+      "type": "mcq",
+      "question": "What is Semantic Segmentation in computer vision?",
+      "options": [
+        "Assigning a categorical class label to every individual pixel in an image",
+        "Compressing PNG files",
+        "Translating image subtitles",
+        "Finding faces in an album"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Semantic segmentation classifies every single pixel in the image into a semantic category (e.g. road, pedestrian, sky).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q17",
+      "type": "true_false",
+      "question": "Global Average Pooling (GAP) averages each entire feature map into a single scalar, often replacing dense fully connected layers before classification.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. GAP drastically reduces parameters and connects convolutional feature maps directly to class logits.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "type": "mcq",
+      "question": "What is the effect of setting a convolution stride of 2?",
+      "options": [
+        "The kernel moves 2 pixels per step, approximately halving output spatial dimensions",
+        "The kernel is duplicated twice",
+        "The learning rate is multiplied by 2",
+        "Padding is doubled"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A stride of 2 skips alternate pixel alignments, downsampling the spatial height and width by a factor of 2.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q19",
+      "type": "mcq",
+      "question": "Why did VGGNet favor stacking multiple 3x3 convolutional layers instead of using single large 7x7 filters?",
+      "options": [
+        "3x3 filters have more parameters",
+        "Two stacked 3x3 layers have the same 5x5 receptive field with fewer parameters and extra non-linearities",
+        "3x3 filters require no GPU memory",
+        "Large filters cause compiler errors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Stacking two 3x3 layers provides a 5x5 receptive field using 2*(9)=18 weights instead of 25, while incorporating two non-linear activations.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q20",
+      "type": "true_false",
+      "question": "In modern vision models, Vision Transformers (ViTs) divide images into non-overlapping patches and treat them like tokens in a sequence.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Vision Transformers flatten 16x16 image patches into linear token embeddings and process them using standard Transformer encoders.",
+      "xpReward": 15,
+      "difficulty": 2
+    }
+  ]
+}

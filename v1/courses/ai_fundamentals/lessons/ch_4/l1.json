@@ -1,0 +1,52 @@
+{
+  "id": "l1",
+  "chapterId": "ch_4",
+  "title": "Loss Functions & Optimization Landscapes",
+  "description": "Examine how cost functions quantify discrepancy, exploring MSE, Binary Cross-Entropy, and optimization surfaces.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Loss Landscapes",
+  "slides": [
+    {
+      "id": "s_ch4_l1_1",
+      "type": "text",
+      "title": "Quantifying Network Error 🎯",
+      "content": "# The Loss Function (Criterion)\n\nA neural network without a loss function is like a traveler with no destination. The loss function quantifies how far the model's prediction $\\hat{y}$ is from the ground truth $y$.\n\n### Core Loss Functions:\n1. **Mean Squared Error (MSE):** Used in continuous regression.\n   $$\\mathcal{L}(y, \\hat{y}) = \\frac{1}{2}(y - \\hat{y})^2$$\n2. **Binary Cross-Entropy (BCE):** Used in binary classification.\n   $$\\mathcal{L}(y, \\hat{y}) = -\\left[ y \\log(\\hat{y}) + (1 - y) \\log(1 - \\hat{y}) \\right]$$\n   - If $y=1$ and $\\hat{y} \\to 0$, $-\\log(\\hat{y}) \\to +\\infty$, inflicting a massive penalty on confident wrong predictions!"
+    },
+    {
+      "id": "s_ch4_l1_2",
+      "type": "quiz",
+      "title": "Concept Check: Cross-Entropy Penalty 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch4_l1_1",
+        "type": "multiple_choice",
+        "question": "What happens to the Binary Cross-Entropy loss if the true label is 1 but the model predicts a probability of 0.001?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Loss approaches zero",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Loss becomes a very large positive number",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Loss becomes negative",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Loss remains undefined and halts the CPU",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Because -log(0.001) is approximately 6.9, cross-entropy heavily punishes confident but completely incorrect predictions.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

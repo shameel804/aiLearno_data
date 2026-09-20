@@ -1,0 +1,23 @@
+{
+  "id": "l4",
+  "chapterId": "ch_8",
+  "title": "Autonomous Agents, Tool Use & AGI",
+  "description": "Explore the frontier of AI: the ReAct loop, LLMs using APIs/code interpreters, multi-agent swarms, and the path to AGI.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Frontier Systems",
+  "slides": [
+    {
+      "id": "s_ch8_l4_1",
+      "type": "text",
+      "title": "From Chatbots to Autonomous Agents 🤖",
+      "content": "# The Agentic Revolution\n\nModern state-of-the-art AI is moving from passive conversation to **active agentic workflows**.\n\n### The ReAct Pattern (Reason + Act):\n```\n1. Thought:  \"The user wants today's stock price for Apple. My training data is cut off.\"\n2. Action:   call_tool(\"fetch_finance_api\", symbol=\"AAPL\")\n3. Observation: {\"price\": 232.50, \"change\": \"+1.4%\"}\n4. Thought:  \"I now have the verified current price.\"\n5. Final Answer: \"Apple (AAPL) is currently trading at $232.50.\"\n```\n\nBy combining reasoning with external tools (calculators, web browsers, bash terminals, databases), AI agents act as digital knowledge coworkers."
+    },
+    {
+      "id": "s_ch8_l4_2",
+      "type": "tip",
+      "title": "The Road to AGI 🚀",
+      "content": "## Frontiers on the Horizon\n* **Test-Time Compute (Reasoning Models):** Allowing models to spend dynamic compute tokens thinking through complex math and logic proofs before outputting answers.\n* **Embodied AI:** Deploying foundation models directly onto robotic platforms to interact with physical reality.\n* **Self-Improving Systems:** Models generating their own synthetic training curricula, executing self-reflection, and verifying code execution."
+    }
+  ]
+}

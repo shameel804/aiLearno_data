@@ -1,0 +1,300 @@
+{
+  "id": "quiz_ch_2",
+  "chapterId": "ch_2",
+  "title": "Chapter 2 Quiz: Foundations of Machine Learning",
+  "description": "Test your knowledge of Supervised vs Unsupervised learning, preprocessing, regression, and model evaluation metrics.",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "In which machine learning paradigm are training examples paired with ground-truth target labels (X, y)?",
+      "options": [
+        "Supervised Learning",
+        "Unsupervised Learning",
+        "Self-Supervised Reconstruction",
+        "Reinforcement Policy"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Supervised learning relies on explicit input-output label pairs to learn the mapping function.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "question": "What is the primary objective of Unsupervised Learning?",
+      "options": [
+        "Predicting continuous housing values",
+        "Discovering underlying structure, patterns, or clusters in unlabeled data",
+        "Reinforcing good behavior via rewards",
+        "Translating audio to text"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Unsupervised learning extracts latent structures, groupings, or representations without external labels.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "question": "Reinforcement Learning agents learn optimal behaviors by interacting with an environment to maximize cumulative reward.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Reinforcement learning is driven by state observation, action execution, and reward feedback.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "question": "Predicting whether an email is 'Spam' or 'Not Spam' is an example of which task?",
+      "options": [
+        "Continuous Regression",
+        "Binary Classification",
+        "Dimensionality Reduction",
+        "Density Estimation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Predicting one of two discrete classes is binary classification.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "question": "Predicting the continuous market selling price of a car based on mileage and age is:",
+      "options": [
+        "Classification",
+        "Regression",
+        "Clustering",
+        "Reinforcement Learning"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Regression models predict numerical continuous scalar values.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "question": "Which preprocessing technique converts categorical variables without ordinal ranking into binary dummy columns?",
+      "options": [
+        "One-Hot Encoding",
+        "Min-Max Normalization",
+        "Z-Score Standardization",
+        "Principal Component Analysis"
+      ],
+      "correctAnswer": 0,
+      "explanation": "One-Hot Encoding creates a new binary 0/1 column for each discrete nominal category.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "question": "What is the mathematical range of Min-Max Normalization: (x - x_min) / (x_max - x_min)?",
+      "options": [
+        "[-1, 1]",
+        "[0, 1]",
+        "(-infinity, +infinity)",
+        "[0, 100]"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Min-Max scaling compresses values strictly into the interval [0, 1].",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q8",
+      "type": "true_false",
+      "question": "Standardization (Z-score scaling) transforms a feature to have a mean of 0 and standard deviation of 1.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Z = (x - mean) / std centers the distribution at 0 with unit variance.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "question": "What is the primary loss function minimized in ordinary Linear Regression?",
+      "options": [
+        "Mean Squared Error (MSE)",
+        "Binary Cross-Entropy",
+        "Kullback-Leibler Divergence",
+        "Hinge Loss"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Linear regression minimizes the average squared differences between true and predicted values (MSE).",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "question": "What non-linear function is applied to the linear combination z = w*x + b in Logistic Regression to bound outputs between 0 and 1?",
+      "options": [
+        "ReLU",
+        "Sigmoid",
+        "Softmax",
+        "Heaviside Step"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Sigmoid function 1 / (1 + e^-z) maps real-valued numbers into probabilities between 0 and 1.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q11",
+      "type": "mcq",
+      "question": "When a machine learning model fits training data perfectly by memorizing noise but fails on unseen test data, it suffers from:",
+      "options": [
+        "High Bias (Underfitting)",
+        "High Variance (Overfitting)",
+        "Optimal Convergence",
+        "Under-parameterization"
+      ],
+      "correctAnswer": 1,
+      "explanation": "High variance (overfitting) occurs when a complex model captures training noise rather than true generalizable patterns.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q12",
+      "type": "true_false",
+      "question": "A model that is too simple to capture the underlying pattern in data suffers from High Bias (Underfitting).",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. High bias represents strong erroneous assumptions that cause the model to miss underlying trends.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q13",
+      "type": "mcq",
+      "question": "Why is evaluating a model solely on raw accuracy misleading when working with highly imbalanced datasets?",
+      "options": [
+        "Accuracy requires matrix inversion",
+        "A trivial model predicting only the majority class can yield high accuracy while missing all minority cases",
+        "Accuracy is always negative",
+        "Accuracy only works on regression"
+      ],
+      "correctAnswer": 1,
+      "explanation": "On a dataset with 99% negative samples, predicting 'negative' every time achieves 99% accuracy while detecting 0% of positives.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q14",
+      "type": "mcq",
+      "question": "Which evaluation metric measures the ratio of True Positives out of all Predicted Positives (TP / (TP + FP))?",
+      "options": [
+        "Precision",
+        "Recall",
+        "ROC-AUC",
+        "Mean Absolute Error"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Precision measures how many of the positively predicted instances were actually correct.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q15",
+      "type": "mcq",
+      "question": "Which metric measures the proportion of actual positive cases successfully caught by the model (TP / (TP + FN))?",
+      "options": [
+        "Specificity",
+        "Precision",
+        "Recall (Sensitivity)",
+        "False Positive Rate"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Recall measures the model's ability to identify all relevant ground-truth positive instances.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q16",
+      "type": "fill_blank",
+      "question": "The ______ score is the harmonic mean of Precision and Recall.",
+      "options": [
+        "F1",
+        "R2",
+        "MSE",
+        "BLEU"
+      ],
+      "correctAnswer": "F1",
+      "explanation": "The F1-score balances precision and recall into a single unified metric: 2 * (P * R) / (P + R).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q17",
+      "type": "true_false",
+      "question": "In K-Fold Cross Validation, the dataset is split into K equal subsets, training K separate times with each fold serving as validation once.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. K-Fold provides a comprehensive generalization estimate by rotating the validation fold across all data.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "type": "mcq",
+      "question": "What is data leakage in machine learning pipelines?",
+      "options": [
+        "RAM memory leaking into swap space",
+        "Information from the test set inadvertently contaminating the training process",
+        "Deleting duplicate records",
+        "Encrypting database passwords"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Data leakage occurs when validation/test signals leak into training, artificially inflating performance estimates.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q19",
+      "type": "mcq",
+      "question": "If a hospital needs an AI diagnostic system that minimizes the risk of missing any cancerous tumor, which metric should be maximized?",
+      "options": [
+        "Precision",
+        "Recall",
+        "Training speed",
+        "L2 penalty"
+      ],
+      "correctAnswer": 1,
+      "explanation": "High recall minimizes false negatives, ensuring critical cases (like malignant tumors) are not missed.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q20",
+      "type": "true_false",
+      "question": "The validation set should be used to tune model hyperparameters, while the test set is reserved exclusively for final evaluation.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Keeping the test set untouched prevents hyperparameter tuning bias.",
+      "xpReward": 15,
+      "difficulty": 1
+    }
+  ]
+}

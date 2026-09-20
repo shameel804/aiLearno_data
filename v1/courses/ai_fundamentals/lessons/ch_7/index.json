@@ -1,0 +1,36 @@
+{
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "Discriminative vs Generative AI",
+      "description": "Understand how generative models synthesize novel samples by modeling data distributions, comparing VAEs, GANs, and Diffusion.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Generative Foundations"
+    },
+    {
+      "id": "l2",
+      "title": "Large Language Models & Pretraining",
+      "description": "Explore causal autoregressive language modeling, predicting next tokens, compute scaling laws, and transformer decoders.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "LLM Mechanics"
+    },
+    {
+      "id": "l3",
+      "title": "Alignment & Fine-Tuning (RLHF & LoRA)",
+      "description": "Transform raw base models into helpful assistants via Instruction Tuning, RLHF, DPO, and Low-Rank Adaptation (LoRA).",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Post-Training Alignment"
+    },
+    {
+      "id": "l4",
+      "title": "Prompt Engineering & RAG Systems",
+      "description": "Master zero-shot, few-shot, and Chain-of-Thought prompting, and integrate vector databases for Retrieval-Augmented Generation.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Application Patterns"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "task1",
+  "chapterId": "ch_5",
+  "title": "Calculate Convolution Output Dimensions",
+  "description": "Write a formula to compute the spatial output dimensions of a 2D convolutional layer given input size, kernel, padding, and stride.",
+  "estimatedMinutes": 10,
+  "problemStatement": "In computer vision architecture design, determining layer spatial dimensions is critical. Implement a Python function `conv2d_output_dim(input_size: int, kernel_size: int, padding: int, stride: int) -> int` that calculates: `floor((input_size - kernel_size + 2 * padding) / stride) + 1`.",
+  "hints": [
+    "Use integer division // to obtain the floor value.",
+    "Dimension formula: ((input_size - kernel_size + 2 * padding) // stride) + 1."
+  ],
+  "expectedOutput": "Integer representing the spatial height/width after convolution.",
+  "solutionCode": "def conv2d_output_dim(input_size: int, kernel_size: int, padding: int, stride: int) -> int:\n    return ((input_size - kernel_size + 2 * padding) // stride) + 1"
+}

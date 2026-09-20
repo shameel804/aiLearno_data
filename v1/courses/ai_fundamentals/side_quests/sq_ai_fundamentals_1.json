@@ -1,0 +1,112 @@
+{
+  "id": "sq_ai_fundamentals_1",
+  "title": "Bug Hunt: Agent Loops & Preprocessing Traps",
+  "triggerChapterIndex": 1,
+  "metadata": {
+    "type": "debug"
+  },
+  "questions": [
+    {
+      "id": "sq_ai_fundamentals_1_q1",
+      "type": "multiple_choice",
+      "question": "Identify the critical bug in this reflex agent that causes an infinite loop when the room is clean.",
+      "codeSnippet": "def agent_step(location, is_dirty):\n    if is_dirty:\n        return 'CLEAN'\n    # Missing transition action to switch rooms",
+      "bugLineIndex": 3,
+      "options": [
+        "Line 1: agent_step cannot take two arguments",
+        "Line 2: condition must use bitwise AND",
+        "Line 4: Agent fails to emit a move action ('MOVE_RIGHT'/'MOVE_LEFT') when clean, remaining stationary forever",
+        "Line 3: 'CLEAN' must be lowercase"
+      ],
+      "correctAnswer": "Line 4: Agent fails to emit a move action ('MOVE_RIGHT'/'MOVE_LEFT') when clean, remaining stationary forever",
+      "explanation": "When the room is clean, the function returns None implicitly because there is no else clause to navigate to adjacent rooms.",
+      "xpReward": 20,
+      "difficulty": 2
+    },
+    {
+      "id": "sq_ai_fundamentals_1_q2",
+      "type": "multiple_choice",
+      "question": "Find the data leakage bug in this preprocessing pipeline.",
+      "codeSnippet": "from sklearn.preprocessing import StandardScaler\nscaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)\nX_train, X_test, y_train, y_test = train_test_split(X_scaled, y)",
+      "bugLineIndex": 2,
+      "options": [
+        "Line 1: StandardScaler cannot be imported",
+        "Line 3: Fitting the scaler on the entire dataset X before splitting leaks test set mean and variance into training",
+        "Line 4: train_test_split requires y before X",
+        "Line 2: StandardScaler takes no parentheses"
+      ],
+      "correctAnswer": "Line 3: Fitting the scaler on the entire dataset X before splitting leaks test set mean and variance into training",
+      "explanation": "Fitting scalers on all data before splitting causes data leakage. Scalers must be fit exclusively on X_train, then applied to X_test.",
+      "xpReward": 20,
+      "difficulty": 2
+    },
+    {
+      "id": "sq_ai_fundamentals_1_q3",
+      "type": "multiple_choice",
+      "question": "Find the bug in this A* evaluation formula implementation.",
+      "codeSnippet": "def a_star_f_score(g_cost, h_cost):\n    # Calculate f(n)\n    f_score = g_cost - h_cost\n    return f_score",
+      "bugLineIndex": 2,
+      "options": [
+        "Line 1: Def statement has syntax error",
+        "Line 3: f_score must add the heuristic to path cost (g_cost + h_cost), not subtract it",
+        "Line 4: Return statement should return a string",
+        "Line 2: Comment is invalid"
+      ],
+      "correctAnswer": "Line 3: f_score must add the heuristic to path cost (g_cost + h_cost), not subtract it",
+      "explanation": "The A* evaluation function is strictly f(n) = g(n) + h(n). Subtracting heuristic causes pathological search behavior.",
+      "xpReward": 20,
+      "difficulty": 2
+    },
+    {
+      "id": "sq_ai_fundamentals_1_q4",
+      "type": "multiple_choice",
+      "question": "Spot the bug causing ZeroDivisionError in this Min-Max normalization function.",
+      "codeSnippet": "def normalize_feature(values):\n    min_v, max_v = min(values), max(values)\n    return [(v - min_v) / (max_v - min_v) for v in values]",
+      "bugLineIndex": 2,
+      "options": [
+        "Line 1: values must be a dictionary",
+        "Line 2: min() and max() cannot take lists",
+        "Line 3: If all elements in values are identical, max_v - min_v is 0, causing a ZeroDivisionError",
+        "Line 3: List comprehension syntax is invalid"
+      ],
+      "correctAnswer": "Line 3: If all elements in values are identical, max_v - min_v is 0, causing a ZeroDivisionError",
+      "explanation": "When all feature values are identical (constant feature), max_v == min_v, resulting in division by zero if not guarded.",
+      "xpReward": 20,
+      "difficulty": 2
+    },
+    {
+      "id": "sq_ai_fundamentals_1_q5",
+      "type": "multiple_choice",
+      "question": "Find the bug in this Mean Squared Error computation.",
+      "codeSnippet": "def compute_mse(y_true, y_pred):\n    diffs = [yt - yp for yt, yp in zip(y_true, y_pred)]\n    return sum(diffs) / len(diffs)",
+      "bugLineIndex": 2,
+      "options": [
+        "Line 1: Function name cannot contain underscores",
+        "Line 2: zip() requires tuples",
+        "Line 3: The differences must be squared (yt - yp)**2, otherwise positive and negative errors cancel out to near zero",
+        "Line 3: len(diffs) is undefined"
+      ],
+      "correctAnswer": "Line 3: The differences must be squared (yt - yp)**2, otherwise positive and negative errors cancel out to near zero",
+      "explanation": "Without squaring or taking absolute values, positive and negative errors cancel each other out, making a wildly inaccurate model appear to have zero error.",
+      "xpReward": 20,
+      "difficulty": 2
+    },
+    {
+      "id": "sq_ai_fundamentals_1_q6",
+      "type": "multiple_choice",
+      "question": "Find the bug in this categorical one-hot encoder logic.",
+      "codeSnippet": "def one_hot_encode(color):\n    categories = ['red', 'green', 'blue']\n    return [1 if color == c else 0 for c in categories]\n# Encodes 'RED' as [0, 0, 0] because of case sensitivity",
+      "bugLineIndex": 2,
+      "options": [
+        "Line 1: Parameter name cannot be singular",
+        "Line 2: List must be a set",
+        "Line 3: Matching fails to normalize color.lower(), causing uppercase strings to yield all-zero vectors",
+        "Line 4: Comments are illegal in encoders"
+      ],
+      "correctAnswer": "Line 3: Matching fails to normalize color.lower(), causing uppercase strings to yield all-zero vectors",
+      "explanation": "Failing to normalize string casing before matching produces false negatives (all zeros) for valid categories like 'Red' or 'RED'.",
+      "xpReward": 20,
+      "difficulty": 2
+    }
+  ]
+}

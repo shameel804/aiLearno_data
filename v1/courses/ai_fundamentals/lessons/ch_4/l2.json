@@ -1,0 +1,52 @@
+{
+  "id": "l2",
+  "chapterId": "ch_4",
+  "title": "Gradient Descent & Learning Rates",
+  "description": "Master gradient descent mechanics, comparing Batch GD, Stochastic Gradient Descent (SGD), and Mini-Batch strategies.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Gradient Optimization",
+  "slides": [
+    {
+      "id": "s_ch4_l2_1",
+      "type": "text",
+      "title": "Walking Down the Mountain 🏔️",
+      "content": "# Gradient Descent Intuition\n\nImagine being blindfolded on a foggy mountain and wanting to reach the lowest valley. At every step, you feel the slope with your feet and step in the direction of steepest descent.\n\n### The Parameter Update Rule:\n$$\nw := w - \\alpha \\frac{\\partial \\mathcal{L}}{\\partial w}\n$$\n\n* **$\\alpha$ (Learning Rate):** The size of the step taken downhill.\n* **$\\frac{\\partial \\mathcal{L}}{\\partial w}$ (Gradient):** The direction and magnitude of steepest ascent.\n\n```\nToo Small alpha:                Optimal alpha:                 Too Large alpha:\nVery slow convergence;         Smooth, steady descent         Overshoots and diverges\ngets stuck in local minima.    to the global minimum.         wildly into infinity!\n```"
+    },
+    {
+      "id": "s_ch4_l2_2",
+      "type": "quiz",
+      "title": "Concept Check: Learning Rate 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch4_l2_1",
+        "type": "multiple_choice",
+        "question": "What commonly happens if your optimizer's learning rate is configured several orders of magnitude too high?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "The model trains instantly in 1 step",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "The weights explode or diverge, and loss becomes NaN/infinite",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "The network automatically prunes all dead neurons",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "The training set size is doubled automatically",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "An excessively high learning rate overshoots the minimum of the loss valley, stepping uphill and causing explosive instability (gradient explosion / NaN loss).",
+        "xpReward": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "id": "quiz_ch_1",
+  "chapterId": "ch_1",
+  "title": "Chapter 1 Quiz: Introduction to AI & Agents",
+  "description": "Test your mastery of AI definitions, agent architectures, PEAS framework, search algorithms, and symbolic logic.",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "What is the primary defining characteristic of an Artificial Intelligence system?",
+      "options": [
+        "It computes arithmetic on integers",
+        "It can perceive, reason, learn, and act to achieve goals",
+        "It requires vacuum tubes to function",
+        "It operates strictly on static if-else trees"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AI encompasses systems capable of perception, reasoning, learning from data, and rational action.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "question": "Narrow AI (ANI) systems can easily generalize their expertise to completely unrelated domains.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 1,
+      "explanation": "False. Narrow AI is dedicated to a single specialized domain (e.g., chess or medical imaging) and cannot transfer to unrelated tasks.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "question": "What was the core proposition of Alan Turing's 1950 'Imitation Game'?",
+      "options": [
+        "Computers can never play chess",
+        "A machine can be considered intelligent if a human interrogator cannot distinguish it from a human",
+        "AI requires biological synapses",
+        "Machines must physically resemble humans"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Turing proposed that conversational indistinguishability from a human is a practical criterion for machine intelligence.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "question": "In the PEAS framework for designing an intelligent agent, what does the letter 'P' stand for?",
+      "options": [
+        "Perception",
+        "Performance Measure",
+        "Processing Power",
+        "Probability"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In PEAS, P stands for Performance Measure, which quantifies the agent's degree of success.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "question": "Which component of an AI agent enables it to perceive its environment?",
+      "options": [
+        "Actuators",
+        "Sensors",
+        "Inference Engine",
+        "Output Heads"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sensors receive signals and percepts from the external environment.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "question": "For an autonomous delivery drone, which of the following is an Actuator?",
+      "options": [
+        "GPS receiver",
+        "Propeller motor",
+        "Battery level gauge",
+        "Wind velocity sensor"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Propeller motors are actuators because they exert physical force to navigate the drone.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q7",
+      "type": "true_false",
+      "question": "A rational agent must possess complete omniscience and predict the future with 100% certainty.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 1,
+      "explanation": "False. Rationality is about making the best expected decision given available percepts and objectives, not knowing the future.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "question": "Which search algorithm always explores the shallowest unexpanded node first using a FIFO queue?",
+      "options": [
+        "Depth-First Search (DFS)",
+        "Breadth-First Search (BFS)",
+        "Greedy Best-First Search",
+        "Simulated Annealing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Breadth-First Search (BFS) explores level-by-level using a FIFO queue, guaranteeing the shortest path on unweighted graphs.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "question": "What is the evaluation function formula f(n) used in the A* search algorithm?",
+      "options": [
+        "f(n) = g(n) - h(n)",
+        "f(n) = g(n) * h(n)",
+        "f(n) = g(n) + h(n)",
+        "f(n) = h(n) / g(n)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A* calculates f(n) = g(n) + h(n), combining the exact path cost so far g(n) with the heuristic estimate to the goal h(n).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q10",
+      "type": "true_false",
+      "question": "A heuristic function h(n) is admissible if it never overestimates the true cost to reach the goal.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Admissibility guarantees that A* tree search finds the optimal solution without overestimating cost.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q11",
+      "type": "mcq",
+      "question": "Which of the following environments is considered fully observable and deterministic?",
+      "options": [
+        "Poker",
+        "Driving in heavy rain",
+        "Chess with a standard board",
+        "Stock market trading"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In Chess, the entire board state is completely visible at all times, and moves follow deterministic rules.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q12",
+      "type": "mcq",
+      "question": "In symbolic expert systems, what is the role of the Inference Engine?",
+      "options": [
+        "Compressing JPEG images",
+        "Applying logical deduction rules to facts in the Knowledge Base",
+        "Generating random text tokens",
+        "Cooling down the CPU"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The inference engine reasons over the knowledge base by applying logical rules to derive new facts or conclusions.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q13",
+      "type": "mcq",
+      "question": "Which inference strategy starts with observed data and continuously applies IF-THEN rules until a goal is derived?",
+      "options": [
+        "Backward Chaining",
+        "Forward Chaining",
+        "Random Sampling",
+        "Gradient Descent"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Forward chaining is data-driven, propagating forward from known premises to conclusions.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q14",
+      "type": "mcq",
+      "question": "Why did classical expert systems experience an 'AI Winter' and fail to solve complex real-world perception?",
+      "options": [
+        "Because computers became too fast",
+        "Because manually writing rules for millions of noisy edge cases was brittle and unscalable",
+        "Because propositional logic was outlawed",
+        "Because internet bandwidth was too high"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hand-crafted symbolic rules could not scale to the immense noise, uncertainty, and nuance of real-world sensory data.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q15",
+      "type": "fill_blank",
+      "question": "Artificial ______ Intelligence refers to a hypothetical AI capable of learning and solving any intellectual task a human can.",
+      "options": [
+        "Narrow",
+        "General",
+        "Super",
+        "Quantum"
+      ],
+      "correctAnswer": "General",
+      "explanation": "Artificial General Intelligence (AGI) denotes human-level flexibility across diverse cognitive domains.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q16",
+      "type": "true_false",
+      "question": "In Depth-First Search (DFS), the memory complexity is linear with respect to the maximum search depth.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. DFS only stores the current branch in memory, giving O(b*m) space complexity compared to BFS's exponential O(b^d).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q17",
+      "type": "mcq",
+      "question": "What is the key limitation of Breadth-First Search (BFS) on graphs with deep solutions?",
+      "options": [
+        "It gets trapped in infinite cycles easily",
+        "Exponential memory consumption as depth increases",
+        "It cannot find the goal state",
+        "It requires negative edge weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "BFS must hold all frontier nodes in memory, causing exponential RAM exhaustion on large state spaces.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "type": "mcq",
+      "question": "Which type of agent maintains an internal state to track aspects of the environment that cannot be viewed right now?",
+      "options": [
+        "Simple Reflex Agent",
+        "Model-Based Reflex Agent",
+        "Table-Driven Agent",
+        "Static Actuator"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Model-based reflex agents maintain internal models to handle partial observability.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q19",
+      "type": "true_false",
+      "question": "A vacuum cleaner that only looks at whether the current tile is dirty without checking past history is a Simple Reflex Agent.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Simple reflex agents base decisions exclusively on the current percept, ignoring history.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q20",
+      "type": "mcq",
+      "question": "In heuristic search, what does Manhattan Distance measure between points (x1, y1) and (x2, y2)?",
+      "options": [
+        "sqrt((x2-x1)^2 + (y2-y1)^2)",
+        "|x2 - x1| + |y2 - y1|",
+        "max(|x2 - x1|, |y2 - y1|)",
+        "(x2 - x1) * (y2 - y1)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Manhattan Distance calculates grid-based distance along perpendicular axes: |x2 - x1| + |y2 - y1|.",
+      "xpReward": 15,
+      "difficulty": 2
+    }
+  ]
+}

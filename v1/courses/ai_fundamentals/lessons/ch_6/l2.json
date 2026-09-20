@@ -1,0 +1,52 @@
+{
+  "id": "l2",
+  "chapterId": "ch_6",
+  "title": "Recurrent Neural Networks (RNNs) & LSTMs",
+  "description": "Model sequences using recurrent hidden states, diagnosing vanishing gradients in time, and gating information with LSTMs.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Recurrent Models",
+  "slides": [
+    {
+      "id": "s_ch6_l2_1",
+      "type": "text",
+      "title": "Memory Over Time: RNNs & LSTMs ⏳",
+      "content": "# Recurrent Neural Networks (RNNs)\n\nStandard feedforward networks assume all inputs are independent. But language is sequential: the meaning of word $t$ depends on words $1 \\dots t-1$.\n\nAn RNN passes a **hidden state $h_t$** from step to step:\n$$\nh_t = \\tanh(W_{hh} h_{t-1} + W_{xh} x_t + b)\n$$\n\n### The Problem: Vanishing Gradients Across Time\nWhen unrolled across 50 or 100 words, repeated matrix multiplications during Backpropagation Through Time (BPTT) cause gradients to decay to zero. The network 'forgets' the start of long sentences.\n\n### The Solution: LSTM (Long Short-Term Memory)\nLSTMs introduce a continuous **Cell State ($C_t$)** (information conveyor belt) regulated by three gates:\n1. **Forget Gate:** What past information to discard.\n2. **Input Gate:** What new candidate information to store.\n3. **Output Gate:** What information to emit into $h_t$."
+    },
+    {
+      "id": "s_ch6_l2_2",
+      "type": "quiz",
+      "title": "Concept Check: LSTM Gates 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch6_l2_1",
+        "type": "multiple_choice",
+        "question": "Which specific gate in an LSTM decides what old information should be dropped from the cell state?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Input Gate",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Forget Gate",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Output Gate",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Residual Gate",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "The Forget Gate computes a sigmoid activation between 0 and 1 for each element in the cell state, where 0 means 'completely forget' and 1 means 'completely retain'.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

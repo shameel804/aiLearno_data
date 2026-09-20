@@ -1,0 +1,36 @@
+{
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "Tokenization & Word Embeddings",
+      "description": "Convert raw human text into machine-readable continuous vector spaces using Byte-Pair Encoding and Word2Vec.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Text Foundations"
+    },
+    {
+      "id": "l2",
+      "title": "Recurrent Neural Networks (RNNs) & LSTMs",
+      "description": "Model sequences using recurrent hidden states, diagnosing vanishing gradients in time, and gating information with LSTMs.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Recurrent Models"
+    },
+    {
+      "id": "l3",
+      "title": "The Attention Mechanism",
+      "description": "Understand why bottlenecking sequences into fixed vectors failed, and how Query-Key-Value attention revolutionizes context retrieval.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Attention Intuition"
+    },
+    {
+      "id": "l4",
+      "title": "The Transformer Architecture",
+      "description": "Deconstruct the seminal 'Attention Is All You Need' architecture: Multi-Head Attention, Positional Encodings, and Feed-Forward sublayers.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Transformers"
+    }
+  ]
+}

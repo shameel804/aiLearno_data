@@ -1,0 +1,52 @@
+{
+  "id": "l1",
+  "chapterId": "ch_8",
+  "title": "Algorithmic Bias & Fairness",
+  "description": "Examine how training datasets reflect and amplify human historical biases, and study mathematical definitions of algorithmic fairness.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Ethics & Fairness",
+  "slides": [
+    {
+      "id": "s_ch8_l1_1",
+      "type": "text",
+      "title": "Data Mirrors Humanity 🪞",
+      "content": "# The Roots of Algorithmic Bias\n\nMachine learning models are not objective mathematical deities; they are empirical pattern mirrors reflecting historical data.\n\n### Primary Vectors of Bias:\n* **Historical Bias:** Training data reflects societal prejudices and discriminatory practices (e.g. historical mortgage lending or hiring decisions).\n* **Representation Bias:** Under-representation of certain demographic groups in training datasets (e.g. facial recognition systems trained primarily on lighter skin tones yielding 20x higher error rates on darker skin tones).\n* **Proxy Variables:** Even if protected attributes (race, gender) are excluded from the dataset, the model can learn proxies like postal ZIP codes or names to reproduce discriminatory outcomes."
+    },
+    {
+      "id": "s_ch8_l1_2",
+      "type": "quiz",
+      "title": "Concept Check: Proxy Variables 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch8_l1_1",
+        "type": "multiple_choice",
+        "question": "Why does simply removing a protected attribute (e.g. race or gender) from a dataset not guarantee an unbiased model?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Because algorithms automatically reverse column deletions",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Because other correlated features (like zip codes or school names) act as proxy variables",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Because neural networks can only output biased weights",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Because loss functions require demographic inputs",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Correlated variables can carry strong statistical signals for omitted protected attributes, allowing models to inadvertently reconstruct the bias.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

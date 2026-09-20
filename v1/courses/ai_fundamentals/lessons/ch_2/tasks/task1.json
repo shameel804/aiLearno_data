@@ -1,0 +1,15 @@
+{
+  "id": "task1",
+  "chapterId": "ch_2",
+  "title": "Compute Mean Squared Error",
+  "description": "Implement a vectorized calculation of Mean Squared Error to evaluate a regression model's predictions.",
+  "estimatedMinutes": 10,
+  "problemStatement": "Write a Python function `calculate_mse(y_true: list[float], y_pred: list[float]) -> float` that computes the Mean Squared Error between true and predicted targets. Raise a `ValueError` if the lists have unequal lengths or are empty.",
+  "hints": [
+    "Check that len(y_true) == len(y_pred) and len(y_true) > 0.",
+    "Sum the squared differences: (yt - yp) ** 2.",
+    "Divide by the number of elements N."
+  ],
+  "expectedOutput": "Float representing the mean squared error (e.g. 0.25).",
+  "solutionCode": "def calculate_mse(y_true: list[float], y_pred: list[float]) -> float:\n    if not y_true or len(y_true) != len(y_pred):\n        raise ValueError('Lists must be non-empty and of equal length')\n    squared_errors = [(yt - yp) ** 2 for yt, yp in zip(y_true, y_pred)]\n    return sum(squared_errors) / len(squared_errors)"
+}

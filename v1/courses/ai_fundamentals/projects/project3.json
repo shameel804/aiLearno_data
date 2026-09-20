@@ -1,0 +1,23 @@
+{
+  "id": "project3",
+  "title": "Build an End-to-End RAG Knowledge Assistant",
+  "description": "Synthesize LLM generation with external context retrieval by engineering a complete document chunking, vector embedding indexing, and grounded prompt pipeline.",
+  "difficulty": "Advanced",
+  "estimatedHours": "5-8",
+  "problemStatement": "Corporate knowledge bases are too large and dynamic to fine-tune directly into LLM weights. Your team requires a robust Retrieval-Augmented Generation (RAG) assistant that can ingest internal PDF/Markdown manuals, index text chunks into a vector database with dense embeddings, retrieve the most semantically relevant context chunks for any incoming user inquiry, and instruct an LLM to generate grounded answers with precise source citations while refusing to hallucinate.",
+  "requirements": [
+    "Implement a sliding-window text chunker (chunk size = 500 characters, overlap = 50 characters).",
+    "Generate dense vector representations for all chunks using a modern embedding model or API.",
+    "Store chunk embeddings in a vector index supporting cosine similarity nearest-neighbor lookup.",
+    "Implement top-k retrieval: given a user query, compute query embedding and return top 3 most similar document chunks.",
+    "Construct a grounded prompt template instructing the LLM to rely strictly on the retrieved context.",
+    "Implement a hallucination/refusal check: if the retrieved context does not contain the answer, the assistant must respond with 'I do not have sufficient information in the provided documents to answer that.'",
+    "Include citation metadata (source file and chunk index) in every generated answer."
+  ],
+  "hints": [
+    "Normalize embedding vectors so that cosine similarity can be computed via fast dot products.",
+    "Structure the prompt clearly with delimiters: `### CONTEXT: ... ### QUESTION: ...`.",
+    "Test edge-case queries that are deliberately absent from the documents to verify refusal behavior."
+  ],
+  "expectedOutput": "A functioning CLI or script output taking a query (e.g. 'What is the server reset protocol?'), printing retrieved chunk citations, and outputting an accurate, grounded answer."
+}

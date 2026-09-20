@@ -1,0 +1,52 @@
+{
+  "id": "l2",
+  "chapterId": "ch_8",
+  "title": "Explainability & Interpretability (XAI)",
+  "description": "Open the neural network black box using SHAP values, LIME, saliency maps, and attention attribution techniques.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Explainable AI",
+  "slides": [
+    {
+      "id": "s_ch8_l2_1",
+      "type": "text",
+      "title": "Opening the Black Box 📦",
+      "content": "# Why Explainability Matters\n\nIn high-stakes domains (healthcare, law, credit underwriting), knowing that a model predicted 95% likelihood of disease is not enough. Doctors and regulators need to know **why**.\n\n### Modern XAI Techniques:\n1. **SHAP (Shapley Additive exPlanations):** Based on game theory; computes the fair marginal contribution of each feature to the final prediction.\n2. **LIME (Local Interpretable Model-agnostic Explanations):** Perturbs input features locally and fits a simple, interpretable linear model around that specific prediction.\n3. **Saliency Maps:** Visual heatmaps showing which image pixels had the largest gradient impact on the chosen classification label."
+    },
+    {
+      "id": "s_ch8_l2_2",
+      "type": "quiz",
+      "title": "Concept Check: SHAP Values 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch8_l2_1",
+        "type": "multiple_choice",
+        "question": "What is the theoretical foundation behind SHAP (Shapley Additive exPlanations) values?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Classical Newtonian mechanics",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Cooperative game theory",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Cellular automata",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Quantum entanglement",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "SHAP is founded on Lloyd Shapley's cooperative game theory, determining how payout (prediction) should be fairly distributed among players (features).",
+        "xpReward": 10
+      }
+    }
+  ]
+}

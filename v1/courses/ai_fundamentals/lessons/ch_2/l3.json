@@ -1,0 +1,58 @@
+{
+  "id": "l3",
+  "chapterId": "ch_2",
+  "title": "Linear Regression & Classification",
+  "description": "Explore mathematical foundations: line fitting with Mean Squared Error (MSE) and binary classification with Logistic Regression.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Foundational Models",
+  "slides": [
+    {
+      "id": "s_ch2_l3_1",
+      "type": "text",
+      "title": "Fitting Lines: Linear Regression 📈",
+      "content": "# Linear Regression\n\nLinear regression models the relationship between dependent scalar $y$ and explanatory variables $X$:\n\n$$\n\\hat{y} = w \\cdot x + b\n$$\n\n* **$w$ (Weight/Slope):** Multiplier determining the sensitivity of $y$ to $x$.\n* **$b$ (Bias/Intercept):** Baseline value when $x = 0$.\n\n### The Cost Function: Mean Squared Error (MSE)\nTo measure error across $N$ training points:\n\n$$\nMSE = \\frac{1}{N} \\sum_{i=1}^{N} (y_i - \\hat{y}_i)^2\n$$\n\nSquaring the errors penalizes large deviations severely and guarantees a smooth, convex parabola with a single global minimum!"
+    },
+    {
+      "id": "s_ch2_l3_2",
+      "type": "text",
+      "title": "Classification with Logistic Regression 🎯",
+      "content": "# Logistic Regression & The Sigmoid Function\n\nWhen target $y \\in \\{0, 1\\}$, a straight line can predict outputs less than 0 or greater than 1, violating probability axioms.\n\nTo squash linear outputs into valid probabilities $(0, 1)$, we pass $z = w \\cdot x + b$ through the **Sigmoid (logistic) function**:\n\n$$\n\\sigma(z) = \\frac{1}{1 + e^{-z}}\n$$\n\n* When $z = 0$, $\\sigma(z) = 0.5$.\n* When $z \\to +\\infty$, $\\sigma(z) \\to 1.0$.\n* When $z \\to -\\infty$, $\\sigma(z) \\to 0.0$."
+    },
+    {
+      "id": "s_ch2_l3_3",
+      "type": "quiz",
+      "title": "Concept Check: Sigmoid Squashing 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch2_l3_1",
+        "type": "multiple_choice",
+        "question": "What is the exact output of the Sigmoid function $\\sigma(z)$ when the linear input $z = 0$?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "0.0",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "0.5",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "1.0",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "-1.0",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "When z = 0, e^(-0) = 1, giving 1 / (1 + 1) = 0.5, representing the decision boundary cutoff.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

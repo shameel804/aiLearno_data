@@ -1,0 +1,23 @@
+{
+  "id": "project1",
+  "title": "Build a Multi-Layer Perceptron From Scratch",
+  "description": "Construct a complete feedforward neural network from mathematical primitives in pure Python, including matrix forward passes, cross-entropy loss, and backpropagation.",
+  "difficulty": "Intermediate",
+  "estimatedHours": "3-5",
+  "problemStatement": "As an aspiring AI research engineer, you must demonstrate fundamental mathematical mastery of neural networks before using high-level frameworks. Your objective is to build a complete 2-layer neural network from scratch using only Python and NumPy (no PyTorch, TensorFlow, or Scikit-Learn). Your network must learn the non-linear XOR boundary or spiral dataset, iteratively updating weights using analytical backpropagation.",
+  "requirements": [
+    "Initialize weights using He/Kaiming initialization to avoid symmetry and saturation.",
+    "Implement a vectorized forward pass supporting input matrices X of shape (batch_size, n_features).",
+    "Implement non-linear ReLU activation for hidden layers and Sigmoid/Softmax for output.",
+    "Compute Binary Cross-Entropy loss between predicted probabilities and target labels.",
+    "Implement analytical backward propagation computing exact partial derivatives (dL/dW2, dL/db2, dL/dW1, dL/db1) using the chain rule.",
+    "Execute gradient descent updates: W := W - alpha * dL/dW over 500+ training epochs.",
+    "Achieve >= 98% accuracy on the non-linear classification dataset."
+  ],
+  "hints": [
+    "Remember that the derivative of ReLU(z) is 1.0 where z > 0 and 0.0 where z <= 0.",
+    "The derivative of Binary Cross-Entropy combined with Sigmoid output simplifies cleanly to (y_hat - y).",
+    "Keep learning rate around 0.1 to 0.5 for small scratch networks."
+  ],
+  "expectedOutput": "Console logging showing loss decreasing per 100 epochs (e.g. Epoch 100: Loss 0.42 -> Epoch 500: Loss 0.03) and final test accuracy exceeding 98%."
+}

@@ -1,0 +1,26 @@
+{
+  "id": "l4",
+  "chapterId": "ch_3",
+  "title": "Forward Propagation in Action",
+  "description": "Step through the matrix multiplications and activation vector calculations that transform inputs into predictions.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Inference Math",
+  "slides": [
+    {
+      "id": "s_ch3_l4_1",
+      "type": "text",
+      "title": "Vectorized Forward Propagation 🚀",
+      "content": "# Forward Propagation with Matrices\n\nModern deep learning hardware (GPUs and TPUs) executes forward passes using high-speed matrix multiplications:\n\nFor layer $l$:\n$$\n\\mathbf{Z}^{[l]} = \\mathbf{W}^{[l]} \\mathbf{A}^{[l-1]} + \\mathbf{b}^{[l]}\n$$\n$$\n\\mathbf{A}^{[l]} = \\sigma(\\mathbf{Z}^{[l]})\n$$\n\n* **$\\mathbf{A}^{[l-1]}$:** Activations from preceding layer (where $\\mathbf{A}^{[0]} = \\mathbf{X}$, the input batch).\n* **$\\mathbf{W}^{[l]}$:** Weight matrix connecting layer $l-1$ to layer $l$.\n* **$\\mathbf{b}^{[l]}$:** Bias vector for layer $l$.\n* **$\\sigma$:** Non-linear element-wise activation function."
+    },
+    {
+      "id": "s_ch3_l4_2",
+      "type": "code",
+      "title": "Vectorized Forward Pass in Python 🐍",
+      "content": "Here is how a 2-layer network computes predictions on a sample feature vector:",
+      "codeSnippet": "import math\n\ndef relu(x: float) -> float:\n    return max(0.0, x)\n\n# Input vector: 2 features\nx = [1.5, -0.5]\n# Hidden layer: 2 neurons (weights: 2x2, biases: 2)\nw1 = [[0.8, -0.2], [0.5, 0.9]]\nb1 = [0.1, -0.1]\n\n# Compute hidden activations\nh1 = relu(x[0]*w1[0][0] + x[1]*w1[0][1] + b1[0])\nh2 = relu(x[0]*w1[1][0] + x[1]*w1[1][1] + b1[1])\nprint('Hidden layer activations:', [round(h1, 3), round(h2, 3)])",
+      "codeLanguage": "python",
+      "canRunCode": true
+    }
+  ]
+}

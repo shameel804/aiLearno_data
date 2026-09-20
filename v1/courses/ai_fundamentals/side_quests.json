@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sq_ai_fundamentals_1",
+    "title": "Bug Hunt: Agent Loops & Preprocessing Traps",
+    "triggerChapterIndex": 1,
+    "metadata": {
+      "type": "debug"
+    }
+  },
+  {
+    "id": "sq_ai_fundamentals_2",
+    "title": "Model Output Foretelling: Neurons & Gradients",
+    "triggerChapterIndex": 3,
+    "metadata": {
+      "type": "prediction"
+    }
+  },
+  {
+    "id": "sq_ai_fundamentals_3",
+    "title": "Rapid Sprint: Foundations to Transformers",
+    "triggerChapterIndex": 5,
+    "metadata": {
+      "type": "speed"
+    }
+  }
+]

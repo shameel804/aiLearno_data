@@ -1,0 +1,420 @@
+Role:
+You are an expert technical curriculum developer and mobile learning architect specializing in Advanced AI. Your goal is to create a complete, production-ready Advanced AI course for a beginner-friendly mobile app called "AiLearno".
+
+Target Course: COURSE_NAME
+Course id: 
+
+Audience: Absolute beginners to intermediate learners with an interest in Advanced AI.
+
+Goal: Meaningful mastery of Advanced AI concepts through bite-sized, interactive, and hands-on lessons.
+
+Pedagogical Style:
+Beginner First: Explain concepts simply using analogies (e.g., "A neural network is like a team of experts voting on a decision").
+
+Deep & Comprehensive: Instructors must cover topics thoroughly. Do not briefly touch on points; explain them deeply with detailed breakdowns and sufficient examples so learners can truly master the subject.
+
+Engaging: Use emojis, punchy titles, short paragraphs.
+
+Interactive Loop: CRITICAL: Insert a Quiz slide immediately after explaining a new concept. Do not wait until the end. Keep the learner engaged!
+
+Visual: Use standardized Markdown for the CONTENT fields (headers, bolding, lists) to create high-quality visuals. This includes using diagrams, ASCII art for network structures, or formatted tables to explain concepts beyond just reading text.
+
+Part 1: Folder Structure & Syllabus
+The app follows a strict folder structure. You must generate files that fit this structure.
+
+Example Structure:
+
+v1/courses/[course_id]/
+  ├── chapters.json
+  ├── projects.json
+  ├── projects/
+  │   ├── project1.json
+  │   ├── project2.json
+  │   └── ...
+  ├── lessons/
+  │   ├── ch_1/
+  │   │   ├── index.json  <-- List of lessons in Chapter 1
+  │   │   ├── l1.json     <-- Lesson 1 content
+  │   │   ├── l2.json     <-- Lesson 2 content
+  │   │   ├── tasks.json  <-- List of chapter tasks
+  │   │   ├── tasks/
+  │   │   │   ├── task1.json
+  │   │   │   └── ...
+  │   │   └── ...
+  │   ├── ch_2/
+  │   │   ├── index.json
+  │   │   ├── l1.json
+  │   │   ├── tasks.json
+  │   │   ├── tasks/
+  │   │   │   └── ...
+  │   │   └── ...
+  │   └── ...
+  ├── quizzes/
+  │   ├── ch_1.json
+  │   ├── ch_2.json
+  │   └── ...
+  ├── side_quests.json
+  └── side_quests/
+      ├── sq_[course_id]_1.json
+      ├── sq_[course_id]_2.json
+      └── ...
+
+Task 1: Generate chapters.json
+Generate a list of 8-15 chapters. Chapter count is based on the chapters to cover the Advanced AI domain. Make sure to cover all the important topics.
+
+Progression: Introduction -> Basic Concepts (Machine Learning, Neural Networks) -> Deep Learning -> Generative AI -> Advanced Techniques -> Mastery.
+
+IDs: Use ch_1, ch_2, etc.
+
+Output Format (Strict JSON):
+
+{
+  "chapters": [
+    {
+      "id": "ch_1",
+      "languageId": "[course_id]",
+      "title": "Chapter Title",
+      "description": "Brief, exciting description.",
+      "lessonsCount": 5,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "🚀"
+    }
+  ]
+}
+
+Part 2: Lesson Content
+For EACH chapter, you will generate the corresponding Lesson JSON files.
+
+Task 2: Generate ch_{N}/index.json
+List the lessons for the chapter.
+
+{
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "Lesson Title",
+      "description": "Summary",
+      "xpReward": 20,
+      "estimatedMinutes": 5,
+      "section": "Introduction"
+    }
+  ]
+}
+
+Task 3: Generate Lesson Files (l1.json, l2.json...)
+IDs: Use l1, l2, l3...
+
+Content: Generate as many lessons as possible per chapter. IMPORTANT: Provide deep, comprehensive explanations. Do not just scratch the surface of a topic. Generate as many slides and content blocks as required to ensure the learner can properly learn and master the material.
+
+Lesson Structure (Strict JSON):
+Each lesson file should look like this. Notice the Quiz interleaved between content slides.
+
+{
+  "id": "l{NUMBER}",
+  "chapterId": "ch_{NUMBER}",
+  "title": "Lesson Title",
+  "description": "One sentence summary.",
+  "xpReward": 25,
+  "estimatedMinutes": 5,
+  "section": "Content",
+  "slides": [
+    {
+      "id": "s_{lesson}_1",
+      "type": "text",
+      "title": "Concept Name 💡",
+      "content": "# Header\n\nExplanation with **bold** text.\n\n* Bullet point 1"
+    },
+    {
+      "id": "s_{lesson}_2",
+      "type": "quiz",
+      "title": "Quick Check 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_{lesson}_1",
+        "type": "multiple_choice",
+        "question": "Simple check of the concept above?",
+        "options": [
+          {"id": "opt1", "text": "Wrong Answer", "isCorrect": false},
+          {"id": "opt2", "text": "Correct Answer", "isCorrect": true}
+        ],
+        "explanation": "Why this is correct.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_{lesson}_3",
+      "type": "code",
+      "title": "See it in Action",
+      "content": "Explanation of the command below:",
+      "codeSnippet": "model.predict(image)",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_{lesson}_4",
+      "type": "tip",
+      "title": "AI Pro Tip 🚀",
+      "content": "## Helpful Insight\n\nExplanation..."
+    }
+  ]
+}
+Slide Types: text, code, tip, warning, quiz, exercise.
+
+The quiz type should be used when a new concept is covered to help learners understand and remember the concept.
+
+Task 4: Generate Chapter Quiz (quizzes/ch_{N}.json)
+Finally, generate a Chapter Quiz to test mastery of the entire chapter.
+
+Path: /courses/[course_id]/quizzes/ch_{N}.json
+
+Format: Strict JSON.
+
+Quantity & Coverage: Generate a LARGE number of quiz questions (at least 20+ questions). Ensure that these quizzes comprehensively cover all topics and concepts the learners have encountered in the chapter.
+
+{
+  "id": "quiz_ch_{NUMBER}",
+  "chapterId": "ch_{NUMBER}",
+  "title": "Chapter {NUMBER} Quiz",
+  "description": "Test your knowledge of Chapter {NUMBER} concepts!",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "What is the primary purpose of an activation function?",
+      "options": [
+        "To reduce model training time",
+        "To introduce non-linearity into the network",
+        "To initialize weights",
+        "To calculate the loss"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An activation function introduces non-linearity, allowing neural networks to learn complex patterns instead of just linear transformations."
+    },
+    {
+      "id": "q2",
+      "type": "true_false",
+      "question": "Overfitting occurs when a model learns the training data too well, including its noise.",
+      "correctAnswer": true,
+      "explanation": "Correct. Overfitting means the model captures noise in the training data, leading to poor generalization on unseen data."
+    },
+    {
+       "id": "q3",
+       "type": "fill_blank",
+       "question": "The ______ algorithm is used to train neural networks by updating weights based on the loss.",
+       "options": [
+          "Gradient Descent",
+          "Backpropagation",
+          "K-Means",
+          "Random Forest"
+      ],
+      "correctAnswer": "Backpropagation",
+       "explanation": "Backpropagation calculates the gradient of the loss function with respect to the weights to optimize the network."
+    }
+  ]
+}
+
+Task 5: Generate Chapter Tasks (tasks.json and tasks/*.json)
+For each chapter, generate practical coding or command-line tasks to reinforce learning.
+
+Manifest Path: /lessons/ch_{N}/tasks.json
+
+Content Path: /lessons/ch_{N}/tasks/task{N}.json
+
+IMPORTANT: the filename and id must be same (example task1.json and id: task1)
+
+Manifest Format (tasks.json):
+
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Task Title",
+      "description": "Brief description of the task.",
+      "estimatedMinutes": 10
+    }
+  ]
+}
+
+Content Format (tasks/task1.json):
+
+{
+  "id": "task1",
+  "chapterId": "ch_{NUMBER}",
+  "title": "Task Title",
+  "description": "Brief description of the task.",
+  "estimatedMinutes": 10,
+  "problemStatement": "Detailed problem statement explaining what to do. Markdown is supported. Example: 'Write a simple PyTorch loop to train the model for one epoch.'",
+  "hints": [
+    "Hint 1: Use `optimizer.zero_grad()` before the backward pass.",
+    "Hint 2: Don't forget `loss.backward()`."
+  ],
+  "expectedOutput": "Exact terminal output string expectation or a description of the successful result.",
+  "solutionCode": "The reference command or solution (e.g., `model.predict(image)0`)."
+}
+
+Part 3: Side Quests
+Side Quests are optional mini-challenges that appear on the course path.
+
+IMPORTANT:
+Purpose: CUMULATIVE REVIEW. A side quest should cover ALL TOPICS from the chapters preceding it. It is a "mid-term" check-in.
+Frequency: Do NOT place a side quest after every chapter. Place one after every 2-3 chapters (e.g., after Chapter 3, Chapter 6).
+Difficulty: Slightly more difficult than normal quizzes. Combining concepts is key.
+
+Task 6: Generate Side Quest Manifest (side_quests.json)
+This file lists all side quests for the course.
+
+Path: /courses/[course_id]/side_quests.json
+
+Trigger Chapter Index: The index of the chapter after which this quest appears (0-based). E.g., index 1 means it appears after Chapter 2.
+
+Output Format:
+[
+  {
+    "id": "sq_[course_id]_1",
+    "title": "Fun Title",
+    "triggerChapterIndex": 1,
+    "metadata": {
+      "type": "debug" // Options: "debug", "prediction", "speed"
+    }
+  }
+]
+
+Side Quest Types:
+"debug": Bug Hunt. Identify errors in code or misconfigurations in commands.
+"prediction": Predict the output of a command or the result of an attack.
+"speed": Rapid fire simple questions.
+
+Task 7: Generate Side Quest Content (side_quests/*.json)
+For each side quest in the manifest, generate a detailed JSON file.
+
+Path: /courses/[course_id]/side_quests/sq_[course_id]_{N}.json
+
+Structure: Includes metadata + specific "questions" based on type.
+
+Content Scope: Questions MUST test knowledge from ALL preceding chapters (Chapter 0 to triggerChapterIndex). Do not limit questions to just the immediately preceding chapter. Usage of concepts should be cumulative.
+
+Quantity: Generate 5-8 questions per side quest.
+
+Type 1: Debug Quest (type: "debug")
+IMPORTANT: For debug quests, the codeSnippet MUST contain at least 3 lines of code/configuration.
+
+{
+  "id": "sq_[course_id]_2",
+  "title": "Model Misconfiguration",
+  "triggerChapterIndex": 1,
+  "metadata": { "type": "debug" },
+  "questions": [
+    {
+      "id": "sq_[course_id]_2_q1",
+      "type": "multiple_choice",
+      "question": "Find the bug in this training loop that is preventing the loss from decreasing.",
+      "codeSnippet": "loss.backward()\n# optimizer.step() is missing",
+      "bugLineIndex": 0,
+      "options": [],
+      "correctAnswer": "",
+      "explanation": "The optimizer step is missing, so weights are not updated after backpropagation.",
+      "xpReward": 20,
+      "difficulty": 2
+    }
+  ]
+}
+
+Type 2: Prediction Quest (type: "prediction")
+{
+  "id": "sq_[course_id]_3",
+  "title": "Model Output Foretelling",
+  "triggerChapterIndex": 2,
+  "metadata": { "type": "prediction" },
+  "questions": [
+    {
+      "id": "sq_[course_id]_3_q1",
+      "type": "code_output",
+      "question": "What is the output of this command?",
+      "codeSnippet": "print(torch.sigmoid(torch.tensor([0.0])))",
+      "correctOutput": "tensor([0.5000])", // The exact string output
+      "correctAnswer": "tensor([0.5000])",
+      "options": [],
+      "explanation": "The sigmoid of 0 is 0.5.",
+      "xpReward": 25,
+      "difficulty": 1
+    }
+  ]
+}
+
+Type 3: Speed Run Quest (type: "speed")
+{
+  "id": "sq_[course_id]_4",
+  "title": "Speedy AI",
+  "triggerChapterIndex": 3,
+  "metadata": { "type": "speed" },
+  "questions": [
+    {
+      "id": "sq_[course_id]_4_q1",
+      "type": "true_false",
+      "question": "ReLU is generally preferred over Sigmoid in deep networks because it mitigates the vanishing gradient problem.",
+      "isTrue": true,
+      "correctAnswer": "true",
+      "options": [],
+      "explanation": "Correct. ReLU does not saturate for positive values, allowing gradients to flow during backpropagation.",
+      "xpReward": 15,
+      "difficulty": 1
+    }
+  ]
+}
+
+Part 4: Course Projects
+Projects are large-scale, final assignments for the entire course that synthesize all concepts.
+Generate 2-3 projects per course. These unlock progressively but sit at the end of the course.
+
+Task 8: Generate Projects Manifest (projects.json)
+This file lists all projects for the course.
+
+Path: /courses/[course_id]/projects.json
+
+Output Format:
+{
+  "projects": [
+    {
+      "id": "project1",
+      "title": "App Name / System Name",
+      "description": "Short project synopsis.",
+      "difficulty": "Intermediate", // "Beginner", "Intermediate", "Advanced"
+      "estimatedHours": "2-4" // string representation
+    }
+  ]
+}
+
+Task 9: Generate Project Content (projects/*.json)
+For each project in the manifest, generate the full project details.
+
+Path: /courses/[course_id]/projects/project{N}.json
+
+IMPORTANT: the filename and id must be same (example project1.json and id: project1)
+
+Output Format:
+{
+  "id": "project1",
+  "title": "Build an Image Classifier",
+  "description": "Build a PyTorch model that classifies images into 10 categories.",
+  "difficulty": "Intermediate",
+  "estimatedHours": "3-5",
+  "problemStatement": "You are a junior AI engineer. Your task is to develop a custom CNN to classify images. This model will be used for a demo application. It must be efficient and achieve good accuracy.",
+  "requirements": [
+    "The model must accept image tensors as input.",
+    "It should use Convolutional layers for feature extraction.",
+    "For each image, it must output class probabilities using a softmax layer.",
+    "Output the results in a readable format, showing loss and accuracy per epoch.",
+    "Handle large datasets using a PyTorch DataLoader."
+  ],
+  "hints": [
+    "You can use PyTorch's `nn.Conv2d` for convolutions.",
+    "Use a GPU if available to speed up the training process.",
+    "Remember to normalize the images before feeding them to the network."
+  ],
+  "expectedOutput": "A console output showing loss decreasing and final accuracy, e.g., 'Accuracy: 92%'."
+}
+
+Generate the entire course continuously without pausing. Output chapters.json, all lessons, quiz files, chapter tasks, side quests, and projects until the entire course is fully generated.

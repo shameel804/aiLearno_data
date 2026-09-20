@@ -1,0 +1,67 @@
+{
+  "id": "l3",
+  "chapterId": "ch_1",
+  "title": "Problem Solving & State Space Search",
+  "description": "Learn how AI models formalize problems as state graphs, evaluating Breadth-First, Depth-First, and heuristic-driven A* search algorithms.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Classical AI Search",
+  "slides": [
+    {
+      "id": "s_ch1_l3_1",
+      "type": "text",
+      "title": "Navigating State Spaces 🗺️",
+      "content": "# Classical Search in AI\n\nBefore deep neural networks, AI solved problems by treating the world as a **State Space Graph**:\n\n* **Initial State:** Where the agent starts (e.g. Robot at coordinate `(0, 0)`).\n* **Actions / Transitions:** Legal moves that transform state `S` into `S'`.\n* **Goal Test:** A condition verifying whether a state satisfies the objective.\n* **Path Cost:** Sum of costs along the sequence of actions.\n\n### Uninformed vs Informed Search:\n* **Uninformed (Blind) Search:** BFS (Breadth-First Search) and DFS (Depth-First Search) explore without domain knowledge.\n* **Informed (Heuristic) Search:** Utilizes a heuristic function `h(n)` estimating distance to the goal (e.g., A* Search)."
+    },
+    {
+      "id": "s_ch1_l3_2",
+      "type": "quiz",
+      "title": "Concept Check: Search Strategies 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch1_l3_1",
+        "type": "multiple_choice",
+        "question": "Which search algorithm guarantees finding the shortest path on an unweighted graph by exploring layer-by-layer?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Depth-First Search (DFS)",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Breadth-First Search (BFS)",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Random Walk Search",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Greedy Best-First Search with bad heuristic",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "BFS systematically visits all nodes at depth d before moving to depth d+1, guaranteeing the shallowest (optimal) solution when step costs are identical.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch1_l3_3",
+      "type": "text",
+      "title": "The Gold Standard: A* Search 🌟",
+      "content": "### The A* Evaluation Function\n\nA* evaluates nodes using the formula:\n\n$$\nf(n) = g(n) + h(n)\n$$\n\n* **$g(n)$:** The exact cost accumulated from the start node to current node $n$.\n* **$h(n)$:** The estimated heuristic cost from node $n$ to the goal.\n* **$f(n)$:** The total estimated cost of the cheapest solution passing through $n$.\n\n> 🎯 **Admissibility Condition:**\n> A heuristic is **admissible** if it never overestimates the true cost to reach the goal. If $h(n)$ is admissible, A* search is mathematically guaranteed to be **optimal**!"
+    },
+    {
+      "id": "s_ch1_l3_4",
+      "type": "code",
+      "title": "A* Evaluation Formula in Action 💻",
+      "content": "Here is how priority queues in pathfinders prioritize nodes based on $f(n) = g(n) + h(n)$:",
+      "codeSnippet": "def evaluate_node(cost_so_far: float, current_pos: tuple, goal_pos: tuple) -> float:\n    # Manhattan distance heuristic\n    h = abs(current_pos[0] - goal_pos[0]) + abs(current_pos[1] - goal_pos[1])\n    g = cost_so_far\n    f = g + h\n    return f\n\nprint('Node A (g=3, pos=(1,2), goal=(5,5)):', evaluate_node(3, (1, 2), (5, 5)))\nprint('Node B (g=6, pos=(4,4), goal=(5,5)):', evaluate_node(6, (4, 4), (5, 5)))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    }
+  ]
+}

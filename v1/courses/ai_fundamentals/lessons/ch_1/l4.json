@@ -1,0 +1,58 @@
+{
+  "id": "l4",
+  "chapterId": "ch_1",
+  "title": "Knowledge Representation & Expert Systems",
+  "description": "Discover how classical AI encoded human expertise into formal logic rules, inference engines, and knowledge graphs.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Symbolic AI & Rules",
+  "slides": [
+    {
+      "id": "s_ch1_l4_1",
+      "type": "text",
+      "title": "Symbolic AI & The Knowledge Base 📚",
+      "content": "# Symbolic AI (Good Old-Fashioned AI)\n\nDuring the first golden age of AI, intelligence was modeled through explicit symbols and formal logic.\n\n### The Architecture of an Expert System:\n1. **Knowledge Base (KB):** Declarative facts and propositional rules (e.g. `IF fever AND cough THEN possible_infection`).\n2. **Inference Engine:** Applies logical axioms to deduce new knowledge from existing facts.\n   - **Forward Chaining:** Data-driven (start with observed facts, trigger rules until goal is proved).\n   - **Backward Chaining:** Goal-driven (start with hypothesis, recursively search for supporting facts).\n3. **User Interface / Explanation Facility:** Explains *why* a particular decision was reached."
+    },
+    {
+      "id": "s_ch1_l4_2",
+      "type": "quiz",
+      "title": "Concept Check: Forward vs Backward Chaining 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch1_l4_1",
+        "type": "multiple_choice",
+        "question": "Which inference method starts with a hypothesis (like 'Does the patient have pneumonia?') and checks backward for supporting symptoms?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Forward Chaining",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Backward Chaining",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Random Sampling",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Gradient Ascent",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Backward chaining is goal-driven: it begins with the desired conclusion and works backward through the rules to check if known facts satisfy the premises.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch1_l4_3",
+      "type": "warning",
+      "title": "The Brittleness Problem ⚠️",
+      "content": "## Why did Expert Systems hit a wall?\nClassical expert systems were extremely brittle:\n* **Combinatorial Explosion:** Millions of edge cases required millions of manually written rules.\n* **Inability to Handle Uncertainty:** Real world data is noisy, probabilistic, and ambiguous.\n* **No Learning:** If a new disease emerged, the system could not learn from medical scans; a human engineer had to hand-craft new rules.\n\nThis limitation paved the way for the statistical revolution: **Machine Learning**!"
+    }
+  ]
+}

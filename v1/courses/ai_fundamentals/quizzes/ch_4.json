@@ -1,0 +1,300 @@
+{
+  "id": "quiz_ch_4",
+  "chapterId": "ch_4",
+  "title": "Chapter 4 Quiz: Training Networks & Backpropagation",
+  "description": "Master loss surfaces, gradient descent variants, backpropagation calculus, and regularization strategies.",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "What is the primary goal of the optimization process in neural network training?",
+      "options": [
+        "Maximize training time",
+        "Find parameter values that minimize the loss function",
+        "Increase parameter count to infinity",
+        "Set all weights to zero"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Optimization adjusts weights and biases to find the lowest point on the loss landscape.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "question": "What mathematical principle powers the Backpropagation algorithm?",
+      "options": [
+        "The Chain Rule of calculus",
+        "Pythagorean Theorem",
+        "Bayes Theorem",
+        "Euclidean Distance"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The chain rule allows the partial derivative of the loss to be computed with respect to any parameter across nested layers.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "question": "In gradient descent, what does the gradient vector point towards?",
+      "options": [
+        "The direction of steepest descent",
+        "The direction of steepest ascent",
+        "A random horizontal tangent",
+        "The origin (0, 0)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The gradient points in the direction of greatest rate of increase; we subtract it to move downhill.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q4",
+      "type": "true_false",
+      "question": "Stochastic Gradient Descent (SGD) updates network parameters after computing the loss on just a single sample.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Pure SGD updates parameters sample-by-sample, creating noisy updates that help escape local minima.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "question": "Why is Mini-Batch Gradient Descent favored over full-batch GD in practice?",
+      "options": [
+        "It requires zero GPU RAM",
+        "It balances vectorized hardware parallelism with regular noisy parameter updates",
+        "It eliminates the need for a learning rate",
+        "It guarantees global optimum in 1 step"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Mini-batches (e.g. 32-256 samples) exploit GPU matrix hardware while offering stable yet frequent updates.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "question": "What is the consequence of selecting an excessively small learning rate?",
+      "options": [
+        "Loss explodes to infinity",
+        "Training progresses painfully slowly and may stall in shallow local plateaus",
+        "The model overfits in epoch 1",
+        "Weights turn into NaN"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A minuscule learning rate takes tiny steps, making training prohibitively slow and prone to getting stuck.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "question": "What does the Adam optimizer combine to achieve adaptive learning rates?",
+      "options": [
+        "K-Means and PCA",
+        "Momentum (1st moment) and RMSprop (2nd moment)",
+        "Decision Trees and Linear Regression",
+        "Dropout and Softmax"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Adam maintains moving averages of both past gradients (momentum) and past squared gradients (RMSprop).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q8",
+      "type": "true_false",
+      "question": "During training, Dropout randomly deactivates a fraction of neurons to prevent complex co-adaptations.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Dropout acts like training an ensemble of thinned sub-networks, creating robust distributed representations.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "question": "How does L2 Regularization (Weight Decay) prevent overfitting?",
+      "options": [
+        "By setting learning rate to 0",
+        "By adding a penalty proportional to the sum of squared weights to the loss",
+        "By doubling the size of hidden layers",
+        "By shuffling training labels"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Weight decay penalizes large weights, favoring smaller, smoother parameter configurations that generalize better.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "question": "What occurs when gradients exponentially decay toward zero as they propagate backward through many layers?",
+      "options": [
+        "Exploding Gradient Problem",
+        "Vanishing Gradient Problem",
+        "Overfitting Catastrophe",
+        "Deadlock"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The vanishing gradient problem prevents front layers in deep networks from receiving meaningful weight updates.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q11",
+      "type": "mcq",
+      "question": "What common technique is used to combat Exploding Gradients during deep network training?",
+      "options": [
+        "Gradient Clipping",
+        "Zeroing learning rate",
+        "Removing bias terms",
+        "Multiplying gradients by 10"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Gradient clipping scales down gradients whose L2 norm exceeds a pre-set threshold, capping extreme step sizes.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q12",
+      "type": "true_false",
+      "question": "Batch Normalization normalizes activations across a mini-batch to have zero mean and unit variance, stabilizing deep training.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Batch Normalization mitigates internal covariate shift, allowing higher learning rates and faster convergence.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q13",
+      "type": "mcq",
+      "question": "What is 'Early Stopping' in model training workflows?",
+      "options": [
+        "Turning off the server after 1 hour",
+        "Halting training as soon as the validation loss consistently ceases to improve",
+        "Canceling backpropagation on odd epochs",
+        "Pruning half the weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Early stopping monitors validation loss and stops training before the model overfits the training set.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q14",
+      "type": "fill_blank",
+      "question": "One complete pass through the entire training dataset is called an ______.",
+      "options": [
+        "Epoch",
+        "Iteration",
+        "Batch",
+        "Step"
+      ],
+      "correctAnswer": "Epoch",
+      "explanation": "An epoch represents one full cycle through all training samples.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q15",
+      "type": "mcq",
+      "question": "What is a saddle point on a high-dimensional loss surface?",
+      "options": [
+        "The global minimum",
+        "A point where gradients are zero, but slopes upward in some directions and downward in others",
+        "A point where loss is infinite",
+        "A region with no weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Saddle points have zero gradients but are neither true local minima nor maxima, presenting traps for basic gradient descent.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q16",
+      "type": "true_false",
+      "question": "Initializing all weights in a neural network to the exact same constant (e.g. all 0.0) prevents neurons from learning different features.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Symmetric initialization causes all neurons in a layer to compute identical gradients and updates (symmetry problem).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q17",
+      "type": "mcq",
+      "question": "Which weight initialization scheme is specifically tuned for layers using ReLU activations?",
+      "options": [
+        "Xavier (Glorot) Initialization",
+        "He (Kaiming) Initialization",
+        "Uniform Zero Initialization",
+        "Binary Random"
+      ],
+      "correctAnswer": 1,
+      "explanation": "He (Kaiming) initialization scales weights by sqrt(2 / n_in) to maintain variance through ReLU's half-zeroing.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "type": "mcq",
+      "question": "What is a learning rate scheduler used for?",
+      "options": [
+        "Scheduling cron jobs on AWS",
+        "Dynamically decaying the learning rate as training progresses to facilitate fine settling",
+        "Increasing parameter count",
+        "Restarting training from scratch"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Decaying learning rates (e.g., cosine annealing) allows large initial exploration followed by precise convergence.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q19",
+      "type": "true_false",
+      "question": "Cross-entropy loss combined with Softmax outputs produces a clean analytical gradient: (p - y).",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. The derivative of categorical cross-entropy with respect to Softmax logits elegantly simplifies to p_i - y_i.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q20",
+      "type": "mcq",
+      "question": "What is the purpose of the computational graph created by deep learning engines like PyTorch?",
+      "options": [
+        "To render 3D charts on web browsers",
+        "To track forward operations and execute automatic reverse-mode differentiation",
+        "To format JSON databases",
+        "To compress model weights into ZIP files"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The computational graph records operations during the forward pass so autograd can propagate derivatives backward.",
+      "xpReward": 15,
+      "difficulty": 2
+    }
+  ]
+}

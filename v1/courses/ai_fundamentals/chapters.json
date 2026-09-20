@@ -1,0 +1,84 @@
+{
+  "chapters": [
+    {
+      "id": "ch_1",
+      "languageId": "ai_fundamentals",
+      "title": "Introduction to AI & Intelligent Agents",
+      "description": "Discover what Artificial Intelligence truly is, explore the Turing Test, compare Narrow vs General AI, and understand how intelligent agents perceive and act in environments.",
+      "lessonsCount": 4,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "🤖"
+    },
+    {
+      "id": "ch_2",
+      "languageId": "ai_fundamentals",
+      "title": "Foundations of Machine Learning",
+      "description": "Transition from rules to learning from data. Master Supervised, Unsupervised, and Reinforcement Learning, data preprocessing, and the fundamental bias-variance tradeoff.",
+      "lessonsCount": 4,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "📊"
+    },
+    {
+      "id": "ch_3",
+      "languageId": "ai_fundamentals",
+      "title": "Neural Networks & Perceptrons",
+      "description": "Demystify the building blocks of modern AI. Trace biological inspiration to artificial neurons, master activation functions like ReLU and Softmax, and understand multi-layer forward passes.",
+      "lessonsCount": 4,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "⚡"
+    },
+    {
+      "id": "ch_4",
+      "languageId": "ai_fundamentals",
+      "title": "Training Networks & Backpropagation",
+      "description": "Learn how neural networks actually learn. Understand loss functions, master gradient descent, demystify the calculus of backpropagation, and explore modern optimizers like Adam.",
+      "lessonsCount": 4,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "🎯"
+    },
+    {
+      "id": "ch_5",
+      "languageId": "ai_fundamentals",
+      "title": "Deep Learning & Computer Vision",
+      "description": "Unlock visual intelligence with Convolutional Neural Networks (CNNs). Learn kernels, convolutions, feature maps, pooling layers, and modern image classification architectures.",
+      "lessonsCount": 4,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "👁️"
+    },
+    {
+      "id": "ch_6",
+      "languageId": "ai_fundamentals",
+      "title": "Sequence Modeling & NLP (RNNs to Transformers)",
+      "description": "Explore how machines process human language. Journey from word embeddings and tokenization through RNNs and LSTMs to the revolutionary Attention mechanism and Transformers.",
+      "lessonsCount": 4,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "💬"
+    },
+    {
+      "id": "ch_7",
+      "languageId": "ai_fundamentals",
+      "title": "Generative AI & Large Language Models",
+      "description": "Delve into the generative frontier. Master modern LLMs, pre-training objectives, instruction tuning, RLHF, prompt engineering strategies, and Retrieval-Augmented Generation (RAG).",
+      "lessonsCount": 4,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "✨"
+    },
+    {
+      "id": "ch_8",
+      "languageId": "ai_fundamentals",
+      "title": "AI Ethics, Safety & Autonomous Frontiers",
+      "description": "Navigate the critical challenges of modern AI: algorithmic bias, explainability (XAI), alignment, hallucination mitigation, autonomous agentic loops, and the path to AGI.",
+      "lessonsCount": 4,
+      "quizQuestionsCount": 20,
+      "xpReward": 100,
+      "iconEmoji": "🛡️"
+    }
+  ]
+}

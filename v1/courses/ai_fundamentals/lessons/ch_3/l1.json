@@ -1,0 +1,61 @@
+{
+  "id": "l1",
+  "chapterId": "ch_3",
+  "title": "Biological Inspiration & The Perceptron",
+  "description": "Trace biological neurons to Frank Rosenblatt's Perceptron, understanding weights, inputs, and the step threshold.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Neuron Foundations",
+  "slides": [
+    {
+      "id": "s_ch3_l1_1",
+      "type": "text",
+      "title": "From Biology to Silicon 🧬",
+      "content": "# Biological vs Artificial Neurons\n\nHuman brains contain approximately 86 billion interconnected biological neurons. An artificial neuron models this biological mechanism:\n\n```\nBiological Neuron:  Dendrites  -->   Soma / Cell Body   -->    Axon\nArtificial Neuron:  Inputs (x) -->  Weighted Sum (Σ)    -->  Activation (f)\n```\n\n### The Mathematical Perceptron (1958):\nFrank Rosenblatt formulated the **Perceptron**:\n\n$$\nz = \\sum_{i=1}^{n} w_i x_i + b = \\mathbf{w}^T \\mathbf{x} + b\n$$\n\n* **Inputs ($x_i$):** Feature values.\n* **Weights ($w_i$):** Strength of connection or importance of each feature.\n* **Bias ($b$):** Threshold required for the neuron to fire."
+    },
+    {
+      "id": "s_ch3_l1_2",
+      "type": "quiz",
+      "title": "Concept Check: Perceptron Math 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch3_l1_1",
+        "type": "multiple_choice",
+        "question": "If a neuron has inputs [2, 3], weights [0.5, 2.0], and a bias of -4, what is the net linear combination z?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "z = 7",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "z = 3",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "z = -4",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "z = 11",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "z = (2 * 0.5) + (3 * 2.0) + (-4) = 1.0 + 6.0 - 4.0 = 3.0.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch3_l1_3",
+      "type": "code",
+      "title": "A Single Neuron in Python 🐍",
+      "content": "Let's compute a single artificial neuron's forward pass using simple Python:",
+      "codeSnippet": "def single_neuron(inputs: list[float], weights: list[float], bias: float) -> float:\n    linear_sum = sum(x * w for x, w in zip(inputs, weights)) + bias\n    # Step activation function\n    return 1.0 if linear_sum >= 0 else 0.0\n\nprint('Neuron output:', single_neuron([1.0, 0.5], [0.4, 0.8], -0.5))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    }
+  ]
+}

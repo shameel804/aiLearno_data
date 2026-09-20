@@ -1,0 +1,15 @@
+{
+  "id": "task1",
+  "chapterId": "ch_8",
+  "title": "Implement an Output Safety Guardrail Checker",
+  "description": "Build an automated string filter that flags unsafe content, banned keywords, and prompt leaks in generated model outputs.",
+  "estimatedMinutes": 10,
+  "problemStatement": "Implement a Python function `safety_guardrail(output_text: str, banned_phrases: list[str]) -> tuple[bool, str]` that checks whether `output_text` contains any banned phrases (case-insensitively). If safe, return `(True, output_text)`. If unsafe, return `(False, '[CONTENT REDACTED BY SAFETY GUARDRAIL]')`.",
+  "hints": [
+    "Normalize output_text to lowercase.",
+    "Check if any phrase.lower() exists in the normalized text.",
+    "Return True with original text if safe, else False with redacted message."
+  ],
+  "expectedOutput": "Tuple of (is_safe: bool, final_text: str).",
+  "solutionCode": "def safety_guardrail(output_text: str, banned_phrases: list[str]) -> tuple[bool, str]:\n    lowered = output_text.lower()\n    for phrase in banned_phrases:\n        if phrase.lower() in lowered:\n            return False, '[CONTENT REDACTED BY SAFETY GUARDRAIL]'\n    return True, output_text"
+}

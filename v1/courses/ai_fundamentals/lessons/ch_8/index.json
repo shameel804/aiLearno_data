@@ -1,0 +1,36 @@
+{
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "Algorithmic Bias & Fairness",
+      "description": "Examine how training datasets reflect and amplify human historical biases, and study mathematical definitions of algorithmic fairness.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Ethics & Fairness"
+    },
+    {
+      "id": "l2",
+      "title": "Explainability & Interpretability (XAI)",
+      "description": "Open the neural network black box using SHAP values, LIME, saliency maps, and attention attribution techniques.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Explainable AI"
+    },
+    {
+      "id": "l3",
+      "title": "Safety, Alignment, & Hallucination Mitigation",
+      "description": "Tackle the Alignment Problem, catastrophic reward hacking, jailbreaking risks, and output guardrails.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "AI Safety"
+    },
+    {
+      "id": "l4",
+      "title": "Autonomous Agents, Tool Use & AGI",
+      "description": "Explore the frontier of AI: the ReAct loop, LLMs using APIs/code interpreters, multi-agent swarms, and the path to AGI.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Frontier Systems"
+    }
+  ]
+}

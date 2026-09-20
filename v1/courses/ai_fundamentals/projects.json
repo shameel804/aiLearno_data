@@ -1,0 +1,25 @@
+{
+  "projects": [
+    {
+      "id": "project1",
+      "title": "Build a Multi-Layer Perceptron From Scratch",
+      "description": "Construct a complete feedforward neural network from mathematical primitives in pure Python, including matrix forward passes, cross-entropy loss, and backpropagation.",
+      "difficulty": "Intermediate",
+      "estimatedHours": "3-5"
+    },
+    {
+      "id": "project2",
+      "title": "Train a Deep CNN for Vision Classification",
+      "description": "Architect and train an end-to-end PyTorch Convolutional Neural Network with Conv2D layers, MaxPool2d, BatchNorm, and Dropout to classify images with high accuracy.",
+      "difficulty": "Intermediate",
+      "estimatedHours": "4-6"
+    },
+    {
+      "id": "project3",
+      "title": "Build an End-to-End RAG Knowledge Assistant",
+      "description": "Synthesize LLM generation with external context retrieval by engineering a complete document chunking, vector embedding indexing, and grounded prompt pipeline.",
+      "difficulty": "Advanced",
+      "estimatedHours": "5-8"
+    }
+  ]
+}

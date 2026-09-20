@@ -1,0 +1,108 @@
+{
+  "id": "l1",
+  "chapterId": "ch_1",
+  "title": "What is Artificial Intelligence?",
+  "description": "Explore the definition of AI, its historical milestones, the Turing Test, and the distinction between Narrow AI, AGI, and Superintelligence.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Foundations of AI",
+  "slides": [
+    {
+      "id": "s_ch1_l1_1",
+      "type": "text",
+      "title": "Demystifying AI 💡",
+      "content": "# What is Artificial Intelligence?\n\nAt its core, **Artificial Intelligence (AI)** is the science of engineering computational systems capable of performing tasks that traditionally demand biological intelligence.\n\n### The Core Spectrum of AI:\n* **Perception:** Interpreting sensory data (images, audio, text).\n* **Reasoning:** Drawing deductive or inductive conclusions from evidence.\n* **Learning:** Improving performance through experience without explicit reprogramming.\n* **Action:** Executing decisions within an environment to maximize a target goal.\n\n> 💡 **The Pocket Calculator Analogy:**\n> A calculator performs arithmetic faster than any human, but it isn't \"intelligent\" because it cannot adapt, learn, or form abstractions. AI bridges the gap between rigid arithmetic and adaptive reasoning."
+    },
+    {
+      "id": "s_ch1_l1_2",
+      "type": "quiz",
+      "title": "Concept Check: AI Definition 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch1_l1_1",
+        "type": "multiple_choice",
+        "question": "Which capability uniquely separates modern AI systems from traditional algorithmic software (like a basic calculator)?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Executing deterministic mathematical formulas quickly",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Adapting and improving performance from empirical experience",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Storing gigabytes of structured numbers in RAM",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Printing outputs to a terminal screen",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Modern AI systems are distinguished by their ability to generalize and learn patterns from data rather than solely executing pre-hardcoded deterministic rules.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch1_l1_3",
+      "type": "text",
+      "title": "The Three Tiers of AI 🏛️",
+      "content": "AI is universally categorized into three distinct theoretical horizons:\n\n```\n+-------------------------------------------------------------+\n|                      1. NARROW AI (ANI)                     |\n|  Excels at a single dedicated domain (e.g. Chess, Vision)    |\n|  Status: Present Day Reality (ChatGPT, AlphaFold, Tesla FSD)|\n+-------------------------------------------------------------+\n                              |\n                              v\n+-------------------------------------------------------------+\n|                      2. GENERAL AI (AGI)                    |\n|  Can learn and apply intellect across ANY human domain      |\n|  Status: Active Global Research Frontier                    |\n+-------------------------------------------------------------+\n                              |\n                              v\n+-------------------------------------------------------------+\n|                   3. SUPERINTELLIGENCE (ASI)                |\n|  Surpasses human capability across all intellectual axes    |\n|  Status: Theoretical / Speculative                          |\n+-------------------------------------------------------------+\n```\n\n* **Artificial Narrow Intelligence (ANI):** Highly specialized. AlphaGo can beat a grandmaster at Go, but cannot write an email or recognize a pedestrian.\n* **Artificial General Intelligence (AGI):** Cross-domain transfer learning matching human cognitive flexibility.\n* **Artificial Superintelligence (ASI):** Far exceeding human ingenuity in science, creativity, and strategy."
+    },
+    {
+      "id": "s_ch1_l1_4",
+      "type": "quiz",
+      "title": "Concept Check: Narrow vs General AI 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch1_l1_2",
+        "type": "multiple_choice",
+        "question": "A state-of-the-art medical diagnostic model that detects skin cancer from photos with 99% accuracy is an example of which AI tier?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Artificial Superintelligence (ASI)",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Artificial General Intelligence (AGI)",
+            "isCorrect": false
+          },
+          {
+            "id": "opt3",
+            "text": "Artificial Narrow Intelligence (ANI)",
+            "isCorrect": true
+          },
+          {
+            "id": "opt4",
+            "text": "Sentient Intelligence (SI)",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Because it specializes exclusively in dermatological image analysis and cannot generalize to unrelated domains like piloting an aircraft, it is Narrow AI (ANI).",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch1_l1_5",
+      "type": "code",
+      "title": "A Minimal Intelligent Classifier in Python 🐍",
+      "content": "Here is a tiny Python rule-based heuristic illustrating the simplest form of decision making:",
+      "codeSnippet": "def classify_email(subject: str, sender: str) -> str:\n    spam_keywords = ['urgent wire transfer', 'lottery winner', 'claim your prize']\n    normalized = subject.lower()\n    \n    for keyword in spam_keywords:\n        if keyword in normalized:\n            return 'SPAM'\n    return 'INBOX'\n\nprint(classify_email('You are the lottery winner!', 'promo@prize.org'))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch1_l1_6",
+      "type": "tip",
+      "title": "AI Pro Tip: The Turing Test 🚀",
+      "content": "## Alan Turing's Imitation Game (1950)\nAlan Turing proposed that instead of arguing over whether machines 'think', we test if an interrogator in a text conversation cannot tell whether their interlocutor is a machine or a human.\n\nWhile modern LLMs regularly pass conversational Turing Tests, researchers today favor rigorous benchmarks evaluating reasoning, multi-step planning, and spatial logic over simple mimicry!"
+    }
+  ]
+}

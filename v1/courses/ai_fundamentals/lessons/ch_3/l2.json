@@ -1,0 +1,58 @@
+{
+  "id": "l2",
+  "chapterId": "ch_3",
+  "title": "Activation Functions: Introducing Non-Linearity",
+  "description": "Explore why non-linearity is vital. Compare Sigmoid, Tanh, ReLU, Leaky ReLU, and Softmax.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Activations",
+  "slides": [
+    {
+      "id": "s_ch3_l2_1",
+      "type": "text",
+      "title": "Why We Need Non-Linearity ⚡",
+      "content": "# The Power of Non-Linear Activation\n\nIf you stack 100 linear layers together: $f(x) = W_3(W_2(W_1 x + b_1) + b_2) + b_3$, the entire network mathematically collapses into a single linear transformation: $f(x) = W_{combined} x + b_{combined}$!\n\n> 💡 **The Origami Analogy:**\n> Linear operations can only stretch, rotate, and shift paper. An activation function allows the network to **fold** the paper, carving out complex decision boundaries in higher dimensions!"
+    },
+    {
+      "id": "s_ch3_l2_2",
+      "type": "text",
+      "title": "The Pantheon of Activation Functions 📊",
+      "content": "### 1. ReLU (Rectified Linear Unit)\n$$\\text{ReLU}(z) = \\max(0, z)$$\n* **Pros:** Computationally ultra-fast; avoids vanishing gradients for positive inputs.\n* **Cons:** Dying ReLU problem (neurons getting permanently stuck at 0).\n\n### 2. Leaky ReLU\n$$\\text{LeakyReLU}(z) = \\max(0.01z, z)$$\n* Keeps a tiny slope for negative values so gradients can still flow.\n\n### 3. Softmax (Multi-class Output)\n$$\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_{j} e^{z_j}}$$\n* Normalizes raw logit scores into a valid probability distribution that sums to 1.0."
+    },
+    {
+      "id": "s_ch3_l2_3",
+      "type": "quiz",
+      "title": "Concept Check: Softmax Sum 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch3_l2_1",
+        "type": "multiple_choice",
+        "question": "What is the guaranteed sum of all output probabilities produced by a Softmax layer across all classes?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "0.0",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "1.0 (or 100%)",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Equal to the number of classes",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Dependent on the batch size",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "By definition, the denominator of the Softmax function normalizes the exponentials such that all class probabilities sum strictly to 1.0.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

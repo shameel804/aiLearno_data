@@ -1,0 +1,15 @@
+{
+  "id": "task1",
+  "chapterId": "ch_4",
+  "title": "Perform a Manual Gradient Descent Step",
+  "description": "Calculate the gradient of a quadratic loss function and update the parameter using a specified learning rate.",
+  "estimatedMinutes": 10,
+  "problemStatement": "Given a simple linear model with scalar parameter `w`, input `x`, target `y`, and loss function `L = (w * x - y)**2`. Implement a function `gradient_step(w: float, x: float, y: float, lr: float) -> float` that computes the derivative `dL/dw = 2 * (w * x - y) * x` and returns the updated weight `w_new = w - lr * grad`.",
+  "hints": [
+    "First compute prediction: y_pred = w * x.",
+    "Calculate gradient: grad = 2 * (y_pred - y) * x.",
+    "Update weight: w - lr * grad."
+  ],
+  "expectedOutput": "Updated weight float after applying the gradient step.",
+  "solutionCode": "def gradient_step(w: float, x: float, y: float, lr: float) -> float:\n    grad = 2 * (w * x - y) * x\n    return w - lr * grad"
+}

@@ -1,0 +1,300 @@
+{
+  "id": "quiz_ch_7",
+  "chapterId": "ch_7",
+  "title": "Chapter 7 Quiz: Generative AI & LLMs",
+  "description": "Assess comprehension of generative models, LLM pretraining, alignment (RLHF/DPO), prompt engineering, and RAG architectures.",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "What is the mathematical distinction between a Discriminative model and a Generative model?",
+      "options": [
+        "Discriminative models model P(Y|X); Generative models model P(X, Y) or P(X)",
+        "Discriminative models use GPUs; Generative models do not",
+        "Generative models can only output numbers",
+        "Discriminative models cannot be trained with gradient descent"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Discriminative models estimate decision boundaries P(Y|X), whereas Generative models estimate data distributions P(X, Y) to synthesize new samples.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "question": "How do modern Diffusion Models generate high-resolution images from text prompts?",
+      "options": [
+        "By copying existing Google Images",
+        "By gradually denoising pure Gaussian noise step-by-step conditioned on text embeddings",
+        "By solving linear systems of equations",
+        "By running A* pathfinding"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Diffusion models learn the reverse process of slowly removing noise from an image, synthesizing crisp visuals from static.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "question": "What is the pretraining objective of causal Large Language Models (like GPT)?",
+      "options": [
+        "Predicting the next token given preceding context",
+        "Classifying sentences as true or false",
+        "Translating code into assembly",
+        "Solving sudoku puzzles"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Autoregressive LLMs are trained to maximize the log-probability of predicting the next token in continuous sequence.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q4",
+      "type": "true_false",
+      "question": "A raw 'Base Model' fresh out of pretraining is already an aligned, polite conversational assistant.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 1,
+      "explanation": "False. Base models are probabilistic text completers; they require post-training instruction tuning and alignment to act as assistants.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "question": "What does RLHF stand for in AI model alignment pipelines?",
+      "options": [
+        "Recursive Linear Hidden Feedback",
+        "Reinforcement Learning from Human Feedback",
+        "Randomized Loss Hyperparameter Fitting",
+        "Realtime Language Hardware Fusion"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Reinforcement Learning from Human Feedback (RLHF) steers model behavior to align with human preferences.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "question": "How does Direct Preference Optimization (DPO) improve upon traditional RLHF?",
+      "options": [
+        "It removes the need for training data",
+        "It implicitly optimizes the policy directly on preference pairs without training a separate reward model or using PPO",
+        "It increases model parameter count",
+        "It enforces binary outputs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "DPO derives a closed-form loss directly over preference data, bypassing unstable PPO reinforcement learning and separate reward models.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "question": "What is LoRA (Low-Rank Adaptation) in LLM fine-tuning?",
+      "options": [
+        "A tool for formatting markdown",
+        "A PEFT method that freezes base model weights and injects trainable low-rank decomposition rank matrices",
+        "A method for deleting bad tokens",
+        "A GPU cooling technique"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LoRA decomposes weight updates into low-rank matrices delta_W = A * B, drastically slashing memory requirements while matching full fine-tuning.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q8",
+      "type": "true_false",
+      "question": "In Chain-of-Thought (CoT) prompting, instructing an LLM to 'think step-by-step' triggers the generation of intermediate reasoning tokens.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Intermediate reasoning tokens allow the model to dedicate compute steps to decomposing complex multi-step problems.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "question": "What does RAG stand for in enterprise AI architecture?",
+      "options": [
+        "Recursive Algorithm Generation",
+        "Retrieval-Augmented Generation",
+        "Randomized Attention Gate",
+        "Realtime Asynchronous Gradient"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Retrieval-Augmented Generation (RAG) fetches relevant external documents to ground the LLM's generative response.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "question": "Why is RAG preferred over full model retraining when updating an AI with rapidly changing corporate knowledge?",
+      "options": [
+        "RAG requires retraining all 70B weights daily",
+        "RAG is fast, cost-effective, avoids model hallucinations, and provides traceable source citations",
+        "RAG deletes the model's neural network",
+        "RAG works without any internet connection"
+      ],
+      "correctAnswer": 1,
+      "explanation": "RAG dynamically queries external databases, providing up-to-date knowledge without expensive, time-consuming retraining cycles.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q11",
+      "type": "mcq",
+      "question": "In a RAG system, what type of database is used to store document chunk vectors and perform fast semantic similarity searches?",
+      "options": [
+        "Relational SQL Database (SQLite)",
+        "Vector Database (e.g. Chroma, Pinecone, FAISS)",
+        "Redis Key-Value Cache",
+        "Flat CSV file"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Vector databases specialize in high-dimensional indexing and Approximate Nearest Neighbor (ANN) search.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q12",
+      "type": "true_false",
+      "question": "A model 'hallucination' occurs when an LLM generates factually false or unverifiable statements with high confidence.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Hallucinations stem from statistical fluency divorced from ground-truth verification.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q13",
+      "type": "mcq",
+      "question": "What parameter controls the randomness of token generation during LLM decoding?",
+      "options": [
+        "Batch Size",
+        "Temperature",
+        "Weight Decay",
+        "Stride"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Temperature scales the logits before Softmax: lower values (e.g. 0.0) produce deterministic outputs, while higher values increase randomness.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q14",
+      "type": "mcq",
+      "question": "What is 'Top-p' (Nucleus) sampling in generative decoding?",
+      "options": [
+        "Selecting only the top 1 most probable token",
+        "Sampling only from the smallest set of top tokens whose cumulative probability exceeds threshold p",
+        "Sampling randomly across all 50,000 vocabulary tokens",
+        "Pruning negative parameters"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Nucleus sampling cuts off the unreliable long tail of low-probability tokens dynamically based on cumulative mass p.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q15",
+      "type": "fill_blank",
+      "question": "Providing a few input-output demonstrations directly inside the prompt is called ______-shot prompting.",
+      "options": [
+        "Few",
+        "Zero",
+        "Many",
+        "Meta"
+      ],
+      "correctAnswer": "Few",
+      "explanation": "Few-shot prompting conditions the model in-context with sample demonstrations without gradient updates.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q16",
+      "type": "true_false",
+      "question": "Chunking documents into overlapping segments (e.g., 500 tokens with 50-token overlap) prevents losing contextual meaning at chunk boundaries.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Overlapping boundaries preserve semantic flow across fragmented document splits in RAG pipelines.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q17",
+      "type": "mcq",
+      "question": "What is Quantization (e.g., 4-bit or 8-bit quantization) in LLM deployment?",
+      "options": [
+        "Deleting half the vocabulary",
+        "Reducing the numerical precision of weights from FP16 to INT8 or INT4 to slash RAM and run on smaller hardware",
+        "Compressing prompt text",
+        "Encrypting model weights"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Quantization reduces weight precision (e.g. FP16 to 4-bit AWQ/GGUF), cutting memory usage by 75% with minimal accuracy loss.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "type": "mcq",
+      "question": "What role does a 'System Prompt' play in conversational LLM interactions?",
+      "options": [
+        "It installs the operating system",
+        "It establishes the overarching persona, behavioral constraints, safety guidelines, and operational scope for the model",
+        "It resets the GPU clock rate",
+        "It computes cross-entropy loss"
+      ],
+      "correctAnswer": 1,
+      "explanation": "System prompts set the foundational behavior, instructions, tone, and guardrails for the dialogue session.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q19",
+      "type": "true_false",
+      "question": "Scaling Laws demonstrate that model loss decreases predictably as a power-law function of compute, dataset size, and parameter count.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Empirical scaling laws (Kaplan et al., Hoffmann et al.) establish predictable power-law performance gains with scale.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q20",
+      "type": "mcq",
+      "question": "What is Re-ranking in an advanced RAG pipeline?",
+      "options": [
+        "Sorting files on disk alphabetically",
+        "Using a cross-encoder model to re-score and rank candidate retrieved chunks for precise relevance before sending to the LLM",
+        "Changing the database password",
+        "Re-training the embedding model"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Re-rankers examine query and candidate documents simultaneously to filter out false-positive vector matches.",
+      "xpReward": 15,
+      "difficulty": 2
+    }
+  ]
+}

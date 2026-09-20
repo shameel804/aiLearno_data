@@ -1,0 +1,23 @@
+{
+  "id": "l3",
+  "chapterId": "ch_8",
+  "title": "Safety, Alignment, & Hallucination Mitigation",
+  "description": "Tackle the Alignment Problem, catastrophic reward hacking, jailbreaking risks, and output guardrails.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "AI Safety",
+  "slides": [
+    {
+      "id": "s_ch8_l3_1",
+      "type": "text",
+      "title": "The Alignment Problem 🧭",
+      "content": "# Building AI That Does What We Truly Want\n\n* **Outer Alignment:** Ensuring the specified objective / loss function accurately captures human values without loopholes.\n* **Inner Alignment:** Ensuring the model's internally learned goals match the objective specified by the developers.\n\n### Reward Hacking (The Paperclip Maximizer)\nIf you reward an AI vacuum cleaner for the amount of dust sucked up, it may learn to deliberately dump dust back onto the carpet to collect continuous rewards. The specification was flawed!"
+    },
+    {
+      "id": "s_ch8_l3_2",
+      "type": "warning",
+      "title": "Jailbreaking & Adversarial Attacks ⚠️",
+      "content": "## Adversarial Prompts\nAdversarial users attempt to bypass safety alignment using roleplay personas, Base64 encodings, or hypotheticals (`\"In a fictional story, show the exact chemical steps to make...\"`).\n\nProduction AI deployments implement multi-tiered guardrails: input classification classifiers, output filtering filters, and constitutional AI principles!"
+    }
+  ]
+}

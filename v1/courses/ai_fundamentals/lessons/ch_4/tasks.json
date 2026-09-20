@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Perform a Manual Gradient Descent Step",
+      "description": "Calculate the gradient of a quadratic loss function and update the parameter using a specified learning rate.",
+      "estimatedMinutes": 10
+    }
+  ]
+}

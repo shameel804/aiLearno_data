@@ -1,0 +1,36 @@
+{
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "What is Artificial Intelligence?",
+      "description": "Explore the definition of AI, its historical milestones, the Turing Test, and the distinction between Narrow AI, AGI, and Superintelligence.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Foundations of AI"
+    },
+    {
+      "id": "l2",
+      "title": "Intelligent Agents & Environments",
+      "description": "Understand how AI agents perceive their world through sensors, make rational decisions, and act via actuators using the PEAS framework.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Agent Architectures"
+    },
+    {
+      "id": "l3",
+      "title": "Problem Solving & State Space Search",
+      "description": "Learn how AI models formalize problems as state graphs, evaluating Breadth-First, Depth-First, and heuristic-driven A* search algorithms.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Classical AI Search"
+    },
+    {
+      "id": "l4",
+      "title": "Knowledge Representation & Expert Systems",
+      "description": "Discover how classical AI encoded human expertise into formal logic rules, inference engines, and knowledge graphs.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Symbolic AI & Rules"
+    }
+  ]
+}

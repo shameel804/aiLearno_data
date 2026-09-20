@@ -1,0 +1,302 @@
+{
+  "id": "quiz_ch_3",
+  "chapterId": "ch_3",
+  "title": "Chapter 3 Quiz: Neural Networks & Perceptrons",
+  "description": "Evaluate understanding of artificial neurons, non-linear activation functions, MLPs, and matrix forward propagation.",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "Who invented the mathematical Perceptron in 1958?",
+      "options": [
+        "Alan Turing",
+        "Frank Rosenblatt",
+        "Geoffrey Hinton",
+        "Yann LeCun"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Frank Rosenblatt designed the Perceptron algorithm at the Cornell Aeronautical Laboratory in 1958.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "question": "In an artificial neuron, what is the role of the bias term (b)?",
+      "options": [
+        "To normalize weights to sum to 1",
+        "To shift the activation function threshold independently of the inputs",
+        "To invert positive inputs into negative outputs",
+        "To count the number of epochs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The bias shifts the linear activation boundary, allowing neurons to fire even when all input features are zero.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "type": "mcq",
+      "question": "What happens mathematically if a neural network has multiple stacked hidden layers but no non-linear activation functions?",
+      "options": [
+        "It learns non-linear polynomials",
+        "It collapses into an equivalent single-layer linear model",
+        "It causes gradient explosion",
+        "It cannot be saved to disk"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A composition of linear transformations is strictly linear: W2*(W1*x + b1) + b2 = (W2*W1)*x + (W2*b1 + b2).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "question": "What is the mathematical definition of the ReLU (Rectified Linear Unit) activation function?",
+      "options": [
+        "f(z) = 1 / (1 + e^-z)",
+        "f(z) = max(0, z)",
+        "f(z) = tanh(z)",
+        "f(z) = z^2"
+      ],
+      "correctAnswer": 1,
+      "explanation": "ReLU outputs z for positive inputs and 0 for negative inputs: max(0, z).",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q5",
+      "type": "true_false",
+      "question": "The 'Dying ReLU' problem refers to neurons getting permanently stuck with zero gradient when inputs remain negative.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. If a neuron's activation remains negative, its gradient is 0, preventing its weights from updating.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "question": "How does the Leaky ReLU function solve the Dying ReLU problem?",
+      "options": [
+        "By dropping negative inputs entirely",
+        "By assigning a small non-zero slope (e.g. 0.01z) to negative inputs",
+        "By inverting weights after each epoch",
+        "By squashing outputs between -1 and 1"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Leaky ReLU maintains max(alpha*z, z) with alpha ~ 0.01, ensuring non-zero gradients flow for negative inputs.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "question": "What is the output range of the Hyperbolic Tangent (Tanh) activation function?",
+      "options": [
+        "[0, 1]",
+        "[-1, 1]",
+        "[0, +infinity)",
+        "(-infinity, +infinity)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Tanh squashes real numbers into the zero-centered range [-1, 1].",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "question": "Why is zero-centered activation (like Tanh) advantageous over strictly positive activation (like Sigmoid)?",
+      "options": [
+        "It eliminates the need for biases",
+        "It prevents zig-zag gradient dynamics during optimization updates",
+        "It halves memory footprint",
+        "It only accepts integer numbers"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Zero-centered outputs prevent all incoming gradients to a neuron from being strictly positive or strictly negative simultaneously.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "question": "Which activation function is standardly placed on the output layer for multi-class classification to yield a probability distribution?",
+      "options": [
+        "Sigmoid",
+        "Softmax",
+        "ReLU",
+        "Step function"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Softmax exponentiates and normalizes output logits so that all class probabilities sum to 1.0.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q10",
+      "type": "true_false",
+      "question": "The XOR logic function can be solved by a single perceptron without any hidden layers.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 1,
+      "explanation": "False. Minsky & Papert proved in 1969 that XOR is not linearly separable and requires at least one hidden layer.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q11",
+      "type": "mcq",
+      "question": "What does the Universal Approximation Theorem state regarding Multi-Layer Perceptrons?",
+      "options": [
+        "Any network can train in 10 seconds",
+        "A feedforward network with a single non-linear hidden layer can approximate any continuous function to arbitrary precision",
+        "Networks can predict lottery numbers",
+        "All loss functions are convex"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Given sufficient hidden neurons, a single hidden layer MLP can approximate any continuous function on compact subsets.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q12",
+      "type": "mcq",
+      "question": "If layer l-1 has 4 neurons and layer l has 3 neurons, what are the dimensions of the weight matrix W linking them?",
+      "options": [
+        "3 x 4 (or 4 x 3 depending on convention)",
+        "7 x 7",
+        "12 x 1",
+        "1 x 12"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Connecting 4 inputs to 3 outputs requires a 3x4 weight matrix containing 12 distinct scalar parameters.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q13",
+      "type": "fill_blank",
+      "question": "The phase where inputs are passed through layers from input to output to compute predictions is called ______ propagation.",
+      "options": [
+        "Forward",
+        "Backward",
+        "Recurrent",
+        "Residual"
+      ],
+      "correctAnswer": "Forward",
+      "explanation": "Forward propagation flows input signals through the network's layers to generate model predictions.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q14",
+      "type": "mcq",
+      "question": "How many total learnable parameters (weights + biases) exist in a dense layer with 5 inputs and 10 neurons?",
+      "options": [
+        "50",
+        "60",
+        "15",
+        "55"
+      ],
+      "correctAnswer": 1,
+      "explanation": "5 inputs * 10 neurons = 50 weights, plus 10 biases (one per neuron) = 60 total parameters.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q15",
+      "type": "true_false",
+      "question": "In batch processing, multiple input vectors are stacked as rows in a matrix X, enabling hardware acceleration via BLAS libraries.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Matrix operations batching dozens or hundreds of samples together maximize GPU parallel thread occupancy.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q16",
+      "type": "mcq",
+      "question": "What is the primary vulnerability of Sigmoid activations in very deep neural networks?",
+      "options": [
+        "They compute too fast",
+        "Vanishing Gradients: derivative saturates near 0 for high or low inputs",
+        "Outputs exceed 100",
+        "They cannot represent zero"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sigmoid derivative maxes out at 0.25 and decays to 0 for large absolute inputs, causing gradients to vanish across layers.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q17",
+      "type": "mcq",
+      "question": "What is a major advantage of deeper networks over extremely wide single-layer networks?",
+      "options": [
+        "Deeper networks can represent hierarchical abstractions with exponentially fewer total parameters",
+        "Deeper networks require zero training data",
+        "Deeper networks have strictly convex loss surfaces",
+        "Deeper networks do not need activation functions"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Deep architectures compose lower-level primitives into high-level concepts exponentially more efficiently than flat shallow models.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "type": "true_false",
+      "question": "Softmax applied to the logits [2.0, 2.0] assigns equal 50% probability to each of the two classes.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Equal logits produce identical exponentials: e^2 / (e^2 + e^2) = 0.5 (50%).",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q19",
+      "type": "mcq",
+      "question": "Which layer in a neural network directly interfaces with the raw external feature dataset?",
+      "options": [
+        "Hidden Layer",
+        "Input Layer",
+        "Output Layer",
+        "Latent Bottle-neck"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The input layer receives raw normalized numerical features from the external dataset.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q20",
+      "type": "mcq",
+      "question": "In a binary classification problem, how many output neurons are typically used if the output activation is Sigmoid?",
+      "options": [
+        "1",
+        "2",
+        "10",
+        "4"
+      ],
+      "correctAnswer": 0,
+      "explanation": "A single output neuron with Sigmoid activation outputs P(y=1), where P(y=0) = 1 - P(y=1).",
+      "xpReward": 15,
+      "difficulty": 1
+    }
+  ]
+}

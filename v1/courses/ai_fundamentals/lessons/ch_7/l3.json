@@ -1,0 +1,52 @@
+{
+  "id": "l3",
+  "chapterId": "ch_7",
+  "title": "Alignment & Fine-Tuning (RLHF & LoRA)",
+  "description": "Transform raw base models into helpful assistants via Instruction Tuning, RLHF, DPO, and Low-Rank Adaptation (LoRA).",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Post-Training Alignment",
+  "slides": [
+    {
+      "id": "s_ch7_l3_1",
+      "type": "text",
+      "title": "From Base Model to Assistant 🤝",
+      "content": "# The Post-Training Pipeline\n\nA raw base model trained on internet text is a document completer, not a chatbot. If you ask: `\"What is the capital of France?\"`, a base model might simply output: `\"What is the capital of Spain? What is the capital of Italy?\"`.\n\n### The 3 Stages of Post-Training:\n1. **Supervised Fine-Tuning (SFT / Instruction Tuning):** Train on high-quality Prompt-Response demonstration pairs (`{\"prompt\": \"What is...\", \"response\": \"The capital is Paris.\"}`).\n2. **Preference Alignment (RLHF / DPO):** Humans or AI compare pairs of model outputs. A reward model is trained, and Reinforcement Learning guides the policy towards helpful, harmless, and honest outputs.\n3. **Parameter-Efficient Fine-Tuning (PEFT / LoRA):** Instead of modifying all 70 billion parameters, **LoRA** injects tiny low-rank decomposition matrices ($A \\times B$) into attention weights, training only 0.1% of weights with near-identical performance!"
+    },
+    {
+      "id": "s_ch7_l3_2",
+      "type": "quiz",
+      "title": "Concept Check: LoRA Efficiency 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch7_l3_1",
+        "type": "multiple_choice",
+        "question": "What is the primary operational advantage of Low-Rank Adaptation (LoRA) for fine-tuning LLMs?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "It converts models into pure C code",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "It drastically reduces GPU VRAM and storage requirements by training low-rank adapter matrices instead of all base weights",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "It eliminates the need for any training data",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "It prevents the model from generating English sentences",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "LoRA freezes the base weights and only trains low-rank adapter matrices, slashing GPU memory consumption and enabling fast adaptation on consumer GPUs.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

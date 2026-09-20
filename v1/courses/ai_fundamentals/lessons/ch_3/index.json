@@ -1,0 +1,36 @@
+{
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "Biological Inspiration & The Perceptron",
+      "description": "Trace biological neurons to Frank Rosenblatt's Perceptron, understanding weights, inputs, and the step threshold.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Neuron Foundations"
+    },
+    {
+      "id": "l2",
+      "title": "Activation Functions: Introducing Non-Linearity",
+      "description": "Explore why non-linearity is vital. Compare Sigmoid, Tanh, ReLU, Leaky ReLU, and Softmax.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Activations"
+    },
+    {
+      "id": "l3",
+      "title": "Multi-Layer Perceptrons (MLPs)",
+      "description": "Stack neurons into Input, Hidden, and Output layers to break linear separation limits like the XOR problem.",
+      "xpReward": 25,
+      "estimatedMinutes": 7,
+      "section": "Network Architecture"
+    },
+    {
+      "id": "l4",
+      "title": "Forward Propagation in Action",
+      "description": "Step through the matrix multiplications and activation vector calculations that transform inputs into predictions.",
+      "xpReward": 25,
+      "estimatedMinutes": 6,
+      "section": "Inference Math"
+    }
+  ]
+}

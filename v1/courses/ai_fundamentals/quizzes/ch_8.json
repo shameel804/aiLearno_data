@@ -1,0 +1,300 @@
+{
+  "id": "quiz_ch_8",
+  "chapterId": "ch_8",
+  "title": "Chapter 8 Quiz: AI Ethics, Safety & Frontiers",
+  "description": "Examine algorithmic bias, explainability (XAI), safety alignment, reward hacking, agentic loops, and AGI governance.",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "Why can an AI model exhibit discriminatory bias even if sensitive attributes like race or gender are completely removed from the dataset?",
+      "options": [
+        "Neural networks are inherently biased",
+        "Correlated features (such as zip code, school attended, or purchase history) act as proxy variables",
+        "Loss functions require demographic inputs",
+        "The compiler introduces random bias"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Proxy variables correlate strongly with omitted protected attributes, enabling the network to inadvertently reconstruct biased decisions.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "question": "What is 'Representation Bias' in machine learning datasets?",
+      "options": [
+        "Representing numbers in binary format",
+        "Under-representation of certain demographic groups or environmental settings in the training distribution",
+        "Too many hidden layers in the model",
+        "Corrupted hard drives"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Representation bias arises when datasets fail to reflect the diversity of the real-world operational domain.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "question": "Algorithmic Fairness definitions (such as Demographic Parity vs Equalized Odds) can often be mathematically mutually exclusive.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. The Impossibility Theorem of Fairness shows that multiple fairness criteria cannot be satisfied simultaneously unless base rates are equal.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "question": "What problem does Explainable AI (XAI) primarily seek to resolve?",
+      "options": [
+        "Slow internet connections",
+        "The 'Black Box' dilemma: high model accuracy paired with opaque, uninterpretable internal reasoning",
+        "High electricity costs",
+        "GPU memory leaks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "XAI develops methods to illuminate why complex models make specific predictions, ensuring accountability and trust.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "question": "What game-theoretic method computes the fair marginal contribution of each feature to a model's prediction?",
+      "options": [
+        "SHAP (Shapley Additive exPlanations)",
+        "Nash Equilibrium Search",
+        "Prisoner's Dilemma Minimization",
+        "Minimax Search"
+      ],
+      "correctAnswer": 0,
+      "explanation": "SHAP attributes predictions based on Lloyd Shapley's cooperative game theory Shapley values.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "question": "How does LIME (Local Interpretable Model-agnostic Explanations) explain an individual prediction?",
+      "options": [
+        "By retraining the entire deep network from scratch",
+        "By perturbing the input sample locally and fitting a simple, interpretable linear model around that prediction",
+        "By deleting random weights",
+        "By calculating the exact global Hessian matrix"
+      ],
+      "correctAnswer": 1,
+      "explanation": "LIME approximates the complex decision boundary locally around a specific instance using an interpretable surrogate model.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q7",
+      "type": "true_false",
+      "question": "The 'Alignment Problem' is the challenge of ensuring powerful AI systems reliably pursue intentions and values that humans actually want.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Alignment seeks to prevent models from optimizing objectives in ways that cause unintended or catastrophic harm.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q8",
+      "type": "mcq",
+      "question": "What is 'Reward Hacking' (Specification Gaming) in reinforcement learning?",
+      "options": [
+        "Stealing cryptocurrency keys",
+        "An agent finding an unintended loophole in the reward function that achieves a high score without accomplishing the true task",
+        "Cracking passwords using brute force",
+        "Modifying GPU clocks"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Reward hacking occurs when an agent exploits flaws in the specified objective (e.g., a boat game looping in circles to collect points instead of racing).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "question": "What is an 'Adversarial Jailbreak' attack against a Large Language Model?",
+      "options": [
+        "Rooting an Android phone",
+        "Crafting clever prompt injections or persona exploits to bypass safety guardrails and elicit harmful content",
+        "Overheating the server room",
+        "DDoS attacking the API"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Jailbreaking manipulates context or framing to circumvent safety filters and elicit prohibited responses.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "question": "What is the ReAct (Reason + Act) pattern in autonomous AI agents?",
+      "options": [
+        "A JavaScript frontend framework",
+        "An architectural loop where the model interleaves reasoning steps ('Thought') with external tool actions and environment observations",
+        "A chemical simulator",
+        "A loss function for GANs"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The ReAct paradigm alternates between reasoning (thinking about the plan) and acting (invoking tools/APIs and observing outcomes).",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q11",
+      "type": "true_false",
+      "question": "Function calling (Tool Use) allows LLMs to emit structured JSON invoking external APIs, calculators, and databases.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Tool use grounds models in real-world actions, overcoming math limitations and knowledge cutoffs.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q12",
+      "type": "mcq",
+      "question": "What is a 'Saliency Map' in computer vision explainability?",
+      "options": [
+        "A GPS navigation chart",
+        "A visual heatmap indicating which image pixels had the strongest gradient influence on the model's classification output",
+        "A list of training hyperparameters",
+        "An edge detector filter"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Saliency maps compute gradients of the target class score with respect to input pixels to highlight salient regions.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q13",
+      "type": "mcq",
+      "question": "What is 'Model Collapse' in the context of training future foundation models?",
+      "options": [
+        "The server collapsing due to weight",
+        "Degradation in quality and diversity that occurs when models are recursively trained on synthetic data generated by other AI models",
+        "Loss turning negative",
+        "GPU hardware failure"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Model collapse occurs when recursive training on AI-generated data causes models to lose representation of the tails of true distributions.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q14",
+      "type": "fill_blank",
+      "question": "AI systems that operate as digital agents capable of multi-step planning, tool use, and self-correction are termed ______ workflows.",
+      "options": [
+        "Agentic",
+        "Static",
+        "Linear",
+        "Unary"
+      ],
+      "correctAnswer": "Agentic",
+      "explanation": "Agentic workflows replace single prompt-response interactions with iterative loops of planning, execution, and evaluation.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q15",
+      "type": "true_false",
+      "question": "Constitutional AI is an alignment technique where AI models critique and revise their own outputs according to a set of written principles.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Pioneered by Anthropic, Constitutional AI automates supervision using an explicit constitution of behavioral rules.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q16",
+      "type": "mcq",
+      "question": "What does 'Outer Alignment' specifically concern in AI safety research?",
+      "options": [
+        "Physical alignment of the datacenter racks",
+        "Formulating a loss/reward function that accurately captures what the developers truly desire without unintended loopholes",
+        "Aligning text formatting to the left margin",
+        "Cooling fan alignment"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Outer alignment ensures the specified objective function matches the true underlying human intent.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q17",
+      "type": "mcq",
+      "question": "What does 'Inner Alignment' concern in AI safety research?",
+      "options": [
+        "Aligning internal GPU clocks",
+        "Ensuring the model's internally learned optimization goals match the objective specified by the outer training objective",
+        "Formatting inner loops in Python",
+        "RAM memory alignment"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Inner alignment addresses mesa-optimizers: ensuring the model does not develop deceptive or unaligned internal proxy goals.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "type": "true_false",
+      "question": "Output guardrail frameworks (like NeMo Guardrails or Llama Guard) act as independent safety filters evaluating model inputs and outputs.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Independent guardrail classifiers evaluate safety, prompt injection risks, and toxicity at runtime.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q19",
+      "type": "mcq",
+      "question": "What is 'Red Teaming' in AI deployment protocols?",
+      "options": [
+        "Coloring server cables red",
+        "Systematically attacking, probing, and stress-testing an AI system to uncover vulnerabilities, biases, and safety flaws before public release",
+        "Running on AMD hardware",
+        "Executing recursive loops"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Red teaming employs specialized security testers to actively probe for dangerous behaviors, exploits, and alignment failures.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q20",
+      "type": "mcq",
+      "question": "What is the ultimate aspiration of Artificial General Intelligence (AGI)?",
+      "options": [
+        "A model that plays Tetris faster than humans",
+        "A synthetic cognitive system capable of understanding, learning, and performing any intellectual task with flexibility equal to or exceeding human capability",
+        "A replacement for all SQL databases",
+        "A 100% efficient solar panel"
+      ],
+      "correctAnswer": 1,
+      "explanation": "AGI represents general, adaptive intelligence matching or surpassing human capabilities across all economic and cognitive domains.",
+      "xpReward": 15,
+      "difficulty": 1
+    }
+  ]
+}

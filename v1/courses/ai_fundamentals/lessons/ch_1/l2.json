@@ -1,0 +1,102 @@
+{
+  "id": "l2",
+  "chapterId": "ch_1",
+  "title": "Intelligent Agents & Environments",
+  "description": "Understand how AI agents perceive their world through sensors, make rational decisions, and act via actuators using the PEAS framework.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Agent Architectures",
+  "slides": [
+    {
+      "id": "s_ch1_l2_1",
+      "type": "text",
+      "title": "The Agent-Environment Loop 🔄",
+      "content": "# The Agent Loop\n\nIn modern AI philosophy, an **Agent** is anything that perceives its environment through **sensors** and acts upon that environment through **actuators**.\n\n```\n               +-----------------------+\n               |      ENVIRONMENT      |\n               +-----------------------+\n                     ^           | \n             Action  |           | Percept\n                     |           v\n               +-----------------------+\n               |       ACTUATORS       |\n               |           ^           |\n               |      Agent Program    |\n               |           |           |\n               |        SENSORS        |\n               +-----------------------+\n```\n\n### Key Concepts:\n1. **Percept:** The sensory input received by the agent at any given moment.\n2. **Percept Sequence:** The complete chronological history of everything the agent has perceived.\n3. **Rational Agent:** An agent that selects an action expected to maximize its performance measure based on its percept sequence and built-in knowledge."
+    },
+    {
+      "id": "s_ch1_l2_2",
+      "type": "quiz",
+      "title": "Concept Check: Rationality 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch1_l2_1",
+        "type": "multiple_choice",
+        "question": "What is the primary characteristic of a 'rational agent' in AI?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "It always knows the absolute future with 100% omniscience",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "It chooses actions that maximize expected performance given its percepts",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "It mimics human cognitive flaws and emotional bias",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "It requires human supervision for every single decision",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rationality in AI does not mean omniscience (knowing the unknowable); it means taking the best possible expected action given the current observations and objectives.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch1_l2_3",
+      "type": "text",
+      "title": "The PEAS Framework 📋",
+      "content": "To engineer an AI agent, systems architects specify **PEAS**:\n\n| Element | Meaning | Autonomous Vehicle Example |\n| :--- | :--- | :--- |\n| **P** - Performance | Target metrics to optimize | Safety, speed, legal adherence, passenger comfort |\n| **E** - Environment | The world the agent operates in | Roads, pedestrians, weather, other vehicles |\n| **A** - Actuators | How the agent interacts with world | Steering wheel, accelerator, brakes, horn, turn signals |\n| **S** - Sensors | How the agent perceives data | Cameras, LiDAR, radar, GPS, speedometer |"
+    },
+    {
+      "id": "s_ch1_l2_4",
+      "type": "quiz",
+      "title": "Concept Check: PEAS Framework 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch1_l2_2",
+        "type": "multiple_choice",
+        "question": "In the PEAS framework for an automated vacuum cleaner, what is the 'Actuator'?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Floor cleanliness score and battery efficiency",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Dirt detection sensors and cliff sensors",
+            "isCorrect": false
+          },
+          {
+            "id": "opt3",
+            "text": "Drive wheels, suction motor, and cleaning brush",
+            "isCorrect": true
+          },
+          {
+            "id": "opt4",
+            "text": "The living room floor and carpet tiles",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Actuators are the physical or digital mechanisms through which an agent exerts effects on its environment. For a vacuum, these are wheels, motors, and brushes.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch1_l2_5",
+      "type": "code",
+      "title": "Agent Simulator in Python 🤖",
+      "content": "Here is a clean implementation of a reflex vacuum agent loop in Python:",
+      "codeSnippet": "class SimpleReflexAgent:\n    def select_action(self, location: str, status: str) -> str:\n        if status == 'DIRTY':\n            return 'SUCK'\n        elif location == 'A':\n            return 'RIGHT'\n        elif location == 'B':\n            return 'LEFT'\n        return 'NOOP'\n\nagent = SimpleReflexAgent()\nprint('Action when dirty in Room A:', agent.select_action('A', 'DIRTY'))\nprint('Action when clean in Room A:', agent.select_action('A', 'CLEAN'))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    }
+  ]
+}

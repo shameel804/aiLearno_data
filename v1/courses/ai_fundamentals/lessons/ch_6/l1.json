@@ -1,0 +1,52 @@
+{
+  "id": "l1",
+  "chapterId": "ch_6",
+  "title": "Tokenization & Word Embeddings",
+  "description": "Convert raw human text into machine-readable continuous vector spaces using Byte-Pair Encoding and Word2Vec.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Text Foundations",
+  "slides": [
+    {
+      "id": "s_ch6_l1_1",
+      "type": "text",
+      "title": "Converting Words to Numbers 🔤",
+      "content": "# From Strings to Vectors\n\nComputers cannot compute derivatives on raw strings. Text must undergo a two-step conversion:\n\n```\nRaw Text:       \"Artificial Intelligence is amazing\"\n                       |\n                       v  [Tokenization: BPE / WordPiece]\nTokens:         [\"Art\", \"ificial\", \"Intelligence\", \"is\", \"amazing\"]\nToken IDs:      [2410,   8912,      14920,          318,  7231]\n                       |\n                       v  [Embedding Lookup]\nDense Vectors:  [[0.12, -0.45, ...], [0.88, 0.14, ...], ...]\n```\n\n### Word Embeddings (Word2Vec, GloVe):\nEmbeddings map semantic meaning into geometric distance. Famous geometric relationship:\n$$\n\\vec{King} - \\vec{Man} + \\vec{Woman} \\approx \\vec{Queen}\n$$\nWords with similar meanings cluster together in continuous vector space."
+    },
+    {
+      "id": "s_ch6_l1_2",
+      "type": "quiz",
+      "title": "Concept Check: Embeddings 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch6_l1_1",
+        "type": "multiple_choice",
+        "question": "What mathematical metric is most commonly used to quantify the semantic similarity between two normalized embedding vectors?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Cosine Similarity (dot product)",
+            "isCorrect": true
+          },
+          {
+            "id": "opt2",
+            "text": "Hamming Distance",
+            "isCorrect": false
+          },
+          {
+            "id": "opt3",
+            "text": "Cross-entropy loss",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Levenshtein edit distance",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Cosine similarity measures the cosine of the angle between two multi-dimensional vectors, evaluating directional alignment regardless of magnitude.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

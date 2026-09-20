@@ -1,0 +1,52 @@
+{
+  "id": "l1",
+  "chapterId": "ch_7",
+  "title": "Discriminative vs Generative AI",
+  "description": "Understand how generative models synthesize novel samples by modeling data distributions, comparing VAEs, GANs, and Diffusion.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Generative Foundations",
+  "slides": [
+    {
+      "id": "s_ch7_l1_1",
+      "type": "text",
+      "title": "Creating vs Classifying 🎨",
+      "content": "# The Great Division in Modern AI\n\n* **Discriminative Models:** Model conditional probability $P(Y | X)$. Given an image $X$, predict if it's a cat ($Y=1$) or dog ($Y=0$). They draw decision boundaries.\n* **Generative Models:** Model the joint probability distribution $P(X, Y)$ or data distribution $P(X)$. They learn how data is distributed so they can generate **completely new, synthetic instances** that never existed before!\n\n### Major Generative Families:\n1. **Autoregressive Models (e.g. GPT):** Predict the next token given preceding tokens.\n2. **Generative Adversarial Networks (GANs):** A Generator and Discriminator compete in a minimax game.\n3. **Diffusion Models (e.g. Midjourney, Stable Diffusion):** Add Gaussian noise gradually until pure static, then train a U-Net neural network to reverse the noise step-by-step!"
+    },
+    {
+      "id": "s_ch7_l1_2",
+      "type": "quiz",
+      "title": "Concept Check: Generative vs Discriminative 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch7_l1_1",
+        "type": "multiple_choice",
+        "question": "Which of the following tasks is performed by a Generative AI model?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Predicting whether a credit card transaction is fraudulent (0 or 1)",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Synthesizing a photorealistic image of an astronaut riding a horse on Mars",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Calculating the total sum of numbers in an Excel spreadsheet",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Sorting emails chronologically by timestamp",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Synthesizing novel media samples from text descriptions requires modeling data distributions to create new data, which is the hallmark of Generative AI.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

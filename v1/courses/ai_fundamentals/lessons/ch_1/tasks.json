@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Build a Goal-Based Agent Evaluator",
+      "description": "Construct an evaluation function for an autonomous agent balancing energy consumption against reward.",
+      "estimatedMinutes": 10
+    }
+  ]
+}

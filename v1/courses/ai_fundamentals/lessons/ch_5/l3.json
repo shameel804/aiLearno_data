@@ -1,0 +1,52 @@
+{
+  "id": "l3",
+  "chapterId": "ch_5",
+  "title": "Pooling & Hierarchical Feature Learning",
+  "description": "Downsample feature maps using Max and Average Pooling, and observe how deep layers build abstractions from lines to faces.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Downsampling & Hierarchy",
+  "slides": [
+    {
+      "id": "s_ch5_l3_1",
+      "type": "text",
+      "title": "Downsampling with Max Pooling 📉",
+      "content": "# Max Pooling\n\nConvolution layers are followed by **Pooling layers** to reduce spatial dimensions, lower memory usage, and provide translation tolerance.\n\n```\n2x2 Max Pooling with Stride 2:\n\n[ 12   20 ]  [ 30    0 ]        ==>       [ 20   30 ]\n[  8   15 ]  [  2   14 ]                  [ 112  37 ]\n\n[ 34  112 ]  [ 25   37 ]\n[  9   64 ]  [ 18   12 ]\n```\n\nMax pooling selects the most salient activation in each window, discarding background noise."
+    },
+    {
+      "id": "s_ch5_l3_2",
+      "type": "quiz",
+      "title": "Concept Check: Max Pooling Dimension 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch5_l3_1",
+        "type": "multiple_choice",
+        "question": "If a 32x32 feature map passes through a 2x2 Max Pooling layer with stride 2, what is the output spatial dimension?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "32x32",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "16x16",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "8x8",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "64x64",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "A 2x2 pooling window with stride 2 halves both height and width: 32 / 2 = 16, resulting in a 16x16 output.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

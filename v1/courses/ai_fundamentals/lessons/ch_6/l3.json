@@ -1,0 +1,58 @@
+{
+  "id": "l3",
+  "chapterId": "ch_6",
+  "title": "The Attention Mechanism",
+  "description": "Understand why bottlenecking sequences into fixed vectors failed, and how Query-Key-Value attention revolutionizes context retrieval.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Attention Intuition",
+  "slides": [
+    {
+      "id": "s_ch6_l3_1",
+      "type": "text",
+      "title": "The Information Bottleneck 🍾",
+      "content": "# Breaking the Fixed-Length Bottleneck\n\nIn early sequence-to-sequence translation models, an encoder compressed an entire paragraph into a single fixed-length vector $h_{last}$. Asking a 512-number vector to memorize a 50-word sentence was like forcing someone to summarize a complex book into a tweet.\n\n### The Breakthrough: Bahdanau Attention (2014)\nInstead of forcing everything into one static vector, the decoder looks directly back at **all encoder states** at every step, placing dynamically calculated **attention weights** on the most relevant source words!"
+    },
+    {
+      "id": "s_ch6_l3_2",
+      "type": "text",
+      "title": "Query, Key, and Value (Q, K, V) 🗝️",
+      "content": "# The Filing Cabinet Analogy\n\nThink of Attention like searching a database or library:\n\n* **Query ($Q$):** What you are searching for (e.g. \"Who stole the treasure?\").\n* **Keys ($K$):** The labels / tags on every book in the library.\n* **Values ($V$):** The actual text contents inside each book.\n\n### Scaled Dot-Product Attention Formula:\n$$\n\\text{Attention}(Q, K, V) = \\text{Softmax}\\left( \\frac{Q K^T}{\\sqrt{d_k}} \\right) V\n$$\n\n1. Multiply Query by all Keys ($Q K^T$) to get similarity scores.\n2. Scale by $\\sqrt{d_k}$ to prevent gradient saturation.\n3. Apply Softmax to obtain attention weights summing to 1.0.\n4. Take the weighted sum of the Values ($V$)!"
+    },
+    {
+      "id": "s_ch6_l3_3",
+      "type": "quiz",
+      "title": "Concept Check: Scaling Factor 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch6_l3_1",
+        "type": "multiple_choice",
+        "question": "Why is the dot product Q * K^T divided by sqrt(d_k) in Scaled Dot-Product Attention?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "To convert the numbers to Roman numerals",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "To prevent large dot product magnitudes that cause Softmax gradients to vanish",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "To enforce binary output values",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "To reduce token count by half",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "For large vector dimensions d_k, the dot product grows large in magnitude, pushing the Softmax function into regions with extremely small gradients. Dividing by sqrt(d_k) stabilizes variance.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

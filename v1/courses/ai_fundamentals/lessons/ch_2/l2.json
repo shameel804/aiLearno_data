@@ -1,0 +1,61 @@
+{
+  "id": "l2",
+  "chapterId": "ch_2",
+  "title": "Data Preprocessing & Feature Engineering",
+  "description": "Master data preparation essentials: handling missing values, encoding categorical variables, normalization, and standardization.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Data Pipeline",
+  "slides": [
+    {
+      "id": "s_ch2_l2_1",
+      "type": "text",
+      "title": "Garbage In, Garbage Out 🗑️",
+      "content": "# Preparing Data for Machine Learning\n\nRaw real-world data is messy, incomplete, and varied in scale. No machine learning algorithm can outperform poor data preparation.\n\n### Essential Preprocessing Steps:\n1. **Handling Missing Values:** Imputation with median/mean for continuous features, mode for categories, or algorithmic imputation (KNN).\n2. **Categorical Encoding:**\n   - **One-Hot Encoding:** Creates binary columns for nominal data without intrinsic order (`Red`, `Green`, `Blue`).\n   - **Ordinal Encoding:** Encodes ranked categories (`Low: 0`, `Medium: 1`, `High: 2`).\n3. **Feature Scaling:**\n   - **Min-Max Normalization:** Rescales values into $[0, 1]$: $x_{norm} = \\frac{x - x_{min}}{x_{max} - x_{min}}$.\n   - **Standardization (Z-Score):** Centers around zero with unit variance: $z = \\frac{x - \\mu}{\\sigma}$."
+    },
+    {
+      "id": "s_ch2_l2_2",
+      "type": "code",
+      "title": "Feature Scaling in Python 🐍",
+      "content": "Observe how Min-Max scaling compresses diverse measurements into a unified [0, 1] range:",
+      "codeSnippet": "def min_max_scale(values: list[float]) -> list[float]:\n    min_val, max_val = min(values), max(values)\n    if max_val == min_val:\n        return [0.0] * len(values)\n    return [(x - min_val) / (max_val - min_val) for x in values]\n\nhouse_sqft = [600, 1200, 1800, 2400, 3000]\nscaled = min_max_scale(house_sqft)\nprint('Scaled sqft:', [round(s, 2) for s in scaled])",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch2_l2_3",
+      "type": "quiz",
+      "title": "Concept Check: Scaling Purpose 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch2_l2_1",
+        "type": "multiple_choice",
+        "question": "Why is feature scaling crucial for gradient-based optimization and distance-based algorithms like KNN?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "It converts all text data directly into natural English",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "It prevents features with large numeric scales from dominating gradients and distances",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "It eliminates the need for training splits entirely",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "It automatically generates labeled training targets",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "If one feature ranges from 0 to 100,000 (salary) and another from 1 to 5 (ratings), the larger feature will disproportionately skew Euclidean distance metrics and cause elongated optimization ravines.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

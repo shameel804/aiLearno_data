@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Compute Mean Squared Error",
+      "description": "Implement a vectorized calculation of Mean Squared Error to evaluate a regression model's predictions.",
+      "estimatedMinutes": 10
+    }
+  ]
+}

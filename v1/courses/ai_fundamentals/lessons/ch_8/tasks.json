@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Implement an Output Safety Guardrail Checker",
+      "description": "Build an automated string filter that flags unsafe content, banned keywords, and prompt leaks in generated model outputs.",
+      "estimatedMinutes": 10
+    }
+  ]
+}

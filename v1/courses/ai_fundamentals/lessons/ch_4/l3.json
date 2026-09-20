@@ -1,0 +1,26 @@
+{
+  "id": "l3",
+  "chapterId": "ch_4",
+  "title": "The Backpropagation Algorithm",
+  "description": "Unravel the calculus behind AI: the Chain Rule, error attribution, and propagating gradients from output to input.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Backprop Calculus",
+  "slides": [
+    {
+      "id": "s_ch4_l3_1",
+      "type": "text",
+      "title": "The Chain Rule of Calculus ⛓️",
+      "content": "# The Core of Backpropagation\n\nHow does a weight in the first layer know how much it contributed to an error in the tenth layer? Through the **Chain Rule**!\n\nIf $y = f(u)$ and $u = g(x)$, then:\n$$\n\\frac{\\partial y}{\\partial x} = \\frac{\\partial y}{\\partial u} \\cdot \\frac{\\partial u}{\\partial x}\n$$\n\nIn a deep neural network, the gradient of the loss with respect to any hidden weight $w_{ij}$ is computed by multiplying local derivatives backwards from the loss node to that weight:\n\n$$\n\\frac{\\partial \\mathcal{L}}{\\partial w_{ij}} = \\frac{\\partial \\mathcal{L}}{\\partial \\hat{y}} \\cdot \\frac{\\partial \\hat{y}}{\\partial z_k} \\cdot \\dots \\cdot \\frac{\\partial z_j}{\\partial w_{ij}}\n$$"
+    },
+    {
+      "id": "s_ch4_l3_2",
+      "type": "code",
+      "title": "Autograd in Action (PyTorch Style) 🐍",
+      "content": "Modern deep learning frameworks automate the chain rule using computational graphs and reverse-mode automatic differentiation:",
+      "codeSnippet": "# Conceptual PyTorch automatic differentiation\nimport torch\n\nw = torch.tensor([2.0], requires_grad=True)\nx = torch.tensor([3.0])\ny_true = torch.tensor([10.0])\n\n# Forward pass: y_pred = w * x\ny_pred = w * x\nloss = (y_pred - y_true) ** 2  # (6 - 10)^2 = 16\n\n# Backward pass (computes dLoss/dw via Chain Rule)\nloss.backward()\nprint('Gradient dLoss/dw:', w.grad.item())  # 2 * (6 - 10) * 3 = -24.0",
+      "codeLanguage": "python",
+      "canRunCode": true
+    }
+  ]
+}

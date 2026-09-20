@@ -1,0 +1,23 @@
+{
+  "id": "l4",
+  "chapterId": "ch_5",
+  "title": "Landmark CNNs & Transfer Learning",
+  "description": "Explore pivotal architectures like AlexNet, VGG, and ResNet's residual skip connections, and apply transfer learning.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Architectures & Transfer",
+  "slides": [
+    {
+      "id": "s_ch5_l4_1",
+      "type": "text",
+      "title": "The Residual Revolution: ResNet 🏆",
+      "content": "# The Degradation Problem & Skip Connections\n\nBefore 2015, making CNNs deeper caused accuracy to degrade due to vanishing gradients during backpropagation.\n\nHe et al. introduced **Residual Networks (ResNet)** with **Skip (Shortcut) Connections**:\n\n$$\n\\mathcal{H}(x) = \\mathcal{F}(x) + x\n$$\n\n```\n            x\n          /   \\\n         |     [ Weight Layer ]\n         |           |\n         |     [ ReLU Activation ]\n         |           |\n         |     [ Weight Layer ]\n          \\   /\n            +   <-- Element-wise addition\n            |\n         [ ReLU ]\n```\n\nInstead of learning the entire mapping $\\mathcal{H}(x)$, the network only learns the **residual** $\\mathcal{F}(x)$. The identity shortcut lets gradients flow directly backward through hundreds of layers without attenuation!"
+    },
+    {
+      "id": "s_ch5_l4_2",
+      "type": "tip",
+      "title": "Transfer Learning Superpower 🚀",
+      "content": "## Never Train From Scratch Unless Necessary\nModels like ResNet-50 trained on ImageNet (1.4 million images, 1000 classes) have already learned universal visual features (edges, textures, shapes).\n\nTo build a custom classifier (e.g. classifying 5 types of plants):\n1. Download the pre-trained backbone.\n2. Freeze the convolutional weights.\n3. Replace only the final dense classification head with your custom classes.\n4. Fine-tune on your modest dataset!"
+    }
+  ]
+}

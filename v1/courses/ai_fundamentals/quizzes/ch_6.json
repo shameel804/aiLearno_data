@@ -1,0 +1,300 @@
+{
+  "id": "quiz_ch_6",
+  "chapterId": "ch_6",
+  "title": "Chapter 6 Quiz: Sequence Modeling & NLP",
+  "description": "Test your grasp of word embeddings, RNNs, LSTMs, the Attention mechanism, and Transformer architectures.",
+  "passingScore": 70,
+  "xpReward": 50,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "mcq",
+      "question": "What is the primary function of Byte-Pair Encoding (BPE) tokenization in modern NLP?",
+      "options": [
+        "Encrypting passwords",
+        "Splitting text into frequent subword units to balance vocabulary size with out-of-vocabulary handling",
+        "Converting English into Morse code",
+        "Sorting words alphabetically"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Subword tokenization like BPE iteratively merges frequent character pairs, allowing handling of unseen words via known sub-tokens.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q2",
+      "type": "mcq",
+      "question": "What geometric property characterizes dense word embeddings like Word2Vec and GloVe?",
+      "options": [
+        "All vectors are strictly orthogonal",
+        "Words with similar semantic contexts are situated close to one another in vector space",
+        "Vectors only contain binary 0 and 1 values",
+        "Vector lengths correspond to word length in characters"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Word embeddings map semantic similarity into geometric proximity in dense multi-dimensional space.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q3",
+      "type": "true_false",
+      "question": "Standard feedforward neural networks can natively process variable-length text sentences without fixed padding or truncating.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 1,
+      "explanation": "False. Dense MLPs require a fixed input dimension. Sequence models like RNNs or Transformers handle variable lengths.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q4",
+      "type": "mcq",
+      "question": "In a vanilla Recurrent Neural Network (RNN), what state is passed sequentially from timestep t-1 to timestep t?",
+      "options": [
+        "Loss tensor",
+        "Hidden State (h_t)",
+        "Kernel bias",
+        "Gram matrix"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The hidden state h_t acts as the network's short-term memory, carrying context across sequential steps.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q5",
+      "type": "mcq",
+      "question": "Why do vanilla RNNs struggle to learn long-range dependencies across long paragraphs?",
+      "options": [
+        "They only work on Spanish text",
+        "Vanishing and exploding gradients during Backpropagation Through Time (BPTT)",
+        "They require too many GPUs",
+        "They cannot process vowels"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Repeated matrix multiplications across time cause gradients to vanish or explode, wiping out long-term historical context.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q6",
+      "type": "mcq",
+      "question": "Which component in an LSTM acts as the linear, unimpeded 'information highway' carrying long-term memory?",
+      "options": [
+        "Hidden State (h_t)",
+        "Cell State (C_t)",
+        "Forget Gate",
+        "Output Logit"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Cell State runs straight down the LSTM chain with only minor linear interactions, mitigating vanishing gradients.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q7",
+      "type": "mcq",
+      "question": "How many gating mechanisms exist inside a standard LSTM cell?",
+      "options": [
+        "1 (Reset gate)",
+        "2 (Update and Reset)",
+        "3 (Forget, Input, and Output gates)",
+        "5 (All-pass gates)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "An LSTM has three gates: the Forget Gate, the Input Gate, and the Output Gate.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q8",
+      "type": "true_false",
+      "question": "The Gated Recurrent Unit (GRU) simplifies the LSTM by merging the cell state and hidden state, using only two gates (Reset and Update).",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. GRUs combine cell and hidden states and use fewer parameters while achieving comparable performance to LSTMs.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q9",
+      "type": "mcq",
+      "question": "In the Query-Key-Value (Q, K, V) formulation of attention, what does the 'Query' represent?",
+      "options": [
+        "The candidate text database values",
+        "The current focus or item actively seeking relevant information",
+        "The gradient of the loss function",
+        "The learning rate multiplier"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Query represents the current token's request, matched against all Keys to determine attention weights over Values.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q10",
+      "type": "mcq",
+      "question": "What is the mathematical equation for Scaled Dot-Product Attention?",
+      "options": [
+        "Attention(Q, K, V) = Q * K * V",
+        "Attention(Q, K, V) = Softmax(Q K^T / sqrt(d_k)) * V",
+        "Attention(Q, K, V) = Sigmoid(Q + K) / V",
+        "Attention(Q, K, V) = ReLU(Q * V) * K"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Scaled dot-product attention computes Softmax(Q K^T / sqrt(d_k)) * V.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q11",
+      "type": "true_false",
+      "question": "Unlike RNNs, the Transformer architecture can process all tokens in an input sequence in parallel.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Transformers dispense with sequential recurrence, enabling massive GPU parallelism during training.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q12",
+      "type": "mcq",
+      "question": "Because standard Self-Attention is permutation-invariant and has no intrinsic notion of word order, what is added to input token embeddings?",
+      "options": [
+        "Random Gaussian noise",
+        "Positional Encodings (sinusoidal or learned vectors)",
+        "Extra punctuation tokens",
+        "Zero padding vectors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Positional encodings inject numerical signals indicating the sequential order and relative distance of tokens.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q13",
+      "type": "mcq",
+      "question": "What is the purpose of 'Multi-Head Attention' in a Transformer?",
+      "options": [
+        "To train multiple separate models on different computers",
+        "To allow the model to jointly attend to information from different representation subspaces at different positions",
+        "To speed up audio rendering",
+        "To reduce vocabulary size"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Multiple heads project Q, K, and V into distinct subspaces, capturing syntactic, semantic, and coreference dependencies simultaneously.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q14",
+      "type": "fill_blank",
+      "question": "The seminal 2017 paper that introduced the Transformer architecture is titled 'Attention Is All You ______'.",
+      "options": [
+        "Need",
+        "Want",
+        "Have",
+        "Know"
+      ],
+      "correctAnswer": "Need",
+      "explanation": "Vaswani et al.'s 2017 paper was titled 'Attention Is All You Need'.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q15",
+      "type": "true_false",
+      "question": "In Self-Attention, the Query, Key, and Value vectors are all linear projections of the same sequence of tokens.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. In self-attention, each input token projects into Q, K, and V through separate learned weight matrices.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q16",
+      "type": "mcq",
+      "question": "What is the computational time and memory complexity of standard Self-Attention with respect to sequence length N?",
+      "options": [
+        "O(N)",
+        "O(N log N)",
+        "O(N^2)",
+        "O(2^N)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Comparing every token to every other token requires an N x N attention matrix, giving quadratic O(N^2) complexity.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q17",
+      "type": "mcq",
+      "question": "What is the function of a 'Causal Attention Mask' in autoregressive Transformer decoders (like GPT)?",
+      "options": [
+        "To prevent profanity in outputs",
+        "To prevent tokens from attending to future tokens that appear later in the sequence",
+        "To hide training data from hackers",
+        "To compress weights by 50%"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Causal masking sets upper-triangle attention scores to -infinity, ensuring predictions at step t only depend on known past tokens 1..t.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q18",
+      "type": "mcq",
+      "question": "Which famous Transformer model was designed as a bidirectional encoder trained on Masked Language Modeling (filling missing blanks)?",
+      "options": [
+        "BERT",
+        "GPT-2",
+        "AlphaGo",
+        "AlexNet"
+      ],
+      "correctAnswer": 0,
+      "explanation": "BERT (Bidirectional Encoder Representations from Transformers) trains an encoder bidirectionally using masked language modeling.",
+      "xpReward": 15,
+      "difficulty": 1
+    },
+    {
+      "id": "q19",
+      "type": "true_false",
+      "question": "Layer Normalization in Transformers normalizes across features for each individual token independently of other batch elements.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": 0,
+      "explanation": "True. Unlike Batch Normalization, LayerNorm computes statistics across hidden dimensions per token, making it ideal for variable length sequences.",
+      "xpReward": 15,
+      "difficulty": 2
+    },
+    {
+      "id": "q20",
+      "type": "mcq",
+      "question": "What technique allows modern Transformer models to scale context windows to 100,000+ tokens efficiently?",
+      "options": [
+        "Removing attention completely",
+        "FlashAttention (IO-aware tiling) and Rotary Position Embeddings (RoPE)",
+        "Using purely CPU RAM",
+        "Downsampling text to Morse code"
+      ],
+      "correctAnswer": 1,
+      "explanation": "FlashAttention avoids materializing massive N x N attention matrices in GPU HBM via fast SRAM tiling, unlocking huge contexts.",
+      "xpReward": 15,
+      "difficulty": 2
+    }
+  ]
+}

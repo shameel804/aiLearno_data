@@ -1,0 +1,15 @@
+{
+  "id": "task1",
+  "chapterId": "ch_6",
+  "title": "Compute Dot-Product Attention Scores",
+  "description": "Calculate scaled dot-product scores between a query vector and a matrix of key vectors.",
+  "estimatedMinutes": 10,
+  "problemStatement": "Implement a Python function `compute_attention_scores(query: list[float], keys: list[list[float]]) -> list[float]` that computes the dot product between `query` and each key `k` in `keys`, divided by `sqrt(len(query))`. Return the list of unnormalized scaled scores.",
+  "hints": [
+    "Import math module to use math.sqrt.",
+    "For each key vector k in keys: dot = sum(q * ki for q, ki in zip(query, k)).",
+    "Scale dot product by math.sqrt(len(query))."
+  ],
+  "expectedOutput": "List of floats corresponding to scaled dot-product scores.",
+  "solutionCode": "import math\n\ndef compute_attention_scores(query: list[float], keys: list[list[float]]) -> list[float]:\n    d_k = len(query)\n    scale = math.sqrt(d_k)\n    scores = []\n    for k in keys:\n        dot = sum(q * ki for q, ki in zip(query, k))\n        scores.append(dot / scale)\n    return scores"
+}

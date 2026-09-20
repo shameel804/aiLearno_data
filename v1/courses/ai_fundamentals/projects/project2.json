@@ -1,0 +1,23 @@
+{
+  "id": "project2",
+  "title": "Train a Deep CNN for Vision Classification",
+  "description": "Architect and train an end-to-end PyTorch Convolutional Neural Network with Conv2D layers, MaxPool2d, BatchNorm, and Dropout to classify images with high accuracy.",
+  "difficulty": "Intermediate",
+  "estimatedHours": "4-6",
+  "problemStatement": "You are tasked with engineering a production-grade image classification pipeline for an autonomous delivery robot. The robot's camera feeds 28x28 grayscale or 32x32 RGB images that must be classified into 10 distinct object classes. You must design a modular CNN architecture in PyTorch, implement proper training and validation loops with GPU acceleration if available, apply data augmentation to combat overfitting, and report confusion matrix evaluation metrics.",
+  "requirements": [
+    "Inherit from `torch.nn.Module` and assemble a network with at least two convolutional blocks: (Conv2d -> BatchNorm2d -> ReLU -> MaxPool2d).",
+    "Include Dropout (p=0.25 to 0.5) before the final fully connected classification layer.",
+    "Set up a PyTorch DataLoader with random horizontal flips and normalization transforms.",
+    "Use CrossEntropyLoss and the Adam optimizer with weight decay.",
+    "Implement an epoch training loop that tracks both training loss and validation accuracy.",
+    "Save the best model checkpoint weights based on peak validation accuracy.",
+    "Attain over 92% validation accuracy on the benchmark test split."
+  ],
+  "hints": [
+    "Calculate the flattened feature vector size after pooling before the first linear layer: e.g. channels * height * width.",
+    "Remember to call `model.train()` during training and `model.eval()` along with `torch.no_grad()` during validation.",
+    "Use `optimizer.zero_grad()` before `loss.backward()`."
+  ],
+  "expectedOutput": "A printed training log per epoch (e.g. 'Epoch [5/10], Loss: 0.184, Val Accuracy: 94.2%') and saved model weights checkpoint file."
+}

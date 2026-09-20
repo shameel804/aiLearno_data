@@ -1,0 +1,23 @@
+{
+  "id": "l2",
+  "chapterId": "ch_7",
+  "title": "Large Language Models & Pretraining",
+  "description": "Explore causal autoregressive language modeling, predicting next tokens, compute scaling laws, and transformer decoders.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "LLM Mechanics",
+  "slides": [
+    {
+      "id": "s_ch7_l2_1",
+      "type": "text",
+      "title": "The Simple Secret of LLMs 🤫",
+      "content": "# The Autoregressive Objective\n\nDespite their astonishing capabilities, modern Large Language Models (LLMs) like GPT-4, Claude, and LLaMA are trained on a deceptively simple objective:\n\n$$\\max_\\theta \\sum_{t} \\log P_\\theta(w_t \\mid w_1, w_2, \\dots, w_{t-1})$$\n\n* **Next Token Prediction:** Given all words seen so far, calculate a probability distribution over the entire vocabulary (50,000+ tokens) for the next token.\n* By scaling this objective across **trillions of tokens of human writing, code, mathematics, and science**, the model implicitly learns grammar, factual knowledge, coding logic, and reasoning patterns!"
+    },
+    {
+      "id": "s_ch7_l2_2",
+      "type": "tip",
+      "title": "Chinchilla Scaling Laws (Hoffmann et al., 2022) 📏",
+      "content": "## Optimal Scaling\nFor compute-optimal model training, model parameters and training dataset size should be scaled in equal proportion:\n* For every doubling of model parameters, the training token count should also double.\n* Training smaller models on vastly more high-quality tokens produces faster, cheaper, and more accurate models at inference time!"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Compute Dot-Product Attention Scores",
+      "description": "Calculate scaled dot-product scores between a query vector and a matrix of key vectors.",
+      "estimatedMinutes": 10
+    }
+  ]
+}

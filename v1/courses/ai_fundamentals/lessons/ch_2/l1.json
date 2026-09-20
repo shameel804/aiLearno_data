@@ -1,0 +1,93 @@
+{
+  "id": "l1",
+  "chapterId": "ch_2",
+  "title": "The Machine Learning Paradigm",
+  "description": "Compare classical programming with machine learning, exploring Supervised, Unsupervised, and Reinforcement Learning paradigms.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Core Paradigms",
+  "slides": [
+    {
+      "id": "s_ch2_l1_1",
+      "type": "text",
+      "title": "Inverting the Programming Paradigm 🔄",
+      "content": "# The Machine Learning Paradigm Shift\n\nIn traditional software development, humans write explicit logical rules that process data to produce outputs:\n\n```\nTraditional:  Data + Rules  --> [Program] --> Answers\nMachine Learning: Data + Answers --> [Learner] --> Rules (Model)\n```\n\nRather than hand-crafting thousands of `if/else` statements to detect a cat in an image, a Machine Learning algorithm ingests thousands of labeled cat photos and automatically discovers the statistical relationships defining a cat."
+    },
+    {
+      "id": "s_ch2_l1_2",
+      "type": "quiz",
+      "title": "Concept Check: Paradigm Shift 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch2_l1_1",
+        "type": "multiple_choice",
+        "question": "What are the inputs and output of a Machine Learning algorithm during the training phase?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Input: Rules and Data; Output: Answers",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Input: Data and Target Answers; Output: Predictive Rules/Model",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Input: Hardware specs; Output: Binary executable",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Input: Uncompiled code; Output: Static website",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Machine learning inverts classical programming: we supply examples of inputs paired with expected outcomes, and the algorithm learns the mapping function.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch2_l1_3",
+      "type": "text",
+      "title": "The Three Pillars of Machine Learning 🏛️",
+      "content": "### 1. Supervised Learning\n* **Input:** Labeled dataset $(X, y)$.\n* **Goal:** Learn function $f(X) \\approx y$.\n* **Tasks:** Regression (predicting continuous house prices) and Classification (predicting fraud vs non-fraud).\n\n### 2. Unsupervised Learning\n* **Input:** Unlabeled data $(X)$.\n* **Goal:** Discover hidden structure, clusters, or lower-dimensional representations.\n* **Tasks:** Clustering (customer segmentation via K-Means), Dimensionality Reduction (PCA).\n\n### 3. Reinforcement Learning (RL)\n* **Input:** State signals from an environment.\n* **Goal:** An agent takes actions to maximize cumulative reward through trial and error (e.g. Robot locomotion, Atari games)."
+    },
+    {
+      "id": "s_ch2_l1_4",
+      "type": "quiz",
+      "title": "Concept Check: Pillar Matching 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch2_l1_2",
+        "type": "multiple_choice",
+        "question": "Groupings of e-commerce shoppers based on purchasing habits without any prior customer category labels is an example of:",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Supervised Classification",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Unsupervised Clustering",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Reinforcement Policy Optimization",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Supervised Regression",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Because there are no ground-truth target labels supplied beforehand, finding patterns or groupings in the raw data is Unsupervised Learning.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

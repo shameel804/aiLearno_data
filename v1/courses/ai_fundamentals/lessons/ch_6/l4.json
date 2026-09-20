@@ -1,0 +1,26 @@
+{
+  "id": "l4",
+  "chapterId": "ch_6",
+  "title": "The Transformer Architecture",
+  "description": "Deconstruct the seminal 'Attention Is All You Need' architecture: Multi-Head Attention, Positional Encodings, and Feed-Forward sublayers.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Transformers",
+  "slides": [
+    {
+      "id": "s_ch6_l4_1",
+      "type": "text",
+      "title": "Attention Is All You Need (Vaswani et al., 2017) ⚡",
+      "content": "# The Transformer Architecture\n\nThe Transformer eliminated recurrence entirely. Because there are no sequential loops, the entire sequence of tokens is processed **simultaneously in parallel** across GPUs!\n\n### Key Components:\n1. **Self-Attention:** Tokens attend to other tokens within the same sequence (e.g., resolving pronoun reference: 'The animal didn't cross the street because **it** was too tired').\n2. **Multi-Head Attention:** Multiple attention projections (heads) learn different relationship subspaces (e.g. grammar vs semantics vs coreference).\n3. **Positional Encoding:** Because attention is permutation-invariant, sine/cosine waves or learned vectors are added to inject word order information.\n4. **Feed-Forward Networks (FFN):** Two-layer MLP applied independently to each position."
+    },
+    {
+      "id": "s_ch6_l4_2",
+      "type": "code",
+      "title": "Self-Attention in Pure Python 🐍",
+      "content": "A minimal implementation of scaled dot-product attention in Python:",
+      "codeSnippet": "import math\n\ndef softmax(vector: list[float]) -> list[float]:\n    exp_vals = [math.exp(v - max(vector)) for v in vector]\n    total = sum(exp_vals)\n    return [e / total for e in exp_vals]\n\n# Query and 2 Keys (d_k = 2)\nq = [1.0, 0.0]\nk1 = [1.0, 0.0]  # Exact match\nk2 = [0.0, 1.0]  # Orthogonal\n\nd_k = 2\nscore1 = (q[0]*k1[0] + q[1]*k1[1]) / math.sqrt(d_k)\nscore2 = (q[0]*k2[0] + q[1]*k2[1]) / math.sqrt(d_k)\n\nweights = softmax([score1, score2])\nprint('Attention weights:', [round(w, 3) for w in weights])",
+      "codeLanguage": "python",
+      "canRunCode": true
+    }
+  ]
+}

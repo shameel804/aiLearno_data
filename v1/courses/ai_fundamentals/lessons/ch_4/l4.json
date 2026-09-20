@@ -1,0 +1,58 @@
+{
+  "id": "l4",
+  "chapterId": "ch_4",
+  "title": "Advanced Optimizers & Regularization",
+  "description": "Accelerate convergence with Momentum and Adam, and prevent overfitting using Weight Decay, Dropout, and Batch Normalization.",
+  "xpReward": 25,
+  "estimatedMinutes": 6,
+  "section": "Modern Optimization",
+  "slides": [
+    {
+      "id": "s_ch4_l4_1",
+      "type": "text",
+      "title": "Modern Optimizers: Adam ⚡",
+      "content": "# Beyond Vanilla SGD: Adam\n\nVanilla SGD oscillates violently in narrow ravines. Modern neural networks almost exclusively use **Adam (Adaptive Moment Estimation)**:\n\n* **1st Moment (Momentum):** Maintains an exponentially decaying average of past gradients to push through flat plateaus and damp oscillations.\n* **2nd Moment (RMSprop):** Divides the learning rate by an exponentially decaying average of squared gradients, adapting the step size per parameter."
+    },
+    {
+      "id": "s_ch4_l4_2",
+      "type": "text",
+      "title": "Regularization: Dropout & Weight Decay 🛡️",
+      "content": "### Techniques to Tame Overfitting:\n1. **Dropout:** During training, randomly disable a percentage (e.g. 20-50%) of neurons at each forward step. This forces the network to learn redundant, robust representations instead of co-adapting.\n2. **L2 Regularization (Weight Decay):** Adds a penalty proportional to the sum of squared weights $\\frac{\\lambda}{2} \\sum w^2$ to the loss, encouraging smaller, smoother weights.\n3. **Early Stopping:** Halts training as soon as validation loss begins to climb."
+    },
+    {
+      "id": "s_ch4_l4_3",
+      "type": "quiz",
+      "title": "Concept Check: Dropout Behavior 🧠",
+      "content": "",
+      "quizData": {
+        "id": "q_ch4_l4_1",
+        "type": "multiple_choice",
+        "question": "How does Dropout operate during the evaluation / inference phase on test data?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "It drops 100% of the neurons",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "All neurons remain active, with weights appropriately scaled",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "It randomly drops neurons just like during training",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "It inverts negative weights into positive weights",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "During inference/testing, Dropout is turned OFF so the entire ensemble of learned neurons votes deterministically. Weights are scaled to account for the training drop rate.",
+        "xpReward": 10
+      }
+    }
+  ]
+}

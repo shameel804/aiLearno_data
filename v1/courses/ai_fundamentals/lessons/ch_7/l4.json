@@ -1,0 +1,32 @@
+{
+  "id": "l4",
+  "chapterId": "ch_7",
+  "title": "Prompt Engineering & RAG Systems",
+  "description": "Master zero-shot, few-shot, and Chain-of-Thought prompting, and integrate vector databases for Retrieval-Augmented Generation.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Application Patterns",
+  "slides": [
+    {
+      "id": "s_ch7_l4_1",
+      "type": "text",
+      "title": "The Prompting Toolkit 🛠️",
+      "content": "# Prompt Engineering Strategies\n\n* **Zero-Shot:** Direct task instruction without examples (`Classify the sentiment: ...`).\n* **Few-Shot:** Providing 2-3 input/output examples in-context so the model recognizes format and nuance.\n* **Chain-of-Thought (CoT):** Asking the model to `\"Think step-by-step before answering\"`. This generates internal reasoning tokens that break complex logic problems down sequentially!"
+    },
+    {
+      "id": "s_ch7_l4_2",
+      "type": "text",
+      "title": "RAG: Retrieval-Augmented Generation 📚",
+      "content": "# Overcoming Hallucinations with RAG\n\nLLMs memorize training data probabilistically and have fixed knowledge cutoffs. They cannot see private corporate documents and may hallucinate facts.\n\n```\nUser Query: \"What were our Q3 earnings?\"\n          |\n          v\n[ Vector Database Retrieval ] ---> Fetches top 3 relevant internal PDF chunks\n          |\n          v\nCombined Prompt: \"Using ONLY the context below, answer the question:\n                  Context: [PDF Excerpt: Q3 net profit was $4.2M]\n                  Question: What were our Q3 earnings?\"\n          |\n          v\nLLM Response: \"According to the Q3 report, net profit was $4.2M.\"\n```\n\nRAG grounds the generative model in verifiable, external reference data!"
+    },
+    {
+      "id": "s_ch7_l4_3",
+      "type": "code",
+      "title": "A Minimal RAG Pipeline in Python 🐍",
+      "content": "Here is how RAG prompt formatting is implemented in production pipelines:",
+      "codeSnippet": "def format_rag_prompt(user_query: str, retrieved_docs: list[str]) -> str:\n    context_block = '\\n\\n'.join(f'[Doc {i+1}]: {doc}' for i, doc in enumerate(retrieved_docs))\n    return (\n        f'System: Answer the user query using only the provided context. If unknown, say so.\\n\\n'\n        f'Context:\\n{context_block}\\n\\n'\n        f'User Question: {user_query}\\n'\n        f'Assistant:'\n    )\n\nprompt = format_rag_prompt('What is our refund policy?', ['Refunds are accepted within 30 days of purchase.'])\nprint(prompt)",
+      "codeLanguage": "python",
+      "canRunCode": true
+    }
+  ]
+}

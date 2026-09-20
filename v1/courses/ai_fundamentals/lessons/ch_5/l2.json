@@ -1,0 +1,26 @@
+{
+  "id": "l2",
+  "chapterId": "ch_5",
+  "title": "Convolutions, Kernels, & Feature Maps",
+  "description": "Discover how 2D convolution filters slide across pixels to detect edges, corners, and texture gradients.",
+  "xpReward": 25,
+  "estimatedMinutes": 7,
+  "section": "Convolution Mechanics",
+  "slides": [
+    {
+      "id": "s_ch5_l2_1",
+      "type": "text",
+      "title": "The Convolution Operation 🔍",
+      "content": "# Sliding Window: The Kernel\n\nA **kernel (or filter)** is a small weight matrix (e.g. $3 \\times 3$) that slides across the input image, computing element-wise dot products at each location:\n\n```\nInput Image (5x5)            Kernel (3x3)         Feature Map (3x3)\n[ 1  0  1  0  2 ]                                \n[ 0  3  2  1  0 ]      *     [ 1  0 -1 ]   ==>    [  4   1  -2 ]\n[ 2  1  0  2  1 ]            [ 1  0 -1 ]          [  2   0  -3 ]\n[ 1  0  2  0  1 ]            [ 1  0 -1 ]          [  5  -1   1 ]\n[ 0  1  0  1  0 ]                                \n```\n\n### Hyperparameters of a Convolutional Layer:\n* **Kernel Size:** Typically $3 \\times 3$ or $5 \\times 5$.\n* **Stride:** How many pixels the filter shifts per step (stride=1 moves 1 pixel at a time).\n* **Padding:** Adding border zeros to preserve spatial dimensions (Valid: no padding; Same: preserves dimension)."
+    },
+    {
+      "id": "s_ch5_l2_2",
+      "type": "code",
+      "title": "Sobel Edge Detection Kernel in Python 🐍",
+      "content": "A classic hand-crafted vertical edge detection kernel in Python:",
+      "codeSnippet": "import numpy as np\n\n# Sobel vertical edge filter\nkernel = np.array([\n    [-1, 0, 1],\n    [-2, 0, 2],\n    [-1, 0, 1]\n])\n\n# Vertical boundary image patch\npatch = np.array([\n    [10, 10, 90],\n    [10, 10, 90],\n    [10, 10, 90]\n])\n\nresponse = np.sum(patch * kernel)\nprint('Edge detector response:', response)  # Strong positive signal indicates edge!",
+      "codeLanguage": "python",
+      "canRunCode": true
+    }
+  ]
+}

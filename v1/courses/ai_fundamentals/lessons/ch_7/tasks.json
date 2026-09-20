@@ -1,0 +1,10 @@
+{
+  "tasks": [
+    {
+      "id": "task1",
+      "title": "Build a RAG Context Injector",
+      "description": "Construct an automated prompt injection utility that formats context excerpts and user questions with strict grounding instructions.",
+      "estimatedMinutes": 10
+    }
+  ]
+}
