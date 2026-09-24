@@ -10,13 +10,13 @@
     {
       "id": "s_ch1_l1_1",
       "type": "text",
-      "title": "Demystifying AI 💡",
-      "content": "# What is Artificial Intelligence?\n\nAt its core, **Artificial Intelligence (AI)** is the science of engineering computational systems capable of performing tasks that traditionally demand biological intelligence.\n\n### The Core Spectrum of AI:\n* **Perception:** Interpreting sensory data (images, audio, text).\n* **Reasoning:** Drawing deductive or inductive conclusions from evidence.\n* **Learning:** Improving performance through experience without explicit reprogramming.\n* **Action:** Executing decisions within an environment to maximize a target goal.\n\n> 💡 **The Pocket Calculator Analogy:**\n> A calculator performs arithmetic faster than any human, but it isn't \"intelligent\" because it cannot adapt, learn, or form abstractions. AI bridges the gap between rigid arithmetic and adaptive reasoning."
+      "title": "Demystifying AI \ud83d\udca1",
+      "content": "# What is Artificial Intelligence?\n\nAt its core, **Artificial Intelligence (AI)** is the science of engineering computational systems capable of performing tasks that traditionally demand biological intelligence.\n\n### The Core Spectrum of AI:\n* **Perception:** Interpreting sensory signals (images, audio waveforms, text tokens).\n* **Reasoning:** Drawing deductive or probabilistic conclusions from evidence.\n* **Learning:** Improving performance through experience without explicit reprogramming.\n* **Action:** Executing decisions within an environment to maximize a target goal.\n\n> \ud83d\udca1 **The Pocket Calculator Analogy:**\n> A pocket calculator performs arithmetic millions of times faster than any human mathematician, but it isn't \"intelligent\" because it cannot adapt, learn, or form abstractions. AI bridges the gap between rigid arithmetic and adaptive reasoning."
     },
     {
       "id": "s_ch1_l1_2",
       "type": "quiz",
-      "title": "Concept Check: AI Definition 🧠",
+      "title": "Concept Check: AI Definition \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch1_l1_1",
@@ -40,29 +40,29 @@
           },
           {
             "id": "opt4",
-            "text": "Printing outputs to a terminal screen",
+            "text": "Printing formatted text outputs to a terminal screen",
             "isCorrect": false
           }
         ],
-        "explanation": "Modern AI systems are distinguished by their ability to generalize and learn patterns from data rather than solely executing pre-hardcoded deterministic rules.",
+        "explanation": "Modern AI systems are distinguished by their ability to generalize and learn patterns from empirical data rather than executing pre-hardcoded deterministic rules.",
         "xpReward": 10
       }
     },
     {
       "id": "s_ch1_l1_3",
       "type": "text",
-      "title": "The Three Tiers of AI 🏛️",
-      "content": "AI is universally categorized into three distinct theoretical horizons:\n\n```\n+-------------------------------------------------------------+\n|                      1. NARROW AI (ANI)                     |\n|  Excels at a single dedicated domain (e.g. Chess, Vision)    |\n|  Status: Present Day Reality (ChatGPT, AlphaFold, Tesla FSD)|\n+-------------------------------------------------------------+\n                              |\n                              v\n+-------------------------------------------------------------+\n|                      2. GENERAL AI (AGI)                    |\n|  Can learn and apply intellect across ANY human domain      |\n|  Status: Active Global Research Frontier                    |\n+-------------------------------------------------------------+\n                              |\n                              v\n+-------------------------------------------------------------+\n|                   3. SUPERINTELLIGENCE (ASI)                |\n|  Surpasses human capability across all intellectual axes    |\n|  Status: Theoretical / Speculative                          |\n+-------------------------------------------------------------+\n```\n\n* **Artificial Narrow Intelligence (ANI):** Highly specialized. AlphaGo can beat a grandmaster at Go, but cannot write an email or recognize a pedestrian.\n* **Artificial General Intelligence (AGI):** Cross-domain transfer learning matching human cognitive flexibility.\n* **Artificial Superintelligence (ASI):** Far exceeding human ingenuity in science, creativity, and strategy."
+      "title": "The Three Tiers of AI \ud83c\udfdb\ufe0f",
+      "content": "# The Three Tiers of AI\n\nArtificial Intelligence is universally categorized into three distinct evolutionary tiers:\n\n| Tier | Definition | Current Status | Prominent Examples |\n| :--- | :--- | :--- | :--- |\n| **Artificial Narrow Intelligence (ANI)** | Systems designed to excel at a single dedicated domain | Present Day Reality | ChatGPT, AlphaFold, Tesla Autopilot, Stockfish |\n| **Artificial General Intelligence (AGI)** | Systems capable of learning and applying intellect across any human domain | Active Research Frontier | Frontier AI laboratories (DeepMind, OpenAI, Anthropic) |\n| **Artificial Superintelligence (ASI)** | Theoretical systems surpassing all human capabilities across every domain | Theoretical / Speculative | Hypothetical self-improving recursive intelligence |\n\n### Narrow vs General:\n* **Narrow AI (ANI)** excels brilliantly in its sandbox: AlphaFold predicts complex protein 3D folding structures in minutes, but it cannot draft an email or drive a car.\n* **General AI (AGI)** embodies cognitive transfer: learning chess today, coding software tomorrow, and diagnosing illness the day after without retraining from zero."
     },
     {
       "id": "s_ch1_l1_4",
       "type": "quiz",
-      "title": "Concept Check: Narrow vs General AI 🧠",
+      "title": "Concept Check: Narrow vs General AI \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch1_l1_2",
         "type": "multiple_choice",
-        "question": "A state-of-the-art medical diagnostic model that detects skin cancer from photos with 99% accuracy is an example of which AI tier?",
+        "question": "A state-of-the-art medical diagnostic model that detects skin cancer lesions with 99% accuracy is an example of which AI tier?",
         "options": [
           {
             "id": "opt1",
@@ -92,7 +92,7 @@
     {
       "id": "s_ch1_l1_5",
       "type": "code",
-      "title": "A Minimal Intelligent Classifier in Python 🐍",
+      "title": "A Minimal Intelligent Classifier in Python \ud83d\udc0d",
       "content": "Here is a tiny Python rule-based heuristic illustrating the simplest form of decision making:",
       "codeSnippet": "def classify_email(subject: str, sender: str) -> str:\n    spam_keywords = ['urgent wire transfer', 'lottery winner', 'claim your prize']\n    normalized = subject.lower()\n    \n    for keyword in spam_keywords:\n        if keyword in normalized:\n            return 'SPAM'\n    return 'INBOX'\n\nprint(classify_email('You are the lottery winner!', 'promo@prize.org'))",
       "codeLanguage": "python",
@@ -101,7 +101,7 @@
     {
       "id": "s_ch1_l1_6",
       "type": "tip",
-      "title": "AI Pro Tip: The Turing Test 🚀",
+      "title": "AI Pro Tip: The Turing Test \ud83d\ude80",
       "content": "## Alan Turing's Imitation Game (1950)\nAlan Turing proposed that instead of arguing over whether machines 'think', we test if an interrogator in a text conversation cannot tell whether their interlocutor is a machine or a human.\n\nWhile modern LLMs regularly pass conversational Turing Tests, researchers today favor rigorous benchmarks evaluating reasoning, multi-step planning, and spatial logic over simple mimicry!"
     }
   ]

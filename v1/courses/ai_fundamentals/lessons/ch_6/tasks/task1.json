@@ -1,15 +1,14 @@
 {
   "id": "task1",
   "chapterId": "ch_6",
-  "title": "Compute Dot-Product Attention Scores",
-  "description": "Calculate scaled dot-product scores between a query vector and a matrix of key vectors.",
+  "title": "Compute Scaled Dot-Product Attention in Python",
+  "description": "Implement the core attention equation: Softmax((Q @ K^T) / sqrt(d_k)) @ V from mathematical primitives in NumPy.",
   "estimatedMinutes": 10,
-  "problemStatement": "Implement a Python function `compute_attention_scores(query: list[float], keys: list[list[float]]) -> list[float]` that computes the dot product between `query` and each key `k` in `keys`, divided by `sqrt(len(query))`. Return the list of unnormalized scaled scores.",
+  "problemStatement": "Implement a Python function `attention(Q, K, V)` that computes scaled dot-product attention for 2D matrices Q (N x D), K (M x D), V (M x D_v). Step 1: Compute scores = (Q @ K.T) / sqrt(D). Step 2: Compute Softmax along axis=1: P_i = exp(scores_i - max(scores_i)) / sum(exp(scores_i - max(scores_i))). Step 3: Return output = P @ V. Both P and output should be rounded to 3 decimal places.",
   "hints": [
-    "Import math module to use math.sqrt.",
-    "For each key vector k in keys: dot = sum(q * ki for q, ki in zip(query, k)).",
-    "Scale dot product by math.sqrt(len(query))."
+    "D is Q.shape[1]. Use np.sqrt(D) for scaling.",
+    "Be sure to subtract the row-wise max before np.exp for numerical stability."
   ],
-  "expectedOutput": "List of floats corresponding to scaled dot-product scores.",
-  "solutionCode": "import math\n\ndef compute_attention_scores(query: list[float], keys: list[list[float]]) -> list[float]:\n    d_k = len(query)\n    scale = math.sqrt(d_k)\n    scores = []\n    for k in keys:\n        dot = sum(q * ki for q, ki in zip(query, k))\n        scores.append(dot / scale)\n    return scores"
+  "expectedOutput": "(N, D_v) array of context vectors",
+  "solutionCode": "import numpy as np\n\ndef attention(Q, K, V):\n    d_k = Q.shape[1]\n    scores = np.dot(Q, K.T) / np.sqrt(d_k)\n    shift = scores - np.max(scores, axis=1, keepdims=True)\n    exp_s = np.exp(shift)\n    weights = exp_s / np.sum(exp_s, axis=1, keepdims=True)\n    return np.dot(weights, V)\n\nQ = np.array([[1.0, 0.0], [0.0, 1.0]])\nK = np.array([[1.0, 0.0], [0.0, 1.0]])\nV = np.array([[10.0, 20.0], [30.0, 40.0]])\nprint(attention(Q, K, V).round(3))"
 }

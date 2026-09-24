@@ -3,34 +3,34 @@
     {
       "id": "l1",
       "title": "Loss Functions & Optimization Landscapes",
-      "description": "Examine how cost functions quantify discrepancy, exploring MSE, Binary Cross-Entropy, and optimization surfaces.",
+      "description": "Quantify model error with MSE, MAE, Binary Cross-Entropy, and Categorical Cross-Entropy across complex non-convex surfaces.",
       "xpReward": 25,
       "estimatedMinutes": 6,
-      "section": "Loss Landscapes"
+      "section": "Optimization & Training"
     },
     {
       "id": "l2",
       "title": "Gradient Descent & Learning Rates",
-      "description": "Master gradient descent mechanics, comparing Batch GD, Stochastic Gradient Descent (SGD), and Mini-Batch strategies.",
+      "description": "Navigate optimization landscapes. Compare Batch, Stochastic (SGD), and Mini-Batch Gradient Descent and tune learning rates.",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Gradient Optimization"
+      "estimatedMinutes": 7,
+      "section": "Optimization & Training"
     },
     {
       "id": "l3",
       "title": "The Backpropagation Algorithm",
-      "description": "Unravel the calculus behind AI: the Chain Rule, error attribution, and propagating gradients from output to input.",
+      "description": "Demystify backpropagation through computational graphs and chain rule partial derivatives.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Backprop Calculus"
+      "estimatedMinutes": 8,
+      "section": "Deep Learning Mechanics"
     },
     {
       "id": "l4",
       "title": "Advanced Optimizers & Regularization",
-      "description": "Accelerate convergence with Momentum and Adam, and prevent overfitting using Weight Decay, Dropout, and Batch Normalization.",
+      "description": "Accelerate convergence beyond vanilla SGD using Momentum, RMSprop, Adam, and AdamW alongside modern regularization.",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Modern Optimization"
+      "estimatedMinutes": 7,
+      "section": "Deep Learning Mechanics"
     }
   ]
 }

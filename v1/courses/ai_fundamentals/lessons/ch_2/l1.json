@@ -2,92 +2,98 @@
   "id": "l1",
   "chapterId": "ch_2",
   "title": "The Machine Learning Paradigm",
-  "description": "Compare classical programming with machine learning, exploring Supervised, Unsupervised, and Reinforcement Learning paradigms.",
+  "description": "Discover how machine learning differs from traditional programming. Compare Supervised, Unsupervised, and Reinforcement Learning.",
   "xpReward": 25,
   "estimatedMinutes": 6,
-  "section": "Core Paradigms",
+  "section": "Core Machine Learning",
   "slides": [
     {
       "id": "s_ch2_l1_1",
       "type": "text",
-      "title": "Inverting the Programming Paradigm 🔄",
-      "content": "# The Machine Learning Paradigm Shift\n\nIn traditional software development, humans write explicit logical rules that process data to produce outputs:\n\n```\nTraditional:  Data + Rules  --> [Program] --> Answers\nMachine Learning: Data + Answers --> [Learner] --> Rules (Model)\n```\n\nRather than hand-crafting thousands of `if/else` statements to detect a cat in an image, a Machine Learning algorithm ingests thousands of labeled cat photos and automatically discovers the statistical relationships defining a cat."
+      "title": "Software 1.0 vs Software 2.0 \ud83d\udcbb",
+      "content": "# The Machine Learning Paradigm\n\nIn classical software engineering (**Software 1.0**), human programmers write explicit logical rules that process data to produce answers.\n\nIn Machine Learning (**Software 2.0**), we feed both historical data and desired answers into a learning algorithm, which *synthesizes the underlying rules automatically*.\n\n$$\\text{Traditional: } \\text{Data} + \\text{Rules} \\longrightarrow \\text{Answers}$$\n$$\\text{Machine Learning: } \\text{Data} + \\text{Answers} \\longrightarrow \\text{Rules (Model)}$$"
     },
     {
       "id": "s_ch2_l1_2",
       "type": "quiz",
-      "title": "Concept Check: Paradigm Shift 🧠",
+      "title": "Concept Check: ML vs Rules \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch2_l1_1",
         "type": "multiple_choice",
-        "question": "What are the inputs and output of a Machine Learning algorithm during the training phase?",
+        "question": "What is the primary input to a machine learning training pipeline to generate a predictive model?",
         "options": [
           {
             "id": "opt1",
-            "text": "Input: Rules and Data; Output: Answers",
+            "text": "A complete set of handcrafted if-else conditional branches",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "Input: Data and Target Answers; Output: Predictive Rules/Model",
+            "text": "Empirical example data paired with corresponding target outcomes",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Input: Hardware specs; Output: Binary executable",
+            "text": "Hardware CPU instruction cycles only",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Input: Uncompiled code; Output: Static website",
+            "text": "Deterministic finite state automata",
             "isCorrect": false
           }
         ],
-        "explanation": "Machine learning inverts classical programming: we supply examples of inputs paired with expected outcomes, and the algorithm learns the mapping function.",
+        "explanation": "Machine learning systems learn mapping functions by processing empirical data examples alongside known target signals.",
         "xpReward": 10
       }
     },
     {
       "id": "s_ch2_l1_3",
       "type": "text",
-      "title": "The Three Pillars of Machine Learning 🏛️",
-      "content": "### 1. Supervised Learning\n* **Input:** Labeled dataset $(X, y)$.\n* **Goal:** Learn function $f(X) \\approx y$.\n* **Tasks:** Regression (predicting continuous house prices) and Classification (predicting fraud vs non-fraud).\n\n### 2. Unsupervised Learning\n* **Input:** Unlabeled data $(X)$.\n* **Goal:** Discover hidden structure, clusters, or lower-dimensional representations.\n* **Tasks:** Clustering (customer segmentation via K-Means), Dimensionality Reduction (PCA).\n\n### 3. Reinforcement Learning (RL)\n* **Input:** State signals from an environment.\n* **Goal:** An agent takes actions to maximize cumulative reward through trial and error (e.g. Robot locomotion, Atari games)."
+      "title": "The Three Pillars of Machine Learning \ud83c\udfdb\ufe0f",
+      "content": "# The Three Learning Paradigms\n\nMachine learning is partitioned into three foundational branches:\n\n| Learning Paradigm | Training Data Format | Supervision Signal | Objective | Standard Algorithms |\n| :--- | :--- | :--- | :--- | :--- |\n| **Supervised Learning** | Features $\\mathbf{X}$ paired with Labels $\\mathbf{y}$ | Direct target ground truth | Learn predictive mapping $\\hat{y} = f(\\mathbf{x})$ | Linear Regression, Random Forest, SVM, XGBoost |\n| **Unsupervised Learning** | Features $\\mathbf{X}$ only (no labels) | None (self-guided) | Uncover hidden geometry, clusters, distributions | K-Means, PCA, DBSCAN, t-SNE |\n| **Reinforcement Learning** | States $s$, Actions $a$, Rewards $r$ | Scalar environmental reward | Discover policy $\\pi(s)$ maximizing cumulative reward | Q-Learning, PPO, Deep Q-Networks (DQN) |\n\n* **Supervised:** Teacher grades every exam question.\n* **Unsupervised:** Student organizes a library without titles.\n* **Reinforcement:** Puppy learns tricks through treats and scolds."
     },
     {
       "id": "s_ch2_l1_4",
       "type": "quiz",
-      "title": "Concept Check: Pillar Matching 🧠",
+      "title": "Concept Check: Learning Paradigms \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch2_l1_2",
         "type": "multiple_choice",
-        "question": "Groupings of e-commerce shoppers based on purchasing habits without any prior customer category labels is an example of:",
+        "question": "Grouping online retail shoppers into distinct personas based solely on their browsing histories without pre-assigned customer category labels is an example of which paradigm?",
         "options": [
           {
             "id": "opt1",
-            "text": "Supervised Classification",
+            "text": "Supervised Learning",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "Unsupervised Clustering",
+            "text": "Unsupervised Learning",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Reinforcement Policy Optimization",
+            "text": "Reinforcement Learning",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Supervised Regression",
+            "text": "Supervised Classification",
             "isCorrect": false
           }
         ],
-        "explanation": "Because there are no ground-truth target labels supplied beforehand, finding patterns or groupings in the raw data is Unsupervised Learning.",
+        "explanation": "Because there are no target category labels provided and the goal is to discover latent clusters in the feature space, it is Unsupervised Learning.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch2_l1_5",
+      "type": "tip",
+      "title": "AI Pro Tip: The Data-Centric AI Mindset \ud83d\udca1",
+      "content": "## Andrew Ng's Data-Centric Philosophy\nHistorically, AI researchers spent 80% of their effort iterating on model architectures while holding the training dataset fixed.\n\nModern production engineering has flipped this: holding the model constant and systematically cleaning, labeling, and augmenting training data delivers substantially higher gains in accuracy and reliability than hyperparameter tuning alone!"
     }
   ]
 }

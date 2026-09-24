@@ -3,34 +3,34 @@
     {
       "id": "l1",
       "title": "Why MLPs Struggle with Images",
-      "description": "Understand the parameter explosion of flattening 2D/3D images into 1D vectors and the need for spatial invariance.",
+      "description": "Understand the parameter explosion and loss of 2D spatial locality when flattening image pixels into standard MLPs.",
       "xpReward": 25,
       "estimatedMinutes": 6,
-      "section": "Vision Challenges"
+      "section": "Computer Vision Foundations"
     },
     {
       "id": "l2",
       "title": "Convolutions, Kernels, & Feature Maps",
-      "description": "Discover how 2D convolution filters slide across pixels to detect edges, corners, and texture gradients.",
+      "description": "Master sliding kernels, dot products, stride, padding, edge detection filters, and output feature map dimensionality.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Convolution Mechanics"
+      "estimatedMinutes": 8,
+      "section": "Convolutional Mechanics"
     },
     {
       "id": "l3",
       "title": "Pooling & Hierarchical Feature Learning",
-      "description": "Downsample feature maps using Max and Average Pooling, and observe how deep layers build abstractions from lines to faces.",
+      "description": "Downsample feature maps with Max Pooling and Average Pooling. Understand translation invariance and receptive fields.",
       "xpReward": 25,
       "estimatedMinutes": 6,
-      "section": "Downsampling & Hierarchy"
+      "section": "Convolutional Mechanics"
     },
     {
       "id": "l4",
       "title": "Landmark CNNs & Transfer Learning",
-      "description": "Explore pivotal architectures like AlexNet, VGG, and ResNet's residual skip connections, and apply transfer learning.",
+      "description": "Trace CNN evolution from AlexNet and VGG to ResNet's skip connections. Master transfer learning on pre-trained backbones.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Architectures & Transfer"
+      "estimatedMinutes": 8,
+      "section": "Deep Vision Architectures"
     }
   ]
 }

@@ -1,32 +1,73 @@
 {
   "id": "l4",
   "chapterId": "ch_7",
-  "title": "Prompt Engineering & RAG Systems",
-  "description": "Master zero-shot, few-shot, and Chain-of-Thought prompting, and integrate vector databases for Retrieval-Augmented Generation.",
+  "title": "Retrieval-Augmented Generation (RAG)",
+  "description": "Overcome hallucinations and knowledge cutoffs by combining vector databases with grounded LLM generation pipelines.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Application Patterns",
+  "estimatedMinutes": 8,
+  "section": "Generative Applications",
   "slides": [
     {
       "id": "s_ch7_l4_1",
       "type": "text",
-      "title": "The Prompting Toolkit 🛠️",
-      "content": "# Prompt Engineering Strategies\n\n* **Zero-Shot:** Direct task instruction without examples (`Classify the sentiment: ...`).\n* **Few-Shot:** Providing 2-3 input/output examples in-context so the model recognizes format and nuance.\n* **Chain-of-Thought (CoT):** Asking the model to `\"Think step-by-step before answering\"`. This generates internal reasoning tokens that break complex logic problems down sequentially!"
+      "title": "Grounding LLMs in Reality \ud83d\udd0d",
+      "content": "# The Limits of Internal Model Weights\n\nFoundation LLMs suffer from two fundamental enterprise limitations:\n1. **Knowledge Cutoffs:** The model cannot answer questions about events occurring after its training date.\n2. **Private Data Inaccessibility:** The model has never seen proprietary internal company PDFs, databases, or client records.\n\n**Retrieval-Augmented Generation (RAG)** solves this by retrieving relevant document passages at query time and injecting them directly into the context window as authoritative reference material."
     },
     {
       "id": "s_ch7_l4_2",
       "type": "text",
-      "title": "RAG: Retrieval-Augmented Generation 📚",
-      "content": "# Overcoming Hallucinations with RAG\n\nLLMs memorize training data probabilistically and have fixed knowledge cutoffs. They cannot see private corporate documents and may hallucinate facts.\n\n```\nUser Query: \"What were our Q3 earnings?\"\n          |\n          v\n[ Vector Database Retrieval ] ---> Fetches top 3 relevant internal PDF chunks\n          |\n          v\nCombined Prompt: \"Using ONLY the context below, answer the question:\n                  Context: [PDF Excerpt: Q3 net profit was $4.2M]\n                  Question: What were our Q3 earnings?\"\n          |\n          v\nLLM Response: \"According to the Q3 report, net profit was $4.2M.\"\n```\n\nRAG grounds the generative model in verifiable, external reference data!"
+      "title": "RAG vs Model Fine-Tuning \u2696\ufe0f",
+      "content": "# Architectural Comparison\n\n| Dimension | Retrieval-Augmented Generation (RAG) | Model Fine-Tuning |\n| :--- | :--- | :--- |\n| **Knowledge Freshness** | Instant (updates immediately when documents are added to vector DB) | Static (requires retraining or re-running fine-tuning pipeline) |\n| **Hallucination Risk** | Low (responses cite retrieved text verbatim) | Moderate to high (knowledge is encoded fuzzily into weights) |\n| **Transparency & Auditability**| High (exact source passages cited with hyperlinks) | Low (opaque weights) |\n| **Primary Ideal Use** | Factual enterprise Q&A, compliance, live search | Imparting tone, style, jargon, or specialized grammar |"
     },
     {
       "id": "s_ch7_l4_3",
+      "type": "quiz",
+      "title": "Concept Check: RAG Architecture \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch7_l4_1",
+        "type": "multiple_choice",
+        "question": "What is the primary role of a vector database (such as Pinecone, Chroma, or Milvus) in a RAG pipeline?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "To compile Python source code into C++ binaries",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "To index document chunk embeddings and retrieve the top semantically similar text passages for a user query",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "To replace the LLM transformer layers entirely",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "To backpropagate gradients into the pre-training dataset",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Vector databases store dense embedding vectors for chunked documents and execute approximate nearest neighbor search to find text semantically relevant to user queries.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch7_l4_4",
       "type": "code",
-      "title": "A Minimal RAG Pipeline in Python 🐍",
-      "content": "Here is how RAG prompt formatting is implemented in production pipelines:",
-      "codeSnippet": "def format_rag_prompt(user_query: str, retrieved_docs: list[str]) -> str:\n    context_block = '\\n\\n'.join(f'[Doc {i+1}]: {doc}' for i, doc in enumerate(retrieved_docs))\n    return (\n        f'System: Answer the user query using only the provided context. If unknown, say so.\\n\\n'\n        f'Context:\\n{context_block}\\n\\n'\n        f'User Question: {user_query}\\n'\n        f'Assistant:'\n    )\n\nprompt = format_rag_prompt('What is our refund policy?', ['Refunds are accepted within 30 days of purchase.'])\nprint(prompt)",
+      "title": "End-to-End RAG Flow Simulation \ud83d\udc0d",
+      "content": "Simulating prompt augmentation with retrieved context:",
+      "codeSnippet": "def format_rag_prompt(user_query, retrieved_chunks):\n    context_block = '\\n---\\n'.join(retrieved_chunks)\n    return f'''Answer the query using ONLY the verified reference context below.\nIf the context is insufficient, state 'Information not found.'\n\nReference Context:\n{context_block}\n\nUser Query: {user_query}\nAnswer:'''\n\nchunks = ['Q3 revenue reached $14.2M, up 22% year-over-year.']\nprint(format_rag_prompt('What was our Q3 revenue?', chunks))",
       "codeLanguage": "python",
       "canRunCode": true
+    },
+    {
+      "id": "s_ch7_l4_5",
+      "type": "tip",
+      "title": "AI Pro Tip: Chunking Strategies \ud83d\udca1",
+      "content": "## Chunk Size & Overlap\nIn RAG pipelines, avoid chunking documents by arbitrary character counts. Use **semantic chunking** (preserving paragraphs or markdown sections) with 10-20% chunk overlap to ensure sentences aren't severed mid-thought!"
     }
   ]
 }

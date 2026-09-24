@@ -2,57 +2,72 @@
   "id": "l3",
   "chapterId": "ch_6",
   "title": "The Attention Mechanism",
-  "description": "Understand why bottlenecking sequences into fixed vectors failed, and how Query-Key-Value attention revolutionizes context retrieval.",
+  "description": "Break the sequence-to-sequence information bottleneck. Derive Queries, Keys, Values, and Scaled Dot-Product Attention.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Attention Intuition",
+  "estimatedMinutes": 8,
+  "section": "The Attention Paradigm",
   "slides": [
     {
       "id": "s_ch6_l3_1",
       "type": "text",
-      "title": "The Information Bottleneck 🍾",
-      "content": "# Breaking the Fixed-Length Bottleneck\n\nIn early sequence-to-sequence translation models, an encoder compressed an entire paragraph into a single fixed-length vector $h_{last}$. Asking a 512-number vector to memorize a 50-word sentence was like forcing someone to summarize a complex book into a tweet.\n\n### The Breakthrough: Bahdanau Attention (2014)\nInstead of forcing everything into one static vector, the decoder looks directly back at **all encoder states** at every step, placing dynamically calculated **attention weights** on the most relevant source words!"
+      "title": "Breaking the Information Bottleneck \ud83c\udfaf",
+      "content": "# The Flaw of Fixed Context Vectors\n\nIn classic Seq2Seq translation models (Bahdanau et al., 2014), an encoder compressed an entire 50-word sentence into a single fixed-size vector. This was like asking a translator to memorize a paragraph and translate it with closed eyes.\n\nThe **Attention Mechanism** allows the decoder to look back at *all original input words directly* at every generation step, focusing on the most relevant tokens dynamically!"
     },
     {
       "id": "s_ch6_l3_2",
       "type": "text",
-      "title": "Query, Key, and Value (Q, K, V) 🗝️",
-      "content": "# The Filing Cabinet Analogy\n\nThink of Attention like searching a database or library:\n\n* **Query ($Q$):** What you are searching for (e.g. \"Who stole the treasure?\").\n* **Keys ($K$):** The labels / tags on every book in the library.\n* **Values ($V$):** The actual text contents inside each book.\n\n### Scaled Dot-Product Attention Formula:\n$$\n\\text{Attention}(Q, K, V) = \\text{Softmax}\\left( \\frac{Q K^T}{\\sqrt{d_k}} \\right) V\n$$\n\n1. Multiply Query by all Keys ($Q K^T$) to get similarity scores.\n2. Scale by $\\sqrt{d_k}$ to prevent gradient saturation.\n3. Apply Softmax to obtain attention weights summing to 1.0.\n4. Take the weighted sum of the Values ($V$)!"
+      "title": "Queries, Keys, and Values \ud83d\udd11",
+      "content": "# The Retrieval Database Analogy\n\nModern Attention formulates relationships using database retrieval primitives:\n\n$$\\text{Attention}(\\mathbf{Q}, \\mathbf{K}, \\mathbf{V}) = \\text{Softmax}\\left( \\frac{\\mathbf{Q} \\mathbf{K}^T}{\\sqrt{d_k}} \\right) \\mathbf{V}$$\n\n| Tensor | Database Analogy | Semantic Role in Attention |\n| :--- | :--- | :--- |\n| **Query ($\\mathbf{Q}$)** | Search query term entered in search bar | Represents what the current token is seeking |\n| **Key ($\\mathbf{K}$)** | Page titles / tags in the database index | Represents what each token in the sequence has to offer |\n| **Value ($\\mathbf{V}$)** | Full content of the matched documents | The actual semantic payload to be extracted and weighted |\n| **Scaling Factor ($\\frac{1}{\\sqrt{d_k}}$)** | Normalizer | Prevents dot products from exploding in high dimensions, keeping Softmax gradients healthy |"
     },
     {
       "id": "s_ch6_l3_3",
       "type": "quiz",
-      "title": "Concept Check: Scaling Factor 🧠",
+      "title": "Concept Check: Scaled Dot-Product \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch6_l3_1",
         "type": "multiple_choice",
-        "question": "Why is the dot product Q * K^T divided by sqrt(d_k) in Scaled Dot-Product Attention?",
+        "question": "Why is the dot product of Q and K divided by the square root of the key dimension (sqrt(d_k)) in scaled dot-product attention?",
         "options": [
           {
             "id": "opt1",
-            "text": "To convert the numbers to Roman numerals",
+            "text": "To convert the resulting matrix into RGB pixels",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "To prevent large dot product magnitudes that cause Softmax gradients to vanish",
+            "text": "To prevent large dot product magnitudes from pushing the Softmax function into regions with tiny gradients",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "To enforce binary output values",
+            "text": "To enforce L1 regularization on attention weights",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "To reduce token count by half",
+            "text": "To eliminate the need for value vectors",
             "isCorrect": false
           }
         ],
-        "explanation": "For large vector dimensions d_k, the dot product grows large in magnitude, pushing the Softmax function into regions with extremely small gradients. Dividing by sqrt(d_k) stabilizes variance.",
+        "explanation": "For large d_k, dot products grow large in magnitude, driving Softmax into regions with near-zero gradients. Scaling stabilizes the gradients.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch6_l3_4",
+      "type": "code",
+      "title": "Attention Matrix in NumPy \ud83d\udc0d",
+      "content": "Computing scaled dot-product attention from scratch:",
+      "codeSnippet": "import numpy as np\n\ndef scaled_dot_product_attention(Q, K, V):\n    d_k = Q.shape[-1]\n    scores = np.dot(Q, K.T) / np.sqrt(d_k)\n    # Softmax across rows\n    exp_scores = np.exp(scores - np.max(scores, axis=-1, keepdims=True))\n    weights = exp_scores / np.sum(exp_scores, axis=-1, keepdims=True)\n    return np.dot(weights, V), weights\n\nQ = np.array([[1.0, 0.0], [0.0, 1.0]])\nK = np.array([[1.0, 0.0], [0.0, 1.0]])\nV = np.array([[10.0, 20.0], [30.0, 40.0]])\n\nout, w = scaled_dot_product_attention(Q, K, V)\nprint('Attention Weights:\\n', w.round(3))\nprint('Weighted Values:\\n', out.round(3))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch6_l3_5",
+      "type": "tip",
+      "title": "AI Pro Tip: Self-Attention vs Cross-Attention \ud83d\ude80",
+      "content": "## Two Faces of Attention\n* **Self-Attention:** Queries, Keys, and Values all originate from the *same* sequence (e.g. words in a sentence attending to other words in that sentence).\n* **Cross-Attention:** Queries come from the decoder sequence, while Keys and Values come from the encoder sequence (used in translation and diffusion image conditioning)!"
     }
   ]
 }

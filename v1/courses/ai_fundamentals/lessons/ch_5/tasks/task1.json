@@ -1,14 +1,14 @@
 {
   "id": "task1",
   "chapterId": "ch_5",
-  "title": "Calculate Convolution Output Dimensions",
-  "description": "Write a formula to compute the spatial output dimensions of a 2D convolutional layer given input size, kernel, padding, and stride.",
+  "title": "Implement a 2D Convolution Operation in Python",
+  "description": "Compute a 2D spatial convolution across a single-channel image patch using a sliding 3x3 kernel and stride=1.",
   "estimatedMinutes": 10,
-  "problemStatement": "In computer vision architecture design, determining layer spatial dimensions is critical. Implement a Python function `conv2d_output_dim(input_size: int, kernel_size: int, padding: int, stride: int) -> int` that calculates: `floor((input_size - kernel_size + 2 * padding) / stride) + 1`.",
+  "problemStatement": "Implement a function `conv2d_valid(image, kernel)` in Python using NumPy that executes a valid (no padding) 2D convolution with stride=1. If image is (H, W) and kernel is (K, K), output shape must be (H - K + 1, W - K + 1). Each output pixel at (i, j) is the sum of element-wise multiplication of kernel with image[i:i+K, j:j+K]. Return the resulting 2D NumPy array.",
   "hints": [
-    "Use integer division // to obtain the floor value.",
-    "Dimension formula: ((input_size - kernel_size + 2 * padding) // stride) + 1."
+    "Loop over rows i in range(H - K + 1) and columns j in range(W - K + 1).",
+    "Compute np.sum(image[i:i+K, j:j+K] * kernel)."
   ],
-  "expectedOutput": "Integer representing the spatial height/width after convolution.",
-  "solutionCode": "def conv2d_output_dim(input_size: int, kernel_size: int, padding: int, stride: int) -> int:\n    return ((input_size - kernel_size + 2 * padding) // stride) + 1"
+  "expectedOutput": "Output 2D array of convolved values matching sliding dot products",
+  "solutionCode": "import numpy as np\n\ndef conv2d_valid(image, kernel):\n    H, W = image.shape\n    K = kernel.shape[0]\n    out_h = H - K + 1\n    out_w = W - K + 1\n    out = np.zeros((out_h, out_w))\n    \n    for i in range(out_h):\n        for j in range(out_w):\n            out[i, j] = np.sum(image[i:i+K, j:j+K] * kernel)\n    return out\n\nimg = np.array([\n    [1, 2, 3, 0],\n    [0, 1, 2, 3],\n    [3, 0, 1, 2],\n    [2, 3, 0, 1]\n])\nkernel = np.array([\n    [1, 0, -1],\n    [1, 0, -1],\n    [1, 0, -1]\n])\nprint(conv2d_valid(img, kernel))"
 }

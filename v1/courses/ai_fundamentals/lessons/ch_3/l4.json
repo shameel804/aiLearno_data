@@ -2,25 +2,66 @@
   "id": "l4",
   "chapterId": "ch_3",
   "title": "Forward Propagation in Action",
-  "description": "Step through the matrix multiplications and activation vector calculations that transform inputs into predictions.",
+  "description": "Step through vectorized forward passes with matrix multiplication, layer-by-layer shape transformations, and batch processing.",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Inference Math",
+  "estimatedMinutes": 8,
+  "section": "Network Architectures",
   "slides": [
     {
       "id": "s_ch3_l4_1",
       "type": "text",
-      "title": "Vectorized Forward Propagation 🚀",
-      "content": "# Forward Propagation with Matrices\n\nModern deep learning hardware (GPUs and TPUs) executes forward passes using high-speed matrix multiplications:\n\nFor layer $l$:\n$$\n\\mathbf{Z}^{[l]} = \\mathbf{W}^{[l]} \\mathbf{A}^{[l-1]} + \\mathbf{b}^{[l]}\n$$\n$$\n\\mathbf{A}^{[l]} = \\sigma(\\mathbf{Z}^{[l]})\n$$\n\n* **$\\mathbf{A}^{[l-1]}$:** Activations from preceding layer (where $\\mathbf{A}^{[0]} = \\mathbf{X}$, the input batch).\n* **$\\mathbf{W}^{[l]}$:** Weight matrix connecting layer $l-1$ to layer $l$.\n* **$\\mathbf{b}^{[l]}$:** Bias vector for layer $l$.\n* **$\\sigma$:** Non-linear element-wise activation function."
+      "title": "The Vectorized Forward Pass \ud83d\udcd0",
+      "content": "# Matrix Operations in Neural Networks\n\nModern hardware (GPUs and TPUs) computes forward passes using vectorized linear algebra. Instead of looping through individual neurons, we multiply entire matrices:\n\n$$\\mathbf{Z}_1 = \\mathbf{X} \\mathbf{W}_1 + \\mathbf{b}_1$$\n$$\\mathbf{A}_1 = \\text{ReLU}(\\mathbf{Z}_1)$$\n$$\\mathbf{Z}_2 = \\mathbf{A}_1 \\mathbf{W}_2 + \\mathbf{b}_2$$\n$$\\hat{\\mathbf{Y}} = \\sigma(\\mathbf{Z}_2)$$\n\n### Shape Transformations for Batch Size $N=64$:\n\n| Layer Operation | Input Tensor Shape | Weight Matrix Shape | Bias Vector Shape | Output Tensor Shape |\n| :--- | :--- | :--- | :--- | :--- |\n| **Hidden Linear 1** | $\\mathbf{X} \\in \\mathbb{R}^{64 \\times 10}$ | $\\mathbf{W}_1 \\in \\mathbb{R}^{10 \\times 32}$ | $\\mathbf{b}_1 \\in \\mathbb{R}^{1 \\times 32}$ | $\\mathbf{Z}_1 \\in \\mathbb{R}^{64 \\times 32}$ |\n| **Hidden Activation 1**| $\\mathbf{Z}_1 \\in \\mathbb{R}^{64 \\times 32}$ | Element-wise ReLU | None | $\\mathbf{A}_1 \\in \\mathbb{R}^{64 \\times 32}$ |\n| **Output Linear 2** | $\\mathbf{A}_1 \\in \\mathbb{R}^{64 \\times 32}$ | $\\mathbf{W}_2 \\in \\mathbb{R}^{32 \\times 2}$ | $\\mathbf{b}_2 \\in \\mathbb{R}^{1 \\times 2}$ | $\\mathbf{Z}_2 \\in \\mathbb{R}^{64 \\times 2}$ |\n| **Output Softmax** | $\\mathbf{Z}_2 \\in \\mathbb{R}^{64 \\times 2}$ | Element-wise Softmax | None | $\\hat{\\mathbf{Y}} \\in \\mathbb{R}^{64 \\times 2}$ |"
     },
     {
       "id": "s_ch3_l4_2",
+      "type": "quiz",
+      "title": "Concept Check: Tensor Dimensions \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch3_l4_1",
+        "type": "multiple_choice",
+        "question": "If an input batch X has shape (32, 128) and the hidden layer has 64 neurons, what must be the dimension of the weight matrix W1?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "(32, 64)",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "(128, 64)",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "(64, 128)",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "(32, 128)",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Matrix multiplication requires inner dimensions to match: (32, 128) @ (128, 64) yields output batch shape (32, 64).",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch3_l4_3",
       "type": "code",
-      "title": "Vectorized Forward Pass in Python 🐍",
-      "content": "Here is how a 2-layer network computes predictions on a sample feature vector:",
-      "codeSnippet": "import math\n\ndef relu(x: float) -> float:\n    return max(0.0, x)\n\n# Input vector: 2 features\nx = [1.5, -0.5]\n# Hidden layer: 2 neurons (weights: 2x2, biases: 2)\nw1 = [[0.8, -0.2], [0.5, 0.9]]\nb1 = [0.1, -0.1]\n\n# Compute hidden activations\nh1 = relu(x[0]*w1[0][0] + x[1]*w1[0][1] + b1[0])\nh2 = relu(x[0]*w1[1][0] + x[1]*w1[1][1] + b1[1])\nprint('Hidden layer activations:', [round(h1, 3), round(h2, 3)])",
+      "title": "Forward Pass from Scratch in NumPy \ud83d\udc0d",
+      "content": "A complete, vectorized 2-layer forward propagation implementation:",
+      "codeSnippet": "import numpy as np\n\n# Batch of 4 samples, 3 features\nX = np.random.randn(4, 3)\n\n# Layer 1: 3 in -> 5 hidden\nW1 = np.random.randn(3, 5) * 0.1\nb1 = np.zeros((1, 5))\n\n# Layer 2: 5 hidden -> 1 output\nW2 = np.random.randn(5, 1) * 0.1\nb2 = np.zeros((1, 1))\n\n# Forward propagation pass\nZ1 = np.dot(X, W1) + b1\nA1 = np.maximum(0, Z1) # ReLU\nZ2 = np.dot(A1, W2) + b2\nY_hat = 1.0 / (1.0 + np.exp(-Z2)) # Sigmoid\n\nprint('Output probabilities shape:', Y_hat.shape)\nprint('Output batch probabilities:\\n', Y_hat.round(3))",
       "codeLanguage": "python",
       "canRunCode": true
+    },
+    {
+      "id": "s_ch3_l4_4",
+      "type": "tip",
+      "title": "AI Pro Tip: He / Xavier Weight Initialization \ud83d\udca1",
+      "content": "## Never Initialize Weights to Zero\nIf you initialize all weights to zeros, every neuron in a layer computes the identical output and receives the identical backpropagation gradient. The neurons remain completely symmetric and never differentiate.\n\nAlways use random initialization scaled by fan-in/fan-out (He initialization for ReLU; Xavier/Glorot for Tanh/Sigmoid)!"
     }
   ]
 }

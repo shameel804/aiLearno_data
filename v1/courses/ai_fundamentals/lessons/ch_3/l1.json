@@ -2,60 +2,72 @@
   "id": "l1",
   "chapterId": "ch_3",
   "title": "Biological Inspiration & The Perceptron",
-  "description": "Trace biological neurons to Frank Rosenblatt's Perceptron, understanding weights, inputs, and the step threshold.",
+  "description": "Trace neural networks to biological neurons. Understand Frank Rosenblatt's Perceptron, weights, biases, and linear separability.",
   "xpReward": 25,
   "estimatedMinutes": 6,
-  "section": "Neuron Foundations",
+  "section": "Neural Network Fundamentals",
   "slides": [
     {
       "id": "s_ch3_l1_1",
       "type": "text",
-      "title": "From Biology to Silicon 🧬",
-      "content": "# Biological vs Artificial Neurons\n\nHuman brains contain approximately 86 billion interconnected biological neurons. An artificial neuron models this biological mechanism:\n\n```\nBiological Neuron:  Dendrites  -->   Soma / Cell Body   -->    Axon\nArtificial Neuron:  Inputs (x) -->  Weighted Sum (Σ)    -->  Activation (f)\n```\n\n### The Mathematical Perceptron (1958):\nFrank Rosenblatt formulated the **Perceptron**:\n\n$$\nz = \\sum_{i=1}^{n} w_i x_i + b = \\mathbf{w}^T \\mathbf{x} + b\n$$\n\n* **Inputs ($x_i$):** Feature values.\n* **Weights ($w_i$):** Strength of connection or importance of each feature.\n* **Bias ($b$):** Threshold required for the neuron to fire."
+      "title": "From Biology to Computation \u26a1",
+      "content": "# Biological vs Artificial Neurons\n\nThe human brain contains roughly 86 billion biological neurons connected via trillions of synapses. Artificial neural networks abstract this biological architecture:\n\n| Biological Neuron Component | Computational Equivalent (Artificial Neuron) | Mathematical Representation |\n| :--- | :--- | :--- |\n| **Dendrites** | Input feature signals | Input vector $\\mathbf{x} = [x_1, x_2, \\dots, x_n]^T$ |\n| **Synapses** | Connection strengths (importance) | Weight vector $\\mathbf{w} = [w_1, w_2, \\dots, w_n]^T$ |\n| **Soma (Cell Body)** | Summation of incoming inputs + threshold | Linear combination $z = \\mathbf{w}^T \\mathbf{x} + b$ |\n| **Axon (Action Potential)** | Output firing transmission | Activation function output $a = f(z)$ |\n\n* **Weights ($w_i$):** Determine how strongly each input contributes to firing.\n* **Bias ($b$):** An internal threshold that shifts the decision boundary independently of input values."
     },
     {
       "id": "s_ch3_l1_2",
       "type": "quiz",
-      "title": "Concept Check: Perceptron Math 🧠",
+      "title": "Concept Check: Artificial Neurons \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch3_l1_1",
         "type": "multiple_choice",
-        "question": "If a neuron has inputs [2, 3], weights [0.5, 2.0], and a bias of -4, what is the net linear combination z?",
+        "question": "What is the primary role of the bias parameter (b) in an artificial neuron?",
         "options": [
           {
             "id": "opt1",
-            "text": "z = 7",
+            "text": "It rescales the input vector features to have zero variance",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "z = 3",
+            "text": "It shifts the activation function threshold left or right independently of inputs",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "z = -4",
+            "text": "It replaces the need for activation functions",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "z = 11",
+            "text": "It forces the network to execute backpropagation in reverse",
             "isCorrect": false
           }
         ],
-        "explanation": "z = (2 * 0.5) + (3 * 2.0) + (-4) = 1.0 + 6.0 - 4.0 = 3.0.",
+        "explanation": "Without a bias term, a neuron's decision boundary is constrained to pass through the origin (0, 0), severely restricting the hypothesis space.",
         "xpReward": 10
       }
     },
     {
       "id": "s_ch3_l1_3",
+      "type": "text",
+      "title": "Frank Rosenblatt's Perceptron (1958) \ud83d\udcdc",
+      "content": "# The Perceptron Algorithm\n\nThe **Perceptron** is the simplest artificial neuron, producing a binary step output:\n\n$$z = \\sum_{i=1}^{n} w_i x_i + b$$\n$$\\hat{y} = \\begin{cases} 1 & \\text{if } z \\ge 0 \\\\ 0 & \\text{if } z < 0 \\end{cases}$$\n\n### Perceptron Learning Rule:\nFor every misclassified training example $(\\mathbf{x}, y)$:\n$$\\mathbf{w} \\leftarrow \\mathbf{w} + \\eta (y - \\hat{y}) \\mathbf{x}$$\n$$b \\leftarrow b + \\eta (y - \\hat{y})$$\n\n* **Convergence Theorem:** If the training data is **linearly separable** (separable by a straight hyperplane), the Perceptron is mathematically guaranteed to find a separating boundary in a finite number of steps!"
+    },
+    {
+      "id": "s_ch3_l1_4",
       "type": "code",
-      "title": "A Single Neuron in Python 🐍",
-      "content": "Let's compute a single artificial neuron's forward pass using simple Python:",
-      "codeSnippet": "def single_neuron(inputs: list[float], weights: list[float], bias: float) -> float:\n    linear_sum = sum(x * w for x, w in zip(inputs, weights)) + bias\n    # Step activation function\n    return 1.0 if linear_sum >= 0 else 0.0\n\nprint('Neuron output:', single_neuron([1.0, 0.5], [0.4, 0.8], -0.5))",
+      "title": "Perceptron Forward Step in Python \ud83d\udc0d",
+      "content": "A minimal single neuron forward pass implemented in NumPy:",
+      "codeSnippet": "import numpy as np\n\ndef perceptron_predict(x: np.ndarray, w: np.ndarray, b: float) -> int:\n    z = np.dot(w, x) + b\n    return 1 if z >= 0 else 0\n\nw = np.array([1.5, -2.0])\nb = 0.5\nx = np.array([1.0, 0.5])\n\nprint('Linear activation z:', np.dot(w, x) + b)\nprint('Neuron fired:', perceptron_predict(x, w, b))",
       "codeLanguage": "python",
       "canRunCode": true
+    },
+    {
+      "id": "s_ch3_l1_5",
+      "type": "tip",
+      "title": "AI Pro Tip: Hebbian Learning \ud83d\udca1",
+      "content": "## 'Neurons that fire together, wire together'\nDonald Hebb's 1949 neuroscientific principle forms the conceptual bedrock of artificial neural weight updates: when two connected nodes activate concurrently, the synaptic weight bridging them strengthens over time."
     }
   ]
 }

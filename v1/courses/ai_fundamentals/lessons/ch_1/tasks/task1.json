@@ -1,15 +1,14 @@
 {
   "id": "task1",
   "chapterId": "ch_1",
-  "title": "Build a Goal-Based Agent Evaluator",
-  "description": "Construct an evaluation function for an autonomous agent balancing energy consumption against reward.",
+  "title": "Build a Simple Reflex Agent",
+  "description": "Implement a rule-based vacuum cleaner agent function that perceives its environment and chooses actions.",
   "estimatedMinutes": 10,
-  "problemStatement": "In an agent-environment loop, an autonomous cleaning robot must evaluate whether to clean a target room. Implement a Python function `evaluate_agent_decision(room_cleanliness, battery_level, room_priority)` that returns `'PROCEED'` if `battery_level >= 20` and either `room_cleanliness < 50` or `room_priority == 'HIGH'`; otherwise it returns `'RECHARGE'` if `battery_level < 20`, or `'STANDBY'` otherwise.",
+  "problemStatement": "Implement an intelligent agent function `reflex_vacuum_agent(location, status)` that returns the optimal action string for a 2-room environment ('A' and 'B'). If the current room status is `'DIRTY'`, return `'CLEAN'`. If the room is `'CLEAN'` and location is `'A'`, return `'RIGHT'`. If clean and in `'B'`, return `'LEFT'`.",
   "hints": [
-    "First check if battery is critical (< 20). If so, immediate return 'RECHARGE'.",
-    "Then check if the room needs cleaning (< 50) or is high priority.",
-    "Otherwise return 'STANDBY'."
+    "Check status == 'DIRTY' first before checking room locations.",
+    "Return string literal uppercase action names: 'CLEAN', 'RIGHT', or 'LEFT'."
   ],
-  "expectedOutput": "'PROCEED' for dirty room with good battery, 'RECHARGE' for low battery.",
-  "solutionCode": "def evaluate_agent_decision(room_cleanliness: int, battery_level: int, room_priority: str) -> str:\n    if battery_level < 20:\n        return 'RECHARGE'\n    if room_cleanliness < 50 or room_priority == 'HIGH':\n        return 'PROCEED'\n    return 'STANDBY'"
+  "expectedOutput": "['CLEAN', 'RIGHT', 'CLEAN', 'LEFT']",
+  "solutionCode": "def reflex_vacuum_agent(location, status):\n    if status == 'DIRTY':\n        return 'CLEAN'\n    elif location == 'A':\n        return 'RIGHT'\n    elif location == 'B':\n        return 'LEFT'\n\nevents = [('A', 'DIRTY'), ('A', 'CLEAN'), ('B', 'DIRTY'), ('B', 'CLEAN')]\nresults = [reflex_vacuum_agent(loc, st) for loc, st in events]\nprint(results)"
 }

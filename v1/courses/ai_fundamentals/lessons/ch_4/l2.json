@@ -2,51 +2,72 @@
   "id": "l2",
   "chapterId": "ch_4",
   "title": "Gradient Descent & Learning Rates",
-  "description": "Master gradient descent mechanics, comparing Batch GD, Stochastic Gradient Descent (SGD), and Mini-Batch strategies.",
+  "description": "Navigate optimization landscapes. Compare Batch, Stochastic (SGD), and Mini-Batch Gradient Descent and tune learning rates.",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Gradient Optimization",
+  "estimatedMinutes": 7,
+  "section": "Optimization & Training",
   "slides": [
     {
       "id": "s_ch4_l2_1",
       "type": "text",
-      "title": "Walking Down the Mountain 🏔️",
-      "content": "# Gradient Descent Intuition\n\nImagine being blindfolded on a foggy mountain and wanting to reach the lowest valley. At every step, you feel the slope with your feet and step in the direction of steepest descent.\n\n### The Parameter Update Rule:\n$$\nw := w - \\alpha \\frac{\\partial \\mathcal{L}}{\\partial w}\n$$\n\n* **$\\alpha$ (Learning Rate):** The size of the step taken downhill.\n* **$\\frac{\\partial \\mathcal{L}}{\\partial w}$ (Gradient):** The direction and magnitude of steepest ascent.\n\n```\nToo Small alpha:                Optimal alpha:                 Too Large alpha:\nVery slow convergence;         Smooth, steady descent         Overshoots and diverges\ngets stuck in local minima.    to the global minimum.         wildly into infinity!\n```"
+      "title": "Gradient Descent Intuition \ud83c\udfd4\ufe0f",
+      "content": "# The Foggy Mountain Analogy\n\nImagine standing blindfolded on a foggy mountainside, wanting to descend to the deepest valley floor.\n\nAt each step, you feel the slope of the ground beneath your boots (the **gradient**) and take a step in the direction of steepest descent.\n\n### The Parameter Update Rule:\n$$\\mathbf{w} \\leftarrow \\mathbf{w} - \\alpha \\nabla_{\\mathbf{w}} \\mathcal{L}$$\n\n* **$\\nabla_{\\mathbf{w}} \\mathcal{L}$ (Gradient Vector):** Points in the direction of steepest *ascent* in loss.\n* **Minus Sign ($-$):** We step in the opposite direction to *minimize* error.\n* **$\\alpha$ (Learning Rate):** The step size taken downhill on each update iteration."
     },
     {
       "id": "s_ch4_l2_2",
+      "type": "text",
+      "title": "Comparing Gradient Descent Flavors \u2696\ufe0f",
+      "content": "# Batch vs Stochastic vs Mini-Batch\n\n| Gradient Descent Variant | Samples per Update Step | Computational Efficiency | Trajectory Smoothness | Memory Footprint |\n| :--- | :--- | :--- | :--- | :--- |\n| **Batch Gradient Descent** | Entire dataset ($N$) | Poor on big data; cannot stream | Perfectly smooth; guaranteed convergence | Prohibitive (must hold all data in GPU memory) |\n| **Stochastic GD (SGD)** | Exactly 1 sample | Frequent updates; escapes shallow traps | Highly noisy and erratic oscillations | Minimal (1 sample in memory) |\n| **Mini-Batch GD** | Small batch (32, 64, 128, 256) | Highly optimized for SIMD/GPU tensor cores | Smooth convergence with healthy exploration | Tunable to fit GPU VRAM perfectly |\n\nMini-Batch Gradient Descent is the universal standard across modern deep learning."
+    },
+    {
+      "id": "s_ch4_l2_3",
       "type": "quiz",
-      "title": "Concept Check: Learning Rate 🧠",
+      "title": "Concept Check: Learning Rate Selection \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch4_l2_1",
         "type": "multiple_choice",
-        "question": "What commonly happens if your optimizer's learning rate is configured several orders of magnitude too high?",
+        "question": "What happens during neural network training if the learning rate alpha is set too large?",
         "options": [
           {
             "id": "opt1",
-            "text": "The model trains instantly in 1 step",
+            "text": "Training converges instantly to the global optimum",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "The weights explode or diverge, and loss becomes NaN/infinite",
+            "text": "The parameter updates overshoot the valley and loss oscillates wildly or diverges toward infinity",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "The network automatically prunes all dead neurons",
+            "text": "All weight values freeze at exact zeros",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "The training set size is doubled automatically",
+            "text": "The model reduces to a single-layer perceptron",
             "isCorrect": false
           }
         ],
-        "explanation": "An excessively high learning rate overshoots the minimum of the loss valley, stepping uphill and causing explosive instability (gradient explosion / NaN loss).",
+        "explanation": "An excessively high learning rate overshoots the minimum, causing catastrophic numerical divergence (loss exploding to NaN/infinity).",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch4_l2_4",
+      "type": "code",
+      "title": "Simulating Gradient Descent in Python \ud83d\udc0d",
+      "content": "Minimizing a quadratic loss function $f(w) = w^2 - 4w + 4$:",
+      "codeSnippet": "w = 10.0 # starting far from minimum (w* = 2)\nlr = 0.1\n\nfor step in range(25):\n    grad = 2 * w - 4 # derivative df/dw\n    w = w - lr * grad\n    if step % 5 == 0:\n        print(f'Step {step:2d} | Weight: {w:.4f} | Loss: {(w-2)**2:.6f}')\n\nprint(f'Final optimized weight: {w:.4f} (True optimum: 2.0)')",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch4_l2_5",
+      "type": "tip",
+      "title": "AI Pro Tip: Learning Rate Schedules \ud83d\ude80",
+      "content": "## Learning Rate Warmup & Cosine Decay\nModern LLMs and vision models do not use a constant learning rate. They employ a **Cosine Annealing Schedule with Linear Warmup**:\n\n1. **Warmup:** Start at 0 and ramp learning rate up over the first 2,000 steps to stabilize early gradient directions.\n2. **Decay:** Smoothly decay the learning rate following a cosine curve down to 10% of maximum, settling into the sharpest minimums."
     }
   ]
 }

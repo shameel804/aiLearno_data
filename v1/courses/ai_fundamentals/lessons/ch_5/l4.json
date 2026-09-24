@@ -2,22 +2,72 @@
   "id": "l4",
   "chapterId": "ch_5",
   "title": "Landmark CNNs & Transfer Learning",
-  "description": "Explore pivotal architectures like AlexNet, VGG, and ResNet's residual skip connections, and apply transfer learning.",
+  "description": "Trace CNN evolution from AlexNet and VGG to ResNet's skip connections. Master transfer learning on pre-trained backbones.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Architectures & Transfer",
+  "estimatedMinutes": 8,
+  "section": "Deep Vision Architectures",
   "slides": [
     {
       "id": "s_ch5_l4_1",
       "type": "text",
-      "title": "The Residual Revolution: ResNet 🏆",
-      "content": "# The Degradation Problem & Skip Connections\n\nBefore 2015, making CNNs deeper caused accuracy to degrade due to vanishing gradients during backpropagation.\n\nHe et al. introduced **Residual Networks (ResNet)** with **Skip (Shortcut) Connections**:\n\n$$\n\\mathcal{H}(x) = \\mathcal{F}(x) + x\n$$\n\n```\n            x\n          /   \\\n         |     [ Weight Layer ]\n         |           |\n         |     [ ReLU Activation ]\n         |           |\n         |     [ Weight Layer ]\n          \\   /\n            +   <-- Element-wise addition\n            |\n         [ ReLU ]\n```\n\nInstead of learning the entire mapping $\\mathcal{H}(x)$, the network only learns the **residual** $\\mathcal{F}(x)$. The identity shortcut lets gradients flow directly backward through hundreds of layers without attenuation!"
+      "title": "The Milestones of Computer Vision \ud83c\udfc6",
+      "content": "# The Architecture Hall of Fame\n\nThe annual ImageNet Large Scale Visual Recognition Challenge (ILSVRC) drove rapid architectural evolution:\n\n| Architecture | Year | Notable Breakthrough | ImageNet Top-5 Error |\n| :--- | :--- | :--- | :--- |\n| **AlexNet** (Krizhevsky et al.) | 2012 | Dual GPU training, ReLU activations, Dropout | 15.3% (Ignited deep learning revolution) |\n| **VGG-16** (Simonyan & Zisserman)| 2014 | Homogeneous stacks of small $3 \\times 3$ conv filters | 7.3% |\n| **GoogLeNet** (Szegedy et al.) | 2014 | Inception multi-scale parallel filter modules | 6.7% |\n| **ResNet-50** (He et al.) | 2015 | Residual Skip Connections (152 layers deep!) | **3.57%** (Surpassed human visual baseline: ~5%) |"
     },
     {
       "id": "s_ch5_l4_2",
+      "type": "text",
+      "title": "The ResNet Revolution: Skip Connections \u26a1",
+      "content": "# Solving the Degradation Problem\n\nPrior to 2015, stacking more than 20 layers caused training error to *increase* due to vanishing gradients during backpropagation.\n\nKaiming He introduced **Residual Connections (Skip Connections)**:\n\n$$\\mathcal{H}(\\mathbf{x}) = \\mathcal{F}(\\mathbf{x}) + \\mathbf{x}$$\n\nInstead of forcing convolutional layers $\\mathcal{F}(\\mathbf{x})$ to learn the complete mapping, they only learn the **residual difference** $\\mathcal{F}(\\mathbf{x}) = \\mathcal{H}(\\mathbf{x}) - \\mathbf{x}$.\n\nBecause the identity mapping $\\mathbf{x}$ has a derivative of $+1.0$, error gradients flow backward through hundreds of layers without decaying toward zero!"
+    },
+    {
+      "id": "s_ch5_l4_3",
+      "type": "quiz",
+      "title": "Concept Check: Skip Connections \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch5_l4_1",
+        "type": "multiple_choice",
+        "question": "What primary problem do ResNet skip connections (identity shortcuts) resolve?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "They eliminate the need for GPU hardware during training",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "They allow gradients to propagate directly through hundreds of layers, preventing vanishing gradients",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "They convert convolutional layers into decision trees",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "They reduce color images to binary black-and-white",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Because the derivative of the identity shortcut is 1.0, gradients flow freely backward across deep residual blocks without diminishing.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch5_l4_4",
+      "type": "code",
+      "title": "Transfer Learning with PyTorch & Torchvision \ud83d\udc0d",
+      "content": "Fine-tuning a pre-trained ResNet backbone for custom classification:",
+      "codeSnippet": "import torch.nn as nn\nimport torchvision.models as models\n\n# Load pre-trained ResNet-18 weights\nmodel = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)\n\n# Freeze feature extraction backbone\nfor param in model.parameters():\n    param.requires_grad = False\n\n# Replace final classification head with custom classes (e.g. 5 classes)\nnum_ftrs = model.fc.in_features\nmodel.fc = nn.Linear(num_ftrs, 5)\n\nprint('Replaced final classification head with 5 custom outputs!')",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch5_l4_5",
       "type": "tip",
-      "title": "Transfer Learning Superpower 🚀",
-      "content": "## Never Train From Scratch Unless Necessary\nModels like ResNet-50 trained on ImageNet (1.4 million images, 1000 classes) have already learned universal visual features (edges, textures, shapes).\n\nTo build a custom classifier (e.g. classifying 5 types of plants):\n1. Download the pre-trained backbone.\n2. Freeze the convolutional weights.\n3. Replace only the final dense classification head with your custom classes.\n4. Fine-tune on your modest dataset!"
+      "title": "AI Pro Tip: Standing on the Shoulders of Giants \ud83d\ude80",
+      "content": "## Why Never Train Vision Backbones From Scratch\nTraining a model like ResNet-50 from scratch requires weeks on clusters of GPUs and millions of labeled images. In 99% of enterprise tasks, downloading pre-trained ImageNet weights and fine-tuning only the final layers yields higher accuracy in under an hour!"
     }
   ]
 }

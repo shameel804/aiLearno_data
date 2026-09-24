@@ -2,51 +2,72 @@
   "id": "l1",
   "chapterId": "ch_8",
   "title": "Algorithmic Bias & Fairness",
-  "description": "Examine how training datasets reflect and amplify human historical biases, and study mathematical definitions of algorithmic fairness.",
+  "description": "Uncover how historical biases infiltrate training data. Study mathematical fairness metrics: Demographic Parity vs Equalized Odds.",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Ethics & Fairness",
+  "estimatedMinutes": 7,
+  "section": "Ethics & Safety",
   "slides": [
     {
       "id": "s_ch8_l1_1",
       "type": "text",
-      "title": "Data Mirrors Humanity 🪞",
-      "content": "# The Roots of Algorithmic Bias\n\nMachine learning models are not objective mathematical deities; they are empirical pattern mirrors reflecting historical data.\n\n### Primary Vectors of Bias:\n* **Historical Bias:** Training data reflects societal prejudices and discriminatory practices (e.g. historical mortgage lending or hiring decisions).\n* **Representation Bias:** Under-representation of certain demographic groups in training datasets (e.g. facial recognition systems trained primarily on lighter skin tones yielding 20x higher error rates on darker skin tones).\n* **Proxy Variables:** Even if protected attributes (race, gender) are excluded from the dataset, the model can learn proxies like postal ZIP codes or names to reproduce discriminatory outcomes."
+      "title": "The Roots of Algorithmic Bias \u2696\ufe0f",
+      "content": "# When Models Inherit Human Prejudices\n\nMachine learning algorithms are pattern recognizers. If historical training datasets reflect systemic discrimination, under-representation, or societal prejudices, the model will faithfully amplify those biases.\n\n### Notable Real-World Bias Failures:\n* **Commercial Facial Recognition:** Joy Buolamwini and Timnit Gebru showed that commercial vision APIs suffered error rates under 1% for lighter-skinned men, but **over 34% for darker-skinned women** due to unrepresentative training data.\n* **Recidivism Prediction (COMPAS):** Risk assessment tools assigned higher false positive risk scores to Black defendants than white defendants with identical criminal records."
     },
     {
       "id": "s_ch8_l1_2",
+      "type": "text",
+      "title": "Mathematical Fairness Definitions \ud83d\udcd0",
+      "content": "# Competing Definitions of Fairness\n\nComputer scientists have formulated formal mathematical metrics for algorithmic fairness:\n\n| Fairness Criterion | Mathematical Definition | Interpretation |\n| :--- | :--- | :--- |\n| **Demographic Parity** | $P(\\hat{Y}=1 \\mid A=0) = P(\\hat{Y}=1 \\mid A=1)$ | Equal proportion of positive outcomes granted across demographic groups, regardless of underlying rates |\n| **Equalized Odds** | $P(\\hat{Y}=1 \\mid A=0, Y=y) = P(\\hat{Y}=1 \\mid A=1, Y=y)$ | Equal True Positive Rate and equal False Positive Rate across sensitive demographic groups |\n| **Individual Fairness**| $d(f(x_1), f(x_2)) \\le D(x_1, x_2)$ | Similar individuals (according to a distance metric) receive similar predictions |\n\n> \u26a0\ufe0f **The Impossibility Theorem of Fairness (Kleinberg et al., 2016):**\n> It is mathematically impossible for a single model to satisfy Demographic Parity, Equalized Odds, and Predictive Parity simultaneously whenever base base rates differ between groups!"
+    },
+    {
+      "id": "s_ch8_l1_3",
       "type": "quiz",
-      "title": "Concept Check: Proxy Variables 🧠",
+      "title": "Concept Check: Algorithmic Fairness \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch8_l1_1",
         "type": "multiple_choice",
-        "question": "Why does simply removing a protected attribute (e.g. race or gender) from a dataset not guarantee an unbiased model?",
+        "question": "What is the key takeaway of the Impossibility Theorem of Algorithmic Fairness?",
         "options": [
           {
             "id": "opt1",
-            "text": "Because algorithms automatically reverse column deletions",
+            "text": "AI models cannot be used in banking or hiring under any circumstances",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "Because other correlated features (like zip codes or school names) act as proxy variables",
+            "text": "Key mathematical fairness criteria mutually conflict when base rates differ, requiring intentional human policy trade-offs",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Because neural networks can only output biased weights",
+            "text": "Removing sensitive demographic columns automatically eliminates all bias",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Because loss functions require demographic inputs",
+            "text": "Fairness can only be achieved using single-layer perceptrons",
             "isCorrect": false
           }
         ],
-        "explanation": "Correlated variables can carry strong statistical signals for omitted protected attributes, allowing models to inadvertently reconstruct the bias.",
+        "explanation": "Because fairness definitions conflict mathematically when base rates differ, engineers and policymakers must consciously decide which definition to uphold based on legal and ethical contexts.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch8_l1_4",
+      "type": "code",
+      "title": "Auditing Demographic Parity in Python \ud83d\udc0d",
+      "content": "Evaluating selection rates across demographic protected attributes:",
+      "codeSnippet": "import numpy as np\n\ndef demographic_parity_ratio(y_pred, group_labels):\n    rates = {}\n    for grp in np.unique(group_labels):\n        mask = (group_labels == grp)\n        rates[grp] = np.mean(y_pred[mask])\n    \n    ratios = min(rates.values()) / max(rates.values())\n    return rates, ratios\n\ny_pred = np.array([1, 1, 0, 1, 0, 0, 1, 1, 0, 0])\ngroups = np.array(['A', 'A', 'A', 'A', 'A', 'B', 'B', 'B', 'B', 'B'])\nrates, ratio = demographic_parity_ratio(y_pred, groups)\nprint('Group positive selection rates:', rates)\nprint(f'Demographic Parity Ratio: {ratio:.2f}')",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch8_l1_5",
+      "type": "warning",
+      "title": "The Fallacy of 'Fairness Through Blindness' \u26a0\ufe0f",
+      "content": "## Why Deleting Protected Columns Fails\nSimply deleting `race` or `gender` columns from your training dataset does **not** prevent bias!\n\nOther features (like zip codes, browser types, educational institutions, or purchasing habits) act as strong statistical proxies for protected attributes, allowing models to reconstruct biased boundaries inadvertently."
     }
   ]
 }

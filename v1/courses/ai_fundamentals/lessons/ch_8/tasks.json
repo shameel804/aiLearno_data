@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": "task1",
-      "title": "Implement an Output Safety Guardrail Checker",
-      "description": "Build an automated string filter that flags unsafe content, banned keywords, and prompt leaks in generated model outputs.",
+      "title": "Implement a Safe Tool-Calling Agent Loop",
+      "description": "Construct a function-calling execution loop with validation and error-handling safeguards.",
       "estimatedMinutes": 10
     }
   ]

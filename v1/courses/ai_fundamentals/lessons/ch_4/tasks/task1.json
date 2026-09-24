@@ -1,15 +1,14 @@
 {
   "id": "task1",
   "chapterId": "ch_4",
-  "title": "Perform a Manual Gradient Descent Step",
-  "description": "Calculate the gradient of a quadratic loss function and update the parameter using a specified learning rate.",
+  "title": "Implement a Gradient Descent Weight Update Step",
+  "description": "Calculate analytical gradients for Mean Squared Error and apply a parameter update step with learning rate and L2 weight decay.",
   "estimatedMinutes": 10,
-  "problemStatement": "Given a simple linear model with scalar parameter `w`, input `x`, target `y`, and loss function `L = (w * x - y)**2`. Implement a function `gradient_step(w: float, x: float, y: float, lr: float) -> float` that computes the derivative `dL/dw = 2 * (w * x - y) * x` and returns the updated weight `w_new = w - lr * grad`.",
+  "problemStatement": "Implement a Python function `sgd_step(w, b, X, y, lr, weight_decay)` that performs a single gradient descent update on linear weights `w` and bias `b`. Predictions are y_hat = X @ w + b. Loss is MSE + 0.5 * weight_decay * ||w||^2. Gradient dL/dw = (2/N) * X^T @ (y_hat - y) + weight_decay * w. Gradient dL/db = (2/N) * sum(y_hat - y). Update: w_new = w - lr * dL/dw, b_new = b - lr * dL/db. Return (w_new, b_new).",
   "hints": [
-    "First compute prediction: y_pred = w * x.",
-    "Calculate gradient: grad = 2 * (y_pred - y) * x.",
-    "Update weight: w - lr * grad."
+    "N is the number of samples len(X).",
+    "Do not apply weight decay to the bias b."
   ],
-  "expectedOutput": "Updated weight float after applying the gradient step.",
-  "solutionCode": "def gradient_step(w: float, x: float, y: float, lr: float) -> float:\n    grad = 2 * (w * x - y) * x\n    return w - lr * grad"
+  "expectedOutput": "Updated (w, b) numpy arrays with reduced loss",
+  "solutionCode": "import numpy as np\n\ndef sgd_step(w, b, X, y, lr, weight_decay):\n    N = len(X)\n    y_hat = np.dot(X, w) + b\n    error = y_hat - y\n    grad_w = (2.0 / N) * np.dot(X.T, error) + weight_decay * w\n    grad_b = (2.0 / N) * np.sum(error)\n    w_new = w - lr * grad_w\n    b_new = b - lr * grad_b\n    return w_new, b_new\n\nX = np.array([[1.0], [2.0], [3.0]])\ny = np.array([2.0, 4.0, 6.0])\nw = np.array([0.0])\nb = 0.0\nw_new, b_new = sgd_step(w, b, X, y, 0.05, 0.01)\nprint('Updated weight:', w_new.round(4), 'Updated bias:', round(b_new, 4))"
 }

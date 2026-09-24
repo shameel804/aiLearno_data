@@ -2,51 +2,72 @@
   "id": "l2",
   "chapterId": "ch_6",
   "title": "Recurrent Neural Networks (RNNs) & LSTMs",
-  "description": "Model sequences using recurrent hidden states, diagnosing vanishing gradients in time, and gating information with LSTMs.",
+  "description": "Model sequential dependencies with hidden recurrence. Overcome vanishing gradients with LSTM and GRU gating mechanisms.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Recurrent Models",
+  "estimatedMinutes": 8,
+  "section": "Sequence Modeling",
   "slides": [
     {
       "id": "s_ch6_l2_1",
       "type": "text",
-      "title": "Memory Over Time: RNNs & LSTMs ⏳",
-      "content": "# Recurrent Neural Networks (RNNs)\n\nStandard feedforward networks assume all inputs are independent. But language is sequential: the meaning of word $t$ depends on words $1 \\dots t-1$.\n\nAn RNN passes a **hidden state $h_t$** from step to step:\n$$\nh_t = \\tanh(W_{hh} h_{t-1} + W_{xh} x_t + b)\n$$\n\n### The Problem: Vanishing Gradients Across Time\nWhen unrolled across 50 or 100 words, repeated matrix multiplications during Backpropagation Through Time (BPTT) cause gradients to decay to zero. The network 'forgets' the start of long sentences.\n\n### The Solution: LSTM (Long Short-Term Memory)\nLSTMs introduce a continuous **Cell State ($C_t$)** (information conveyor belt) regulated by three gates:\n1. **Forget Gate:** What past information to discard.\n2. **Input Gate:** What new candidate information to store.\n3. **Output Gate:** What information to emit into $h_t$."
+      "title": "Sequential Memory in Networks \ud83d\udd01",
+      "content": "# The Recurrent Hidden State\n\nStandard feedforward networks assume all inputs are independent. Natural language, however, is inherently sequential\u2014the meaning of a word depends on preceding words.\n\nA **Recurrent Neural Network (RNN)** maintains an internal hidden state vector $\\mathbf{h}_t$ acting as memory across time steps:\n\n$$\\mathbf{h}_t = \\tanh(\\mathbf{W}_{hh} \\mathbf{h}_{t-1} + \\mathbf{W}_{xh} \\mathbf{x}_t + \\mathbf{b}_h)$$"
     },
     {
       "id": "s_ch6_l2_2",
+      "type": "text",
+      "title": "Comparing Recurrent Architectures \u2696\ufe0f",
+      "content": "# Vanilla RNN vs LSTM vs GRU\n\n| Architecture | State Memory Mechanism | Strengths | Vulnerabilities |\n| :--- | :--- | :--- | :--- |\n| **Vanilla RNN** | Single recurrent hidden vector $\\mathbf{h}_t$ | Simple, fast execution | Vanishing/exploding gradients; cannot retain context past ~10 tokens |\n| **LSTM (Long Short-Term Memory)**| Separate Cell State $\\mathbf{C}_t$ + Forget, Input, Output Gates | Bridges long-range dependencies over 100+ steps | Higher parameter count; slow sequential execution |\n| **GRU (Gated Recurrent Unit)** | Reset Gate + Update Gate (merges cell and hidden state) | Faster than LSTM with fewer parameters | Slightly less expressive on long complex sequences |\n\nLSTMs preserve memory through a linear \"highway\" (the cell state $\\mathbf{C}_t$) where gradients can flow without vanishing."
+    },
+    {
+      "id": "s_ch6_l2_3",
       "type": "quiz",
-      "title": "Concept Check: LSTM Gates 🧠",
+      "title": "Concept Check: LSTM Gating \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch6_l2_1",
         "type": "multiple_choice",
-        "question": "Which specific gate in an LSTM decides what old information should be dropped from the cell state?",
+        "question": "What is the specific role of the Forget Gate in an LSTM cell?",
         "options": [
           {
             "id": "opt1",
-            "text": "Input Gate",
+            "text": "It erases the model's weights and resets them to zero",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "Forget Gate",
+            "text": "It decides what proportion of past information in the cell state should be discarded",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Output Gate",
+            "text": "It converts character tokens into byte tokens",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Residual Gate",
+            "text": "It computes the cross-entropy loss",
             "isCorrect": false
           }
         ],
-        "explanation": "The Forget Gate computes a sigmoid activation between 0 and 1 for each element in the cell state, where 0 means 'completely forget' and 1 means 'completely retain'.",
+        "explanation": "The forget gate outputs values between 0.0 (completely discard) and 1.0 (completely retain) for each element in the cell state.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch6_l2_4",
+      "type": "code",
+      "title": "An LSTM in PyTorch \ud83d\udc0d",
+      "content": "Processing sequential word embeddings with `nn.LSTM`:",
+      "codeSnippet": "import torch\nimport torch.nn as nn\n\n# Sequence: batch=2, seq_len=5, embedding_dim=16\ninputs = torch.randn(2, 5, 16)\n\nlstm = nn.LSTM(input_size=16, hidden_size=32, batch_first=True)\nout, (h_n, c_n) = lstm(inputs)\n\nprint('Output sequence shape:', out.shape) # (2, 5, 32)\nprint('Final hidden state shape:', h_n.shape) # (1, 2, 32)",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch6_l2_5",
+      "type": "warning",
+      "title": "The Sequential Bottleneck \u26a0\ufe0f",
+      "content": "## Why RNNs Were Replaced\nBecause RNNs compute step $t$ strictly after step $t-1$, **they cannot be parallelized across sequence length during training**.\n\nModern GPUs with thousands of parallel tensor cores sat idle while RNNs laboriously crawled word-by-word through text, limiting model sizes until Transformers broke the bottleneck!"
     }
   ]
 }

@@ -2,57 +2,98 @@
   "id": "l4",
   "chapterId": "ch_2",
   "title": "Model Evaluation & Bias-Variance Tradeoff",
-  "description": "Diagnose underfitting vs overfitting, use train/val/test splits, and master evaluation metrics like Precision, Recall, and F1-Score.",
+  "description": "Master training/validation/test splits, cross-validation, precision vs recall, underfitting vs overfitting, and regularization techniques.",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Evaluation & Generalization",
+  "estimatedMinutes": 7,
+  "section": "Model Diagnostics",
   "slides": [
     {
       "id": "s_ch2_l4_1",
       "type": "text",
-      "title": "The Bias-Variance Tradeoff ⚖️",
-      "content": "# Generalization: Underfitting vs Overfitting\n\n```\n    Underfitting               Optimal Fit               Overfitting\n   (High Bias)                                          (High Variance)\n\n       o     o                      o     o                  o-.-o\n     /     /                      /       \\                /      \\\n   /     /                      /           \\             /   /\\   \\\n  /    o                      o       o       o          o---/  \\---o\n\nToo simple; fails to learn    Captures underlying       Memorizes noise & outliers;\nthe true trend. High train    patterns accurately.       zero train error, terrible\nand test error.               Low test error.           test error.\n```\n\n* **High Bias (Underfitting):** Model is too simplistic (e.g. fitting a straight line to a complex sine wave).\n* **High Variance (Overfitting):** Model is excessively complex, memorizing noise rather than generalizable signals."
+      "title": "The Generalization Dilemma \u2696\ufe0f",
+      "content": "# Underfitting vs Overfitting\n\nThe central challenge in machine learning is ensuring a model performs well on *unseen test data*, not merely memorizing the training set.\n\n| Diagnostic Property | High Bias (Underfitting) | Optimal Balance | High Variance (Overfitting) |\n| :--- | :--- | :--- | :--- |\n| **Model Complexity** | Overly simplistic (e.g. linear model on non-linear curve) | Well-matched to data manifold | Excessively complex (millions of parameters memorizing noise) |\n| **Training Error** | High | Low | Near Zero |\n| **Validation / Test Error**| High | Low | High (massive generalization gap) |\n| **Primary Remedy** | Increase model capacity, add polynomial features | Hyperparameter tuning | Regularization (L1/L2), Dropout, early stopping, more data |"
     },
     {
       "id": "s_ch2_l4_2",
       "type": "quiz",
-      "title": "Concept Check: Diagnosis 🧠",
+      "title": "Concept Check: Diagnosing Overfitting \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch2_l4_1",
         "type": "multiple_choice",
-        "question": "A model achieves 99.8% accuracy on the training set, but drops to 61.2% accuracy on the unseen test set. What problem is occurring?",
+        "question": "A deep neural network scores 99.8% accuracy on its training set, but only 64.2% on the validation set. What is this model suffering from?",
         "options": [
           {
             "id": "opt1",
-            "text": "High Bias (Underfitting)",
+            "text": "High bias (underfitting)",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "High Variance (Overfitting)",
+            "text": "High variance (overfitting)",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Optimal Generalization",
+            "text": "Insufficient model capacity",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Zero-shot transfer failure",
+            "text": "Vanishing gradients",
             "isCorrect": false
           }
         ],
-        "explanation": "A massive gap between near-perfect training accuracy and poor validation/test accuracy is the classic signature of overfitting (high variance).",
+        "explanation": "A massive discrepancy between near-perfect training performance and mediocre validation performance is the textbook symptom of high variance (overfitting).",
         "xpReward": 10
       }
     },
     {
       "id": "s_ch2_l4_3",
       "type": "text",
-      "title": "Evaluation Metrics: Precision, Recall & F1 🎯",
-      "content": "Accuracy can be deceptively high on imbalanced datasets (e.g., if 99% of transactions are legitimate, predicting all 'legitimate' yields 99% accuracy while missing all fraud!).\n\n| Metric | Formula | Practical Meaning |\n| :--- | :--- | :--- |\n| **Precision** | $\\frac{TP}{TP + FP}$ | Out of all predicted positives, how many were truly positive? (Minimizes false alarms) |\n| **Recall** | $\\frac{TP}{TP + FN}$ | Out of all actual positives, how many did we capture? (Minimizes missed detections) |\n| **F1-Score** | $2 \\cdot \\frac{P \\cdot R}{P + R}$ | Harmonic mean balancing Precision and Recall |"
+      "title": "Fighting Overfitting: Regularization \ud83d\udee1\ufe0f",
+      "content": "# Penalizing Model Complexity\n\nRegularization shrinks weight magnitudes by appending a penalty term to the loss function:\n\n$$\\mathcal{L}_{\\text{total}} = \\mathcal{L}_{\\text{data}} + \\lambda \\cdot \\Omega(\\mathbf{w})$$\n\n| Regularizer | Penalty $\\Omega(\\mathbf{w})$ | Geometric Effect on Weights | Best Used When... |\n| :--- | :--- | :--- | :--- |\n| **L1 Regularization (Lasso)** | $\\sum \\|w_i\\|$ | Drives non-essential weights to exact zeros (Sparsity) | Automatic feature selection across high-dimensional sparse inputs |\n| **L2 Regularization (Ridge)** | $\\sum w_i^2$ | Shrinks weights smoothly toward zero without zeroing | Features are collinear; prevents any single weight from dominating |\n| **ElasticNet** | $\\alpha L1 + (1-\\alpha) L2$ | Combines sparsity with group feature selection | Datasets with many correlated features |"
+    },
+    {
+      "id": "s_ch2_l4_4",
+      "type": "quiz",
+      "title": "Concept Check: Regularization Behavior \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch2_l4_2",
+        "type": "multiple_choice",
+        "question": "Which regularization technique creates sparse weight vectors by driving uninformative feature weights strictly to zero?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "L2 Regularization (Ridge)",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "L1 Regularization (Lasso)",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Batch Normalization",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Standardization",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "L1 regularization has sharp diamond-shaped contours in parameter space, causing optimal solutions to hit the axes at exact zeros.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch2_l4_5",
+      "type": "tip",
+      "title": "AI Pro Tip: K-Fold Cross-Validation \ud83d\udca1",
+      "content": "## Never Rely on a Single Split\nA single train-test split can yield misleading metrics if the test split happens to be unusually easy or difficult.\n\nIn **5-Fold Cross-Validation**, the dataset is partitioned into 5 equal subsets. The model is trained 5 distinct times, each time using a different subset as the hold-out validation set. The average score across all 5 folds provides an unbiased, robust estimate of model generalization!"
     }
   ]
 }

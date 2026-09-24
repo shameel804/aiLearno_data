@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": "task1",
-      "title": "Implement a Dense Layer Forward Pass",
-      "description": "Write a pure Python matrix-vector forward pass for a single dense layer with ReLU activation.",
+      "title": "Implement a 2-Layer Neural Network Forward Pass",
+      "description": "Compute the full forward pass from matrix inputs through ReLU activation and Softmax output.",
       "estimatedMinutes": 10
     }
   ]

@@ -2,57 +2,66 @@
   "id": "l4",
   "chapterId": "ch_4",
   "title": "Advanced Optimizers & Regularization",
-  "description": "Accelerate convergence with Momentum and Adam, and prevent overfitting using Weight Decay, Dropout, and Batch Normalization.",
+  "description": "Accelerate convergence beyond vanilla SGD using Momentum, RMSprop, Adam, and AdamW alongside modern regularization.",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Modern Optimization",
+  "estimatedMinutes": 7,
+  "section": "Deep Learning Mechanics",
   "slides": [
     {
       "id": "s_ch4_l4_1",
       "type": "text",
-      "title": "Modern Optimizers: Adam ⚡",
-      "content": "# Beyond Vanilla SGD: Adam\n\nVanilla SGD oscillates violently in narrow ravines. Modern neural networks almost exclusively use **Adam (Adaptive Moment Estimation)**:\n\n* **1st Moment (Momentum):** Maintains an exponentially decaying average of past gradients to push through flat plateaus and damp oscillations.\n* **2nd Moment (RMSprop):** Divides the learning rate by an exponentially decaying average of squared gradients, adapting the step size per parameter."
+      "title": "The Evolution of Optimizers \ud83d\ude80",
+      "content": "# Moving Beyond Vanilla SGD\n\nVanilla Stochastic Gradient Descent struggles in ravines where surface curves much more steeply in one dimension than another. Modern optimizers adapt updates dynamically:\n\n| Optimizer | Adaptive Mechanism | Primary Advantage | Typical Default Learning Rate |\n| :--- | :--- | :--- | :--- |\n| **SGD + Momentum** | Accumulates exponential moving velocity vector | Powers through ravines and flat plateaus | $0.01 - 0.1$ |\n| **RMSprop** | Divides updates by running root-mean-square of past gradients | Dampens oscillations in high-variance dimensions | $0.001$ |\n| **Adam** | Combines Momentum (1st moment) with RMSprop (2nd moment) | Fast, robust default across NLP & Vision | $0.0003 - 0.001$ |\n| **AdamW** | Decouples L2 weight decay from gradient update moments | State-of-the-art generalization for Transformers/LLMs | $0.0001 - 0.0005$ |"
     },
     {
       "id": "s_ch4_l4_2",
-      "type": "text",
-      "title": "Regularization: Dropout & Weight Decay 🛡️",
-      "content": "### Techniques to Tame Overfitting:\n1. **Dropout:** During training, randomly disable a percentage (e.g. 20-50%) of neurons at each forward step. This forces the network to learn redundant, robust representations instead of co-adapting.\n2. **L2 Regularization (Weight Decay):** Adds a penalty proportional to the sum of squared weights $\\frac{\\lambda}{2} \\sum w^2$ to the loss, encouraging smaller, smoother weights.\n3. **Early Stopping:** Halts training as soon as validation loss begins to climb."
-    },
-    {
-      "id": "s_ch4_l4_3",
       "type": "quiz",
-      "title": "Concept Check: Dropout Behavior 🧠",
+      "title": "Concept Check: Optimizer Choice \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch4_l4_1",
         "type": "multiple_choice",
-        "question": "How does Dropout operate during the evaluation / inference phase on test data?",
+        "question": "Which optimizer is widely considered the state-of-the-art standard for training modern Large Language Models and Transformers?",
         "options": [
           {
             "id": "opt1",
-            "text": "It drops 100% of the neurons",
+            "text": "Vanilla Stochastic Gradient Descent without momentum",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "All neurons remain active, with weights appropriately scaled",
+            "text": "AdamW (Adam with decoupled weight decay)",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "It randomly drops neurons just like during training",
+            "text": "Nelder-Mead simplex search",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "It inverts negative weights into positive weights",
+            "text": "Adagrad with fixed accumulation",
             "isCorrect": false
           }
         ],
-        "explanation": "During inference/testing, Dropout is turned OFF so the entire ensemble of learned neurons votes deterministically. Weights are scaled to account for the training drop rate.",
+        "explanation": "Loshchilov and Hutter demonstrated that standard Adam implements weight decay incorrectly when paired with momentum. AdamW fixes this decoupling and is the universal standard for modern foundation models.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch4_l4_3",
+      "type": "text",
+      "title": "Deep Regularization: Dropout & Batch Normalization \ud83d\udee1\ufe0f",
+      "content": "# Preventing Co-Adaptation\n\nIn deep networks with millions of parameters, individual neurons can become codependent on other specific neurons:\n\n* **Dropout (Srivastava et al., 2014):** During training, randomly deactivates each neuron with probability $p$ (e.g. 20-50%). This forces the network to learn redundant, robust feature representations because no single neuron can be relied upon.\n* **Batch Normalization (Ioffe & Szegedy, 2015):** Normalizes layer activations across the mini-batch to have zero mean and unit variance. This stabilizes internal covariate shift and enables significantly higher learning rates."
+    },
+    {
+      "id": "s_ch4_l4_4",
+      "type": "code",
+      "title": "Configuring AdamW and Dropout in PyTorch \ud83d\udc0d",
+      "content": "Configuring modern optimizers and regularization in PyTorch:",
+      "codeSnippet": "import torch\nimport torch.nn as nn\n\nmodel = nn.Sequential(\n    nn.Linear(784, 256),\n    nn.BatchNorm1d(256),\n    nn.ReLU(),\n    nn.Dropout(p=0.3),\n    nn.Linear(256, 10)\n)\n\n# Configure AdamW with weight decay\noptimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-2)\nprint('Configured optimizer:', optimizer.__class__.__name__)",
+      "codeLanguage": "python",
+      "canRunCode": true
     }
   ]
 }

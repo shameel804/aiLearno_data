@@ -2,51 +2,72 @@
   "id": "l2",
   "chapterId": "ch_8",
   "title": "Explainability & Interpretability (XAI)",
-  "description": "Open the neural network black box using SHAP values, LIME, saliency maps, and attention attribution techniques.",
+  "description": "Demystify black-box models. Master SHAP values, LIME local surrogates, attention heatmaps, and regulatory requirements.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
+  "estimatedMinutes": 8,
   "section": "Explainable AI",
   "slides": [
     {
       "id": "s_ch8_l2_1",
       "type": "text",
-      "title": "Opening the Black Box 📦",
-      "content": "# Why Explainability Matters\n\nIn high-stakes domains (healthcare, law, credit underwriting), knowing that a model predicted 95% likelihood of disease is not enough. Doctors and regulators need to know **why**.\n\n### Modern XAI Techniques:\n1. **SHAP (Shapley Additive exPlanations):** Based on game theory; computes the fair marginal contribution of each feature to the final prediction.\n2. **LIME (Local Interpretable Model-agnostic Explanations):** Perturbs input features locally and fits a simple, interpretable linear model around that specific prediction.\n3. **Saliency Maps:** Visual heatmaps showing which image pixels had the largest gradient impact on the chosen classification label."
+      "title": "Opening the Black Box \ud83d\udce6",
+      "content": "# The Need for Explainability (XAI)\n\nIn high-stakes domains (healthcare triage, loan underwriting, criminal justice), deploying a high-performing \"black-box\" model is unacceptable. Regulators, clinicians, and consumers demand to know **why** a decision was made.\n\n### Interpretability vs Explainability:\n* **Interpretable Models (Glass-Box):** Inherently transparent architectures (e.g. shallow Decision Trees, Linear Regression, rule lists).\n* **Explainable Models (Post-Hoc XAI):** Methods applied after training to probe and explain complex black boxes (e.g. deep neural networks, gradient boosted trees)."
     },
     {
       "id": "s_ch8_l2_2",
+      "type": "text",
+      "title": "Core Explainability Frameworks \ud83d\udd0d",
+      "content": "# Comparing Post-Hoc XAI Methods\n\n| Method | Core Concept | Output | Best Application |\n| :--- | :--- | :--- | :--- |\n| **SHAP (SHapley Additive exPlanations)**| Game-theoretic Shapley values distributing contribution across features | Additive feature credit (+/- contribution to baseline) | Tabular data, tree ensembles, financial auditing |\n| **LIME** | Fits an interpretable linear surrogate model locally around the prediction | Local feature weight attribution | Quick inspection of individual tabular/text predictions |\n| **Grad-CAM** | Computes gradient flow into final convolutional layers | Saliency heatmaps highlighting pixel regions | Explaining computer vision CNN classifications |\n| **Attention Visualization** | Inspects cross-token attention matrices | Heatmap matrix connecting input words | Explaining Transformer text translations |"
+    },
+    {
+      "id": "s_ch8_l2_3",
       "type": "quiz",
-      "title": "Concept Check: SHAP Values 🧠",
+      "title": "Concept Check: SHAP Values \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch8_l2_1",
         "type": "multiple_choice",
-        "question": "What is the theoretical foundation behind SHAP (Shapley Additive exPlanations) values?",
+        "question": "What mathematical guarantee uniquely distinguishes SHAP values based on cooperative game theory?",
         "options": [
           {
             "id": "opt1",
-            "text": "Classical Newtonian mechanics",
+            "text": "They guarantee the underlying model achieves 100% test accuracy",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "Cooperative game theory",
+            "text": "They satisfy efficiency, symmetry, dummy player, and additivity axioms from game theory",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Cellular automata",
+            "text": "They make all neural network layers linear",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Quantum entanglement",
+            "text": "They eliminate all computational overhead during inference",
             "isCorrect": false
           }
         ],
-        "explanation": "SHAP is founded on Lloyd Shapley's cooperative game theory, determining how payout (prediction) should be fairly distributed among players (features).",
+        "explanation": "Lloyd Shapley's cooperative game theory axioms guarantee that total prediction deviation from baseline is fair and additively partitioned across all participating features.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch8_l2_4",
+      "type": "code",
+      "title": "Interpreting Predictions with SHAP Logic \ud83d\udc0d",
+      "content": "Simulating additive feature contribution breakdown:",
+      "codeSnippet": "base_rate = 0.50 # average approval probability\nfeature_contributions = {\n    'High Credit Score': +0.32,\n    'Stable Employment': +0.12,\n    'High Debt-to-Income': -0.18\n}\n\nprediction = base_rate + sum(feature_contributions.values())\nprint(f'Base Rate:           {base_rate:.2f}')\nfor feat, val in feature_contributions.items():\n    print(f'  {feat:20s}: {val:+.2f}')\nprint(f'Final Predicted Prob: {prediction:.2f}')",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch8_l2_5",
+      "type": "tip",
+      "title": "AI Pro Tip: The EU AI Act \ud83d\udcdc",
+      "content": "## Regulatory Mandates for XAI\nThe European Union's AI Act mandates that high-risk AI systems (medical diagnosis, biometric categorization, credit scoring) must provide explainable outputs and maintain full audit logging for human oversight!"
     }
   ]
 }

@@ -2,57 +2,72 @@
   "id": "l3",
   "chapterId": "ch_3",
   "title": "Multi-Layer Perceptrons (MLPs)",
-  "description": "Stack neurons into Input, Hidden, and Output layers to break linear separation limits like the XOR problem.",
+  "description": "Solve the XOR problem with hidden layers. Learn how stacking layers transforms feature spaces to solve non-linear problems.",
   "xpReward": 25,
   "estimatedMinutes": 7,
-  "section": "Network Architecture",
+  "section": "Network Architectures",
   "slides": [
     {
       "id": "s_ch3_l3_1",
       "type": "text",
-      "title": "Overcoming the XOR Problem 🧩",
-      "content": "# The Fall and Rise of Neural Networks\n\nIn 1969, Minsky and Papert proved that a single perceptron cannot learn the simple **XOR (exclusive OR)** logic gate, because XOR is not linearly separable:\n\n```\n  x2\n   1 |   (0,1) [+]     (1,1) [-]\n     | \n   0 |   (0,0) [-]     (1,0) [+]\n     +---------------------------\n         0              1     x1\n```\n\nNo single straight line can separate the `[+]` points from the `[-]` points! The solution? **Hidden Layers**. Stacking an intermediate layer projects the inputs into a transformed space where XOR becomes linearly separable."
+      "title": "The XOR Catastrophe & Resurrection \ud83d\udca5",
+      "content": "# The Limits of a Single Layer\n\nIn 1969, Marvin Minsky and Seymour Papert published *Perceptrons*, demonstrating mathematically that a single-layer perceptron cannot compute the simple **XOR (exclusive OR)** gate:\n\n* $(0, 0) \\implies 0$\n* $(0, 1) \\implies 1$\n* $(1, 0) \\implies 1$\n* $(1, 1) \\implies 0$\n\nNo single linear hyperplane can separate $(0,1)$ and $(1,0)$ from $(0,0)$ and $(1,1)$. This historical finding caused funding for neural networks to evaporate for over a decade (the First AI Winter).\n\n### The Solution: Hidden Layers!\nBy passing inputs through one or more intermediate **hidden layers** with non-linear activations, the network warps the feature representation into a new space where XOR is linearly separable!"
     },
     {
       "id": "s_ch3_l3_2",
+      "type": "text",
+      "title": "Single-Layer vs Multi-Layer Perceptrons \u2696\ufe0f",
+      "content": "# Architectural Comparison\n\n| Dimension | Single-Layer Perceptron | Multi-Layer Perceptron (MLP) |\n| :--- | :--- | :--- |\n| **Hidden Layers** | None (Inputs wire directly to Output) | 1 to hundreds of intermediate hidden layers |\n| **Decision Boundary** | Strictly flat linear hyperplane | Arbitrary non-linear curves, circles, complex manifolds |\n| **Logic Capabilities** | AND, OR, NAND | Any Boolean function (including XOR, XNOR) |\n| **Universal Approximation**| No | **Yes** (Universal Approximation Theorem) |\n| **Training Algorithm** | Simple Perceptron rule | Gradient Descent via Backpropagation |\n\n> \ud83d\udca1 **The Universal Approximation Theorem (Cybenko, 1989):**\n> A feedforward neural network with just a single hidden layer containing a finite number of non-linear neurons can approximate any continuous function on compact subsets of $\\mathbb{R}^n$ to arbitrary precision!"
+    },
+    {
+      "id": "s_ch3_l3_3",
       "type": "quiz",
-      "title": "Concept Check: XOR Separation 🧠",
+      "title": "Concept Check: Hidden Layers \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch3_l3_1",
         "type": "multiple_choice",
-        "question": "Why could a single-layer perceptron without hidden layers not solve the XOR function?",
+        "question": "What mathematical breakthrough allows a Multi-Layer Perceptron to solve the non-linear XOR problem when a single-layer perceptron fails?",
         "options": [
           {
             "id": "opt1",
-            "text": "XOR requires floating point numbers",
+            "text": "Using binary step activations exclusively",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "XOR cannot be separated by a single linear decision hyperplane",
+            "text": "Hidden layers with non-linear activations project inputs into a linearly separable coordinate space",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Perceptrons can only output negative numbers",
+            "text": "Removing biases from all neuron equations",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "XOR requires recurrent feedback loops",
+            "text": "Restricting weight matrices to identity transforms",
             "isCorrect": false
           }
         ],
-        "explanation": "A single linear boundary cannot partition the diagonally placed positive and negative points of XOR. At least one hidden layer is mathematically required.",
+        "explanation": "Hidden layers act as feature extractors, mapping inputs into a transformed space where non-linear patterns become linearly separable.",
         "xpReward": 10
       }
     },
     {
-      "id": "s_ch3_l3_3",
+      "id": "s_ch3_l3_4",
+      "type": "code",
+      "title": "A 2-Layer MLP in PyTorch \ud83d\udc0d",
+      "content": "Defining a multi-layer perceptron to learn non-linear boundaries in PyTorch:",
+      "codeSnippet": "import torch\nimport torch.nn as nn\n\nclass MLP(nn.Module):\n    def __init__(self, in_features=2, hidden_dim=8, out_features=1):\n        super().__init__()\n        self.network = nn.Sequential(\n            nn.Linear(in_features, hidden_dim),\n            nn.ReLU(),\n            nn.Linear(hidden_dim, out_features),\n            nn.Sigmoid()\n        )\n    \n    def forward(self, x):\n        return self.network(x)\n\nmodel = MLP()\nx_xor = torch.tensor([[0.0, 1.0], [1.0, 1.0]])\nprint('Predictions:\\n', model(x_xor))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch3_l3_5",
       "type": "tip",
-      "title": "Universal Approximation Theorem 🌟",
-      "content": "## Universal Approximation Theorem (Hornik, 1989)\nA standard feedforward neural network with just **a single hidden layer** containing a finite number of non-linear neurons can approximate *any continuous function* on compact subsets of $\\mathbb{R}^n$ to arbitrary precision!\n\nWhile one very wide hidden layer is theoretically sufficient, in practice, **deep networks** (many layers) learn hierarchical representations much more efficiently with far fewer parameters."
+      "title": "AI Pro Tip: Depth vs Width \ud83d\ude80",
+      "content": "## Deep Networks vs Wide Networks\nWhile the Universal Approximation Theorem guarantees that a *wide* 1-hidden-layer network can theoretically approximate any function, in practice *deep* networks (many narrow layers) learn hierarchical abstractions with exponentially fewer parameters than a single giant wide layer!"
     }
   ]
 }

@@ -3,34 +3,34 @@
     {
       "id": "l1",
       "title": "Discriminative vs Generative AI",
-      "description": "Understand how generative models synthesize novel samples by modeling data distributions, comparing VAEs, GANs, and Diffusion.",
+      "description": "Compare predicting labels P(y|x) with modeling data distributions P(x). Overview VAEs, GANs, Diffusion, and Autoregressive LLMs.",
       "xpReward": 25,
       "estimatedMinutes": 6,
       "section": "Generative Foundations"
     },
     {
       "id": "l2",
-      "title": "Large Language Models & Pretraining",
-      "description": "Explore causal autoregressive language modeling, predicting next tokens, compute scaling laws, and transformer decoders.",
+      "title": "Modern LLM Training Stages",
+      "description": "The 3-stage LLM pipeline: Pre-training on trillions of tokens, Supervised Fine-Tuning (SFT), and RLHF/DPO preference alignment.",
       "xpReward": 25,
       "estimatedMinutes": 7,
-      "section": "LLM Mechanics"
+      "section": "Large Language Models"
     },
     {
       "id": "l3",
-      "title": "Alignment & Fine-Tuning (RLHF & LoRA)",
-      "description": "Transform raw base models into helpful assistants via Instruction Tuning, RLHF, DPO, and Low-Rank Adaptation (LoRA).",
+      "title": "Sampling Hyperparameters & Prompt Engineering",
+      "description": "Master generation controls: Temperature, Top-p (Nucleus), Top-k. Master Zero-Shot, Few-Shot, and Chain-of-Thought prompting.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Post-Training Alignment"
+      "estimatedMinutes": 8,
+      "section": "Prompt Engineering & Control"
     },
     {
       "id": "l4",
-      "title": "Prompt Engineering & RAG Systems",
-      "description": "Master zero-shot, few-shot, and Chain-of-Thought prompting, and integrate vector databases for Retrieval-Augmented Generation.",
+      "title": "Retrieval-Augmented Generation (RAG)",
+      "description": "Overcome hallucinations and knowledge cutoffs by combining vector databases with grounded LLM generation pipelines.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Application Patterns"
+      "estimatedMinutes": 8,
+      "section": "Generative Applications"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "id": "l1",
   "chapterId": "ch_7",
   "title": "Discriminative vs Generative AI",
-  "description": "Understand how generative models synthesize novel samples by modeling data distributions, comparing VAEs, GANs, and Diffusion.",
+  "description": "Compare predicting labels P(y|x) with modeling data distributions P(x). Overview VAEs, GANs, Diffusion, and Autoregressive LLMs.",
   "xpReward": 25,
   "estimatedMinutes": 6,
   "section": "Generative Foundations",
@@ -10,43 +10,64 @@
     {
       "id": "s_ch7_l1_1",
       "type": "text",
-      "title": "Creating vs Classifying 🎨",
-      "content": "# The Great Division in Modern AI\n\n* **Discriminative Models:** Model conditional probability $P(Y | X)$. Given an image $X$, predict if it's a cat ($Y=1$) or dog ($Y=0$). They draw decision boundaries.\n* **Generative Models:** Model the joint probability distribution $P(X, Y)$ or data distribution $P(X)$. They learn how data is distributed so they can generate **completely new, synthetic instances** that never existed before!\n\n### Major Generative Families:\n1. **Autoregressive Models (e.g. GPT):** Predict the next token given preceding tokens.\n2. **Generative Adversarial Networks (GANs):** A Generator and Discriminator compete in a minimax game.\n3. **Diffusion Models (e.g. Midjourney, Stable Diffusion):** Add Gaussian noise gradually until pure static, then train a U-Net neural network to reverse the noise step-by-step!"
+      "title": "Separating vs Creating \ud83c\udfa8",
+      "content": "# The Paradigm Shift: From Classification to Creation\n\nHistorically, machine learning focused on **Discriminative Models**: drawing decision boundaries to separate classes (e.g. \"Is this photo a cat or dog?\").\n\n**Generative AI** models the underlying probability distribution of the data $P(\\mathbf{X})$, enabling systems to sample *brand-new, realistic artifacts* (e.g. \"Generate a photo of an astronaut riding a horse on Mars\")."
     },
     {
       "id": "s_ch7_l1_2",
+      "type": "text",
+      "title": "Comparing Generative Families \ud83c\udfdb\ufe0f",
+      "content": "# The Generative Architecture Zoo\n\n| Generative Family | Core Mechanism | Strengths | Typical Domains |\n| :--- | :--- | :--- | :--- |\n| **Autoregressive Transformers** | Predicts next token conditioned on past: $P(x_t \\mid x_{<t})$ | Coherent long-form text, code, reasoning | ChatGPT, Claude, LLaMA |\n| **Diffusion Models** | Iteratively denoises Gaussian noise into structured data | Exceptional image fidelity and diversity | Midjourney, Stable Diffusion, Sora |\n| **GANs (Generative Adversarial)** | Generator & Discriminator engage in zero-sum minimax game | Fast single-step inference | Real-time face generation (StyleGAN) |\n| **VAEs (Variational Autoencoders)** | Encodes data into smooth probabilistic latent space | Structured mathematical latent interpolation | Molecule discovery, anomaly detection |"
+    },
+    {
+      "id": "s_ch7_l1_3",
       "type": "quiz",
-      "title": "Concept Check: Generative vs Discriminative 🧠",
+      "title": "Concept Check: Generative vs Discriminative \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch7_l1_1",
         "type": "multiple_choice",
-        "question": "Which of the following tasks is performed by a Generative AI model?",
+        "question": "What is the fundamental mathematical difference between a discriminative model and a generative model?",
         "options": [
           {
             "id": "opt1",
-            "text": "Predicting whether a credit card transaction is fraudulent (0 or 1)",
-            "isCorrect": false
-          },
-          {
-            "id": "opt2",
-            "text": "Synthesizing a photorealistic image of an astronaut riding a horse on Mars",
+            "text": "Discriminative models compute P(Y|X); generative models model the data distribution P(X) or joint P(X, Y)",
             "isCorrect": true
           },
           {
+            "id": "opt2",
+            "text": "Discriminative models can only run on CPU hardware",
+            "isCorrect": false
+          },
+          {
             "id": "opt3",
-            "text": "Calculating the total sum of numbers in an Excel spreadsheet",
+            "text": "Generative models do not use neural networks",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Sorting emails chronologically by timestamp",
+            "text": "Discriminative models always require text tokens as input",
             "isCorrect": false
           }
         ],
-        "explanation": "Synthesizing novel media samples from text descriptions requires modeling data distributions to create new data, which is the hallmark of Generative AI.",
+        "explanation": "Discriminative models learn boundary probabilities P(Y|X) to classify existing inputs, whereas generative models learn data distributions P(X) allowing synthesis of new data.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch7_l1_4",
+      "type": "code",
+      "title": "Text Generation in Python \ud83d\udc0d",
+      "content": "Generating text using the HuggingFace transformers pipeline:",
+      "codeSnippet": "# Simulated text generation output demonstration\nprompt = 'Artificial Intelligence will revolutionize medicine by'\ncontinuation = prompt + ' enabling rapid drug discovery and early biomarker detection.'\nprint('Prompt:      ', prompt)\nprint('Continuation:', continuation)",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch7_l1_5",
+      "type": "warning",
+      "title": "The Nature of Hallucinations \u26a0\ufe0f",
+      "content": "## Probability, Not Factuality\nAutoregressive LLMs are trained to maximize the *likelihood of next tokens*, not truth. If an incorrect statement sounds statistically plausible in the training distribution, the model will output it with complete confidence. Always ground generation in verified sources!"
     }
   ]
 }

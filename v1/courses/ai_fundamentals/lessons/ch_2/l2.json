@@ -2,60 +2,72 @@
   "id": "l2",
   "chapterId": "ch_2",
   "title": "Data Preprocessing & Feature Engineering",
-  "description": "Master data preparation essentials: handling missing values, encoding categorical variables, normalization, and standardization.",
+  "description": "Master data preparation: handling missing values, standard vs min-max scaling, categorical encoding, and preventing data leakage.",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Data Pipeline",
+  "estimatedMinutes": 7,
+  "section": "Data Pipelines",
   "slides": [
     {
       "id": "s_ch2_l2_1",
       "type": "text",
-      "title": "Garbage In, Garbage Out 🗑️",
-      "content": "# Preparing Data for Machine Learning\n\nRaw real-world data is messy, incomplete, and varied in scale. No machine learning algorithm can outperform poor data preparation.\n\n### Essential Preprocessing Steps:\n1. **Handling Missing Values:** Imputation with median/mean for continuous features, mode for categories, or algorithmic imputation (KNN).\n2. **Categorical Encoding:**\n   - **One-Hot Encoding:** Creates binary columns for nominal data without intrinsic order (`Red`, `Green`, `Blue`).\n   - **Ordinal Encoding:** Encodes ranked categories (`Low: 0`, `Medium: 1`, `High: 2`).\n3. **Feature Scaling:**\n   - **Min-Max Normalization:** Rescales values into $[0, 1]$: $x_{norm} = \\frac{x - x_{min}}{x_{max} - x_{min}}$.\n   - **Standardization (Z-Score):** Centers around zero with unit variance: $z = \\frac{x - \\mu}{\\sigma}$."
+      "title": "Garbage In, Garbage Out \ud83e\uddf9",
+      "content": "# Data Preprocessing & Cleaning\n\nReal-world data is messy, incomplete, and noisy. Algorithms cannot interpret raw text strings or NaN values directly.\n\n### The Core Cleaning Steps:\n* **Handling Missing Data:** Deletion (dropping rows/columns) or Imputation (filling missing values with mean, median, or KNN estimates).\n* **Categorical Encoding:** Converting discrete text labels into numerical vectors via One-Hot Encoding (for nominal classes) or Ordinal Encoding (for ranked classes).\n* **Outlier Mitigation:** Clipping extreme values using interquartile ranges (IQR) or z-score thresholds."
     },
     {
       "id": "s_ch2_l2_2",
-      "type": "code",
-      "title": "Feature Scaling in Python 🐍",
-      "content": "Observe how Min-Max scaling compresses diverse measurements into a unified [0, 1] range:",
-      "codeSnippet": "def min_max_scale(values: list[float]) -> list[float]:\n    min_val, max_val = min(values), max(values)\n    if max_val == min_val:\n        return [0.0] * len(values)\n    return [(x - min_val) / (max_val - min_val) for x in values]\n\nhouse_sqft = [600, 1200, 1800, 2400, 3000]\nscaled = min_max_scale(house_sqft)\nprint('Scaled sqft:', [round(s, 2) for s in scaled])",
-      "codeLanguage": "python",
-      "canRunCode": true
+      "type": "text",
+      "title": "Feature Scaling Techniques \u2696\ufe0f",
+      "content": "# Comparing Feature Scaling Methods\n\nWhen features have drastically different scales (e.g. Age: $18-80$ vs Salary: $\\$20,000-\\$500,000$), gradient descent will oscillate erratically. Scaling resolves this:\n\n| Technique | Formula | Output Range | Outlier Sensitivity |\n| :--- | :--- | :--- | :--- |\n| **Min-Max Normalization** | $x' = \\frac{x - x_{\\min}}{x_{\\max} - x_{\\min}}$ | $[0, 1]$ | High (outliers squeeze valid data into narrow sub-range) |\n| **Standardization (Z-Score)**| $z = \\frac{x - \\mu}{\\sigma}$ | Mean $\\mu=0$, Variance $\\sigma^2=1$ | Robust (preserves relative variance without bounded ceiling) |\n| **Robust Scaling** | $x' = \\frac{x - Q_2}{Q_3 - Q_1}$ | Centered at median | Highly robust (uses interquartile range resistant to extreme outliers) |\n\nStandardization is preferred for neural networks and algorithms assuming Gaussian feature distributions."
     },
     {
       "id": "s_ch2_l2_3",
       "type": "quiz",
-      "title": "Concept Check: Scaling Purpose 🧠",
+      "title": "Concept Check: Scaling Selection \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch2_l2_1",
         "type": "multiple_choice",
-        "question": "Why is feature scaling crucial for gradient-based optimization and distance-based algorithms like KNN?",
+        "question": "Why is Standardization (Z-score scaling) often preferred over Min-Max scaling on datasets with extreme outliers?",
         "options": [
           {
             "id": "opt1",
-            "text": "It converts all text data directly into natural English",
+            "text": "It guarantees all feature values are strictly positive integers",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "It prevents features with large numeric scales from dominating gradients and distances",
+            "text": "It does not compress the inlier values into an imperceptibly tiny range due to extreme maximums",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "It eliminates the need for training splits entirely",
+            "text": "It automatically imputes all missing NaN values",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "It automatically generates labeled training targets",
+            "text": "It eliminates the need for gradient descent updates",
             "isCorrect": false
           }
         ],
-        "explanation": "If one feature ranges from 0 to 100,000 (salary) and another from 1 to 5 (ratings), the larger feature will disproportionately skew Euclidean distance metrics and cause elongated optimization ravines.",
+        "explanation": "Min-Max scaling uses min and max values directly; an extreme outlier will crush 99% of normal data into a narrow band between 0.0 and 0.05. Standardization avoids this bounding distortion.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch2_l2_4",
+      "type": "code",
+      "title": "Feature Scaling with scikit-learn \ud83d\udc0d",
+      "content": "Here is how to properly scale features and encode categorical columns in Python:",
+      "codeSnippet": "from sklearn.preprocessing import StandardScaler, OneHotEncoder\nimport numpy as np\n\n# Sample feature matrix: [Age, Income]\nX = np.array([[25, 45000], [50, 120000], [35, 75000]])\n\nscaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)\n\nprint('Scaled features (mean=0, std=1):\\n', X_scaled.round(2))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch2_l2_5",
+      "type": "warning",
+      "title": "Preventing Data Leakage \u26a0\ufe0f",
+      "content": "## The Golden Rule of Preprocessing\n**NEVER fit scalers or imputers on the entire dataset before splitting!**\n\nIf you call `scaler.fit(X_all)`, you leak information from the test set (mean, variance) into your training phase, leading to overly optimistic test metrics that crater in production.\n\n*Always execute:* `X_train_scaled = scaler.fit_transform(X_train)` and `X_test_scaled = scaler.transform(X_test)`."
     }
   ]
 }

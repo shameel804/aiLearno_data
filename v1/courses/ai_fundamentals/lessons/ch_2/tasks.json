@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": "task1",
-      "title": "Compute Mean Squared Error",
-      "description": "Implement a vectorized calculation of Mean Squared Error to evaluate a regression model's predictions.",
+      "title": "Build a Train-Test Split and Evaluator",
+      "description": "Implement a deterministic dataset split and calculate accuracy, precision, and recall from raw prediction arrays.",
       "estimatedMinutes": 10
     }
   ]

@@ -2,51 +2,72 @@
   "id": "l1",
   "chapterId": "ch_4",
   "title": "Loss Functions & Optimization Landscapes",
-  "description": "Examine how cost functions quantify discrepancy, exploring MSE, Binary Cross-Entropy, and optimization surfaces.",
+  "description": "Quantify model error with MSE, MAE, Binary Cross-Entropy, and Categorical Cross-Entropy across complex non-convex surfaces.",
   "xpReward": 25,
   "estimatedMinutes": 6,
-  "section": "Loss Landscapes",
+  "section": "Optimization & Training",
   "slides": [
     {
       "id": "s_ch4_l1_1",
       "type": "text",
-      "title": "Quantifying Network Error 🎯",
-      "content": "# The Loss Function (Criterion)\n\nA neural network without a loss function is like a traveler with no destination. The loss function quantifies how far the model's prediction $\\hat{y}$ is from the ground truth $y$.\n\n### Core Loss Functions:\n1. **Mean Squared Error (MSE):** Used in continuous regression.\n   $$\\mathcal{L}(y, \\hat{y}) = \\frac{1}{2}(y - \\hat{y})^2$$\n2. **Binary Cross-Entropy (BCE):** Used in binary classification.\n   $$\\mathcal{L}(y, \\hat{y}) = -\\left[ y \\log(\\hat{y}) + (1 - y) \\log(1 - \\hat{y}) \\right]$$\n   - If $y=1$ and $\\hat{y} \\to 0$, $-\\log(\\hat{y}) \\to +\\infty$, inflicting a massive penalty on confident wrong predictions!"
+      "title": "Measuring Model Error \ud83c\udfaf",
+      "content": "# Loss Functions & Optimization Landscapes\n\nA **Loss Function** $\\mathcal{L}(\\hat{y}, y)$ quantifies the mathematical penalty when model prediction $\\hat{y}$ deviates from ground truth $y$.\n\nTraining a neural network is mathematically formulated as an optimization problem: discovering weight parameter values $\\mathbf{w}^*$ that minimize total loss across the training distribution:\n\n$$\\mathbf{w}^* = \\arg\\min_{\\mathbf{w}} \\frac{1}{N} \\sum_{i=1}^{N} \\mathcal{L}(f(\\mathbf{x}_i; \\mathbf{w}), y_i)$$"
     },
     {
       "id": "s_ch4_l1_2",
+      "type": "text",
+      "title": "Selecting the Right Loss Function \ud83d\udccb",
+      "content": "# Common Loss Functions in Modern AI\n\n| Learning Task | Loss Function | Mathematical Formulation | Output Layer Activation |\n| :--- | :--- | :--- | :--- |\n| **Regression (Standard)** | Mean Squared Error (MSE) | $\\frac{1}{N} \\sum (y - \\hat{y})^2$ | Linear (Identity) |\n| **Regression (Outlier-Robust)**| Mean Absolute Error (MAE) | $\\frac{1}{N} \\sum \\|y - \\hat{y}\\|$ | Linear (Identity) |\n| **Binary Classification** | Binary Cross-Entropy (BCE) | $-\\frac{1}{N} \\sum [y \\ln \\hat{y} + (1-y)\\ln(1-\\hat{y})]$ | Sigmoid |\n| **Multi-Class Classification**| Categorical Cross-Entropy | $-\\frac{1}{N} \\sum_{i} \\sum_{k} y_{ik} \\ln \\hat{y}_{ik}$ | Softmax |\n\nCross-Entropy heavily penalizes confident wrong predictions: predicting $\\hat{y} = 0.001$ when $y = 1$ incurs an astronomical loss ($-\\ln(0.001) \\approx 6.9$)."
+    },
+    {
+      "id": "s_ch4_l1_3",
       "type": "quiz",
-      "title": "Concept Check: Cross-Entropy Penalty 🧠",
+      "title": "Concept Check: Loss Function Selection \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch4_l1_1",
         "type": "multiple_choice",
-        "question": "What happens to the Binary Cross-Entropy loss if the true label is 1 but the model predicts a probability of 0.001?",
+        "question": "Which loss function should be paired with a Softmax output layer for classifying images into 10 mutually exclusive animal species?",
         "options": [
           {
             "id": "opt1",
-            "text": "Loss approaches zero",
+            "text": "Mean Squared Error (MSE)",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "Loss becomes a very large positive number",
+            "text": "Categorical Cross-Entropy Loss",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Loss becomes negative",
+            "text": "Binary Hinge Loss",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Loss remains undefined and halts the CPU",
+            "text": "Mean Absolute Percentage Error",
             "isCorrect": false
           }
         ],
-        "explanation": "Because -log(0.001) is approximately 6.9, cross-entropy heavily punishes confident but completely incorrect predictions.",
+        "explanation": "Categorical Cross-Entropy paired with Softmax is the standard maximum likelihood formulation for multi-class classification.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch4_l1_4",
+      "type": "code",
+      "title": "Computing Loss in PyTorch \ud83d\udc0d",
+      "content": "Evaluating Cross-Entropy and MSE loss in PyTorch:",
+      "codeSnippet": "import torch\nimport torch.nn as nn\n\n# Multi-class loss (raw logits + target class index)\nce_loss = nn.CrossEntropyLoss()\nlogits = torch.tensor([[1.5, 0.2, -0.8]]) # batch=1, classes=3\ntarget = torch.tensor([0]) # correct class index is 0\n\nloss_value = ce_loss(logits, target)\nprint('Cross-Entropy loss:', loss_value.item())",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch4_l1_5",
+      "type": "tip",
+      "title": "AI Pro Tip: Non-Convex Landscapes \ud83d\udca1",
+      "content": "## Saddle Points vs Local Minima\nLinear regression loss is a smooth convex bowl with a single global minimum. Deep neural network loss surfaces, however, are non-convex with billions of dimensions, containing saddle points and ravines.\n\nModern research proves that in high-dimensional spaces, optimization rarely gets trapped in bad local minima; rather, navigating flat saddle point plateaus is the primary training challenge!"
     }
   ]
 }

@@ -17,7 +17,7 @@ Engaging: Use emojis, punchy titles, short paragraphs.
 
 Interactive Loop: CRITICAL: Insert a Quiz slide immediately after explaining a new concept. Do not wait until the end. Keep the learner engaged!
 
-Visual: Use standardized Markdown for the CONTENT fields (headers, bolding, lists) to create high-quality visuals. This includes using diagrams, ASCII art for network structures, or formatted tables to explain concepts beyond just reading text.
+Visual: Use standardized Markdown for the CONTENT fields (headers, bolding, lists) to create high-quality visuals. When creating tables, ALWAYS use standard Markdown table syntax (e.g., | Header | Header |) and NEVER wrap tables in code blocks (```) or use ASCII art for tables. You can use ASCII art wrapped in code blocks ONLY for network structures or complex diagrams, but never for tabular data.
 
 Part 1: Folder Structure & Syllabus
 The app follows a strict folder structure. You must generate files that fit this structure.

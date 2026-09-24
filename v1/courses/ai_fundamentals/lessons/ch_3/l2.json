@@ -2,57 +2,72 @@
   "id": "l2",
   "chapterId": "ch_3",
   "title": "Activation Functions: Introducing Non-Linearity",
-  "description": "Explore why non-linearity is vital. Compare Sigmoid, Tanh, ReLU, Leaky ReLU, and Softmax.",
+  "description": "Why linear models fail. Explore Sigmoid, Tanh, ReLU, Leaky ReLU, and Softmax with output ranges and gradient properties.",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Activations",
+  "estimatedMinutes": 7,
+  "section": "Neural Network Fundamentals",
   "slides": [
     {
       "id": "s_ch3_l2_1",
       "type": "text",
-      "title": "Why We Need Non-Linearity ⚡",
-      "content": "# The Power of Non-Linear Activation\n\nIf you stack 100 linear layers together: $f(x) = W_3(W_2(W_1 x + b_1) + b_2) + b_3$, the entire network mathematically collapses into a single linear transformation: $f(x) = W_{combined} x + b_{combined}$!\n\n> 💡 **The Origami Analogy:**\n> Linear operations can only stretch, rotate, and shift paper. An activation function allows the network to **fold** the paper, carving out complex decision boundaries in higher dimensions!"
+      "title": "Why We Need Non-Linearity \ud83c\udf0a",
+      "content": "# The Power of Non-Linearity\n\nIf a neural network used only linear activations ($f(z) = z$), stacking 100 hidden layers would collapse into a single giant linear regression:\n\n$$W_3(W_2(W_1 x + b_1) + b_2) + b_3 = (W_3 W_2 W_1) x + b_{\\text{combined}} = W_{\\text{eff}} x + b_{\\text{eff}}$$\n\nWithout non-linear activations, deep networks cannot learn non-linear patterns (curves, circles, XOR logic, image textures).\n\nNon-linear activation functions bend, fold, and warp the coordinate space, allowing deep networks to carve complex decision surfaces."
     },
     {
       "id": "s_ch3_l2_2",
       "type": "text",
-      "title": "The Pantheon of Activation Functions 📊",
-      "content": "### 1. ReLU (Rectified Linear Unit)\n$$\\text{ReLU}(z) = \\max(0, z)$$\n* **Pros:** Computationally ultra-fast; avoids vanishing gradients for positive inputs.\n* **Cons:** Dying ReLU problem (neurons getting permanently stuck at 0).\n\n### 2. Leaky ReLU\n$$\\text{LeakyReLU}(z) = \\max(0.01z, z)$$\n* Keeps a tiny slope for negative values so gradients can still flow.\n\n### 3. Softmax (Multi-class Output)\n$$\\text{Softmax}(z_i) = \\frac{e^{z_i}}{\\sum_{j} e^{z_j}}$$\n* Normalizes raw logit scores into a valid probability distribution that sums to 1.0."
+      "title": "Activation Functions Compared \ud83d\udcca",
+      "content": "# The Core Activation Zoo\n\n| Activation Function | Formula | Output Range | Key Advantage | Key Vulnerability |\n| :--- | :--- | :--- | :--- | :--- |\n| **Sigmoid** | $\\sigma(z) = \\frac{1}{1 + e^{-z}}$ | $(0, 1)$ | Interpretable as probability | Vanishing gradient for $|z| > 4$; not zero-centered |\n| **Tanh** | $\\tanh(z) = \\frac{e^z - e^{-z}}{e^z + e^{-z}}$ | $(-1, 1)$ | Zero-centered outputs | Vanishing gradient at saturation plateaus |\n| **ReLU** | $\\max(0, z)$ | $[0, \\infty)$ | Fast computation; no positive saturation | \"Dying ReLU\" if neurons permanently deactivate ($z \\le 0$) |\n| **Leaky ReLU** | $\\max(\\alpha z, z), \\alpha \\approx 0.01$ | $(-\\infty, \\infty)$ | Eliminates dead neurons with small negative slope | Introduces hyperparameter $\\alpha$ |\n| **Softmax** | $\\frac{e^{z_i}}{\\sum_j e^{z_j}}$ | $(0, 1)$, sum $= 1$ | Multi-class mutually exclusive probability vector | Computationally intensive over huge vocabularies |"
     },
     {
       "id": "s_ch3_l2_3",
       "type": "quiz",
-      "title": "Concept Check: Softmax Sum 🧠",
+      "title": "Concept Check: Choosing Activations \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch3_l2_1",
         "type": "multiple_choice",
-        "question": "What is the guaranteed sum of all output probabilities produced by a Softmax layer across all classes?",
+        "question": "Why is ReLU (Rectified Linear Unit) standard in hidden layers of modern deep networks rather than Sigmoid?",
         "options": [
           {
             "id": "opt1",
-            "text": "0.0",
+            "text": "ReLU restricts all outputs between -1 and +1",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "1.0 (or 100%)",
+            "text": "ReLU avoids vanishing gradients for positive inputs because its derivative is a constant 1.0",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Equal to the number of classes",
+            "text": "ReLU requires expensive exponential mathematical operations",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Dependent on the batch size",
+            "text": "ReLU eliminates the need for backpropagation",
             "isCorrect": false
           }
         ],
-        "explanation": "By definition, the denominator of the Softmax function normalizes the exponentials such that all class probabilities sum strictly to 1.0.",
+        "explanation": "For any positive activation z > 0, d/dz ReLU(z) = 1.0. This allows gradients to flow backwards through deep networks without exponentially vanishing toward zero.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch3_l2_4",
+      "type": "code",
+      "title": "Activations in NumPy \ud83d\udc0d",
+      "content": "Implement standard activation functions from first principles:",
+      "codeSnippet": "import numpy as np\n\ndef relu(z):\n    return np.maximum(0, z)\n\ndef sigmoid(z):\n    return 1.0 / (1.0 + np.exp(-z))\n\ndef softmax(z):\n    exp_z = np.exp(z - np.max(z)) # numerically stable\n    return exp_z / np.sum(exp_z)\n\nlogits = np.array([2.0, 1.0, 0.1])\nprint('ReLU:', relu(logits))\nprint('Softmax probabilities:', softmax(logits).round(3))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch3_l2_5",
+      "type": "warning",
+      "title": "The Dying ReLU Problem \u26a0\ufe0f",
+      "content": "## When Neurons Cease to Learn\nIf a large gradient update causes a neuron's bias to become heavily negative, $z = \\mathbf{w}^T \\mathbf{x} + b$ may remain negative for every single sample in the dataset.\n\nBecause the gradient of ReLU for $z \\le 0$ is exactly 0.0, no error gradient ever flows backward into that neuron again. The neuron is effectively **dead**.\n\n*Mitigation:* Use Leaky ReLU, GELU, or initialize biases with small positive values (e.g. 0.01)."
     }
   ]
 }

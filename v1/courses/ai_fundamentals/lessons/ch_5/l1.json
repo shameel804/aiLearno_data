@@ -2,51 +2,72 @@
   "id": "l1",
   "chapterId": "ch_5",
   "title": "Why MLPs Struggle with Images",
-  "description": "Understand the parameter explosion of flattening 2D/3D images into 1D vectors and the need for spatial invariance.",
+  "description": "Understand the parameter explosion and loss of 2D spatial locality when flattening image pixels into standard MLPs.",
   "xpReward": 25,
   "estimatedMinutes": 6,
-  "section": "Vision Challenges",
+  "section": "Computer Vision Foundations",
   "slides": [
     {
       "id": "s_ch5_l1_1",
       "type": "text",
-      "title": "The Curse of Flattening 🖼️",
-      "content": "# The Limits of Fully Connected Networks for Vision\n\nSuppose you want to process a modest smartphone photo: $1000 \\times 1000$ pixels with 3 RGB color channels.\n\n* **Input Size:** $1000 \\times 1000 \\times 3 = 3,000,000$ input values!\n* If the first hidden layer has just 1,000 neurons, you would need:\n  $$3,000,000 \\times 1,000 = 3,000,000,000 \\text{ (3 Billion!)} \\text{ parameters}$$\n\n### The Need for Spatial Inductive Bias:\n1. **Locality:** Adjacent pixels are strongly correlated; distant pixels are less related.\n2. **Translation Invariance:** A cat in the top-left corner should be recognized with the exact same features as a cat in the bottom-right corner!"
+      "title": "The Flaw of Flattening Pixels \ud83d\uddbc\ufe0f",
+      "content": "# Why MLPs Fail on Vision\n\nWhen feeding an image into a Multi-Layer Perceptron (MLP), the 2D pixel grid $(H \\times W \\times C)$ is flattened into a 1D vector.\n\n### The Two Fatal Flaws of MLPs on Images:\n1. **Destruction of 2D Spatial Locality:** Pixels that are vertically adjacent in physical reality become separated by thousands of indices in a 1D vector. An MLP treats neighboring pixels identically to pixels on opposite corners of the screen.\n2. **Parameter Explosion:** A modest $256 \\times 256$ RGB image has $196,608$ input values. Connecting this to a single hidden layer with 1,000 neurons requires nearly **200 million weight parameters** for that single layer alone!"
     },
     {
       "id": "s_ch5_l1_2",
+      "type": "text",
+      "title": "MLPs vs Convolutional Neural Networks \u2696\ufe0f",
+      "content": "# Comparing Vision Architectures\n\n| Feature | Multi-Layer Perceptron (MLP) | Convolutional Neural Network (CNN) |\n| :--- | :--- | :--- |\n| **Spatial Topology** | Destroys 2D grid structure by flattening | Preserves 2D/3D spatial arrangement $(C, H, W)$ |\n| **Parameter Count** | Explodes quadratically with image resolution | Drastically reduced through shared local weight kernels |\n| **Translation Invariance**| None (must relearn cat features in every pixel position) | High (shared kernel detects features anywhere in image) |\n| **Receptive Field** | Global connection to every input pixel | Localized receptive field expanding deeper in the network |\n| **Hardware Efficiency**| Heavy memory bandwidth for dense matrices | Highly parallelized sliding dot products optimized for GPUs |"
+    },
+    {
+      "id": "s_ch5_l1_3",
       "type": "quiz",
-      "title": "Concept Check: Spatial Invariance 🧠",
+      "title": "Concept Check: Spatial Locality \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch5_l1_1",
         "type": "multiple_choice",
-        "question": "What is 'translation invariance' in computer vision?",
+        "question": "What is the primary reason Convolutional Neural Networks outperform MLPs on computer vision tasks?",
         "options": [
           {
             "id": "opt1",
-            "text": "Translating the programming code into C++",
+            "text": "CNNs convert all input images into audio spectrograms",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "Recognizing an object regardless of where it shifts within the image frame",
+            "text": "CNNs exploit spatial locality and translation invariance through shared local kernels",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Translating foreign image captions into English",
+            "text": "CNNs do not use backpropagation",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Inverting the RGB color channels to grayscale",
+            "text": "CNNs require no training parameters",
             "isCorrect": false
           }
         ],
-        "explanation": "Translation invariance means that whether an object appears in the center, top-right, or bottom-left, the network identifies it equally well.",
+        "explanation": "CNNs use shared weight kernels sliding across local pixel patches, preserving 2D spatial relationships and drastically reducing parameters.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch5_l1_4",
+      "type": "code",
+      "title": "Defining a 2D Convolution in PyTorch \ud83d\udc0d",
+      "content": "A minimal 2D convolutional layer processing image batches in PyTorch:",
+      "codeSnippet": "import torch\nimport torch.nn as nn\n\n# Batch of 4 RGB images, 3 channels, 32x32 pixels\nimages = torch.randn(4, 3, 32, 32)\n\n# 3 input channels, 16 feature maps, 3x3 kernel, padding=1\nconv_layer = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, padding=1)\nfeature_maps = conv_layer(images)\n\nprint('Input batch shape: ', images.shape)\nprint('Output feature map shape:', feature_maps.shape)",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch5_l1_5",
+      "type": "tip",
+      "title": "AI Pro Tip: Inductive Bias \ud83d\udca1",
+      "content": "## Spatial Inductive Bias\nMachine learning models succeed when their architectural assumptions match the problem domain.\n\nCNNs possess a built-in **spatial inductive bias**: the prior assumption that nearby pixels interact strongly and that semantic patterns (like an eye or wheel) are invariant to spatial translation."
     }
   ]
 }

@@ -1,23 +1,73 @@
 {
   "id": "l4",
   "chapterId": "ch_8",
-  "title": "Autonomous Agents, Tool Use & AGI",
-  "description": "Explore the frontier of AI: the ReAct loop, LLMs using APIs/code interpreters, multi-agent swarms, and the path to AGI.",
+  "title": "Autonomous Agents & The Path to AGI",
+  "description": "From chat models to autonomous coworkers. Master ReAct loops, planning, tool usage, memory buffers, and frontier benchmarks.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Frontier Systems",
+  "estimatedMinutes": 8,
+  "section": "Frontiers of AI",
   "slides": [
     {
       "id": "s_ch8_l4_1",
       "type": "text",
-      "title": "From Chatbots to Autonomous Agents 🤖",
-      "content": "# The Agentic Revolution\n\nModern state-of-the-art AI is moving from passive conversation to **active agentic workflows**.\n\n### The ReAct Pattern (Reason + Act):\n```\n1. Thought:  \"The user wants today's stock price for Apple. My training data is cut off.\"\n2. Action:   call_tool(\"fetch_finance_api\", symbol=\"AAPL\")\n3. Observation: {\"price\": 232.50, \"change\": \"+1.4%\"}\n4. Thought:  \"I now have the verified current price.\"\n5. Final Answer: \"Apple (AAPL) is currently trading at $232.50.\"\n```\n\nBy combining reasoning with external tools (calculators, web browsers, bash terminals, databases), AI agents act as digital knowledge coworkers."
+      "title": "The Agentic Era \ud83e\udd16",
+      "content": "# Beyond Passive Chatbots\n\nThe AI frontier has shifted from passive autocomplete interfaces to **Autonomous Agentic Systems** capable of multi-step planning, tool invocation, and self-reflection.\n\n### The 4 Pillars of an Autonomous Agent:\n\n| Agent Pillar | Role & Mechanism | Implementation Technique |\n| :--- | :--- | :--- |\n| **Brain / Reasoner** | Core LLM orchestrating thoughts, plans, and decisions | ReAct (Reason + Act), Tree-of-Thoughts, Reflexion |\n| **Memory** | Retaining context across short-term and long-term horizons | Conversation buffers (short) + Vector databases (long) |\n| **Tool Use** | Calling external digital APIs and interfaces | Web search, Python sandbox REPL, SQL database queries |\n| **Self-Reflection** | Inspecting errors and iteratively refining approaches | Self-debugging loops, unit test verifiers |"
     },
     {
       "id": "s_ch8_l4_2",
+      "type": "text",
+      "title": "The ReAct Loop in Action \ud83d\udd04",
+      "content": "# Reason + Act (ReAct)\n\nInstead of jumping directly to an answer, agentic architectures execute a continuous cycle:\n\n1. **Thought:** The model analyzes the current state and articulates its reasoning.\n2. **Action:** The model calls a registered tool with structured arguments (e.g. `query_database(symbol='NVDA')`).\n3. **Observation:** The environment executes the tool and injects the raw result back into context.\n4. **Synthesis:** The agent evaluates the observation and decides whether to take another action or output its final answer."
+    },
+    {
+      "id": "s_ch8_l4_3",
+      "type": "quiz",
+      "title": "Concept Check: Agentic Workflows \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch8_l4_1",
+        "type": "multiple_choice",
+        "question": "What is the primary operational advantage of the ReAct (Reason + Act) pattern compared to simple direct zero-shot prompt answering?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "It runs in 1 millisecond on any phone CPU",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "It grounds reasoning in verified external observations and allows dynamic error recovery via tools",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "It guarantees the model will never use token bandwidth",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "It removes the need for memory buffers",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "By decoupling thinking from external tool action and incorporating real-time feedback observations, agents can self-correct when tools fail.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch8_l4_4",
+      "type": "code",
+      "title": "A ReAct Agent Loop in Python \ud83d\udc0d",
+      "content": "A minimal tool-calling agent loop in Python:",
+      "codeSnippet": "def calculator_tool(expression: str) -> str:\n    try:\n        return str(eval(expression, {\"__builtins__\": {}}))\n    except Exception as e:\n        return f'Error: {e}'\n\n# Simulated ReAct trace\ntrace = [\n    ('Thought', 'User wants 482 * 19. I need to call calculator_tool.'),\n    ('Action',  'calculator_tool(\"482 * 19\")'),\n    ('Observation', calculator_tool('482 * 19')),\n    ('Final Answer', 'The product of 482 and 19 is 9,158.')\n]\n\nfor step, content in trace:\n    print(f'[{step:12s}]: {content}')",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch8_l4_5",
       "type": "tip",
-      "title": "The Road to AGI 🚀",
-      "content": "## Frontiers on the Horizon\n* **Test-Time Compute (Reasoning Models):** Allowing models to spend dynamic compute tokens thinking through complex math and logic proofs before outputting answers.\n* **Embodied AI:** Deploying foundation models directly onto robotic platforms to interact with physical reality.\n* **Self-Improving Systems:** Models generating their own synthetic training curricula, executing self-reflection, and verifying code execution."
+      "title": "AI Pro Tip: The Road to AGI \ud83d\ude80",
+      "content": "## Frontier Horizons: Test-Time Compute & System 2 Thinking\nFrontier reasoning models (like OpenAI o1) allocate dynamic \"thinking time\" before answering. By generating hidden chains of thought, backtracking, and trying alternative problem approaches, models achieve PhD-level performance in physics, mathematics, and competitive coding!"
     }
   ]
 }

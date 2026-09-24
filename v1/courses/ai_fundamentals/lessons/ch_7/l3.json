@@ -1,52 +1,67 @@
 {
   "id": "l3",
   "chapterId": "ch_7",
-  "title": "Alignment & Fine-Tuning (RLHF & LoRA)",
-  "description": "Transform raw base models into helpful assistants via Instruction Tuning, RLHF, DPO, and Low-Rank Adaptation (LoRA).",
+  "title": "Sampling Hyperparameters & Prompt Engineering",
+  "description": "Master generation controls: Temperature, Top-p (Nucleus), Top-k. Master Zero-Shot, Few-Shot, and Chain-of-Thought prompting.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Post-Training Alignment",
+  "estimatedMinutes": 8,
+  "section": "Prompt Engineering & Control",
   "slides": [
     {
       "id": "s_ch7_l3_1",
       "type": "text",
-      "title": "From Base Model to Assistant 🤝",
-      "content": "# The Post-Training Pipeline\n\nA raw base model trained on internet text is a document completer, not a chatbot. If you ask: `\"What is the capital of France?\"`, a base model might simply output: `\"What is the capital of Spain? What is the capital of Italy?\"`.\n\n### The 3 Stages of Post-Training:\n1. **Supervised Fine-Tuning (SFT / Instruction Tuning):** Train on high-quality Prompt-Response demonstration pairs (`{\"prompt\": \"What is...\", \"response\": \"The capital is Paris.\"}`).\n2. **Preference Alignment (RLHF / DPO):** Humans or AI compare pairs of model outputs. A reward model is trained, and Reinforcement Learning guides the policy towards helpful, harmless, and honest outputs.\n3. **Parameter-Efficient Fine-Tuning (PEFT / LoRA):** Instead of modifying all 70 billion parameters, **LoRA** injects tiny low-rank decomposition matrices ($A \\times B$) into attention weights, training only 0.1% of weights with near-identical performance!"
+      "title": "Controlling Generation: Decoding Parameters \ud83c\udf9b\ufe0f",
+      "content": "# Sampling Hyperparameters\n\nLLMs output probability distributions over vocabulary tokens. Decoding parameters dictate how the next token is chosen:\n\n| Parameter | Mathematical Mechanism | High Value Effect | Low Value Effect |\n| :--- | :--- | :--- | :--- |\n| **Temperature ($T$)** | Divides raw logits before Softmax: $\\frac{z_i}{T}$ | Flattened probabilities: creative, diverse, hallucinatory | Sharpened distribution: deterministic, focused, logical |\n| **Top-p (Nucleus)** | Truncates pool to smallest set whose cumulative prob $\\ge p$ | Broader candidate pool when confidence is low | Restricts choices strictly to top probability mass |\n| **Top-k** | Keeps strictly top $k$ highest probability tokens | Broader word choices | Limits candidates to top $k$ tokens (e.g. $k=40$) |\n\nFor factual coding and JSON extraction, set $T=0.0$; for creative brainstorming, set $T=0.7 - 0.9$."
     },
     {
       "id": "s_ch7_l3_2",
+      "type": "text",
+      "title": "Modern Prompting Strategies \ud83d\udcdd",
+      "content": "# The Art of Prompt Engineering\n\n| Prompting Pattern | Description | Best Application |\n| :--- | :--- | :--- |\n| **Zero-Shot** | Direct task request without prior demonstrations | Simple queries, standard summarization |\n| **Few-Shot (In-Context Learning)**| Providing 2-5 explicit input/output examples before query | Formatting enforcement, custom classification schema |\n| **Chain-of-Thought (CoT)** | \"Think step-by-step before producing final answer\" | Complex multi-step arithmetic, logic puzzles, symbolic deduction |\n| **ReAct (Reason + Act)** | Interleaving thought, action tool call, and observation | Autonomous agentic tasks requiring external APIs |"
+    },
+    {
+      "id": "s_ch7_l3_3",
       "type": "quiz",
-      "title": "Concept Check: LoRA Efficiency 🧠",
+      "title": "Concept Check: Decoding Parameters \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch7_l3_1",
         "type": "multiple_choice",
-        "question": "What is the primary operational advantage of Low-Rank Adaptation (LoRA) for fine-tuning LLMs?",
+        "question": "Which temperature setting should be selected when using an LLM to parse financial invoices into strict, deterministic JSON schemas?",
         "options": [
           {
             "id": "opt1",
-            "text": "It converts models into pure C code",
+            "text": "Temperature = 1.8",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "It drastically reduces GPU VRAM and storage requirements by training low-rank adapter matrices instead of all base weights",
+            "text": "Temperature = 0.0 (Greedy decoding)",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "It eliminates the need for any training data",
+            "text": "Temperature = 0.9",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "It prevents the model from generating English sentences",
+            "text": "Temperature = -1.0",
             "isCorrect": false
           }
         ],
-        "explanation": "LoRA freezes the base weights and only trains low-rank adapter matrices, slashing GPU memory consumption and enabling fast adaptation on consumer GPUs.",
+        "explanation": "Temperature 0.0 enforces greedy decoding, selecting the highest-probability token deterministically and minimizing formatting errors.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch7_l3_4",
+      "type": "code",
+      "title": "Structured Few-Shot Prompting in Python \ud83d\udc0d",
+      "content": "Crafting a robust few-shot prompt for reliable entity extraction:",
+      "codeSnippet": "prompt = '''Extract the person and location in JSON format:\n\nInput: 'Steve Jobs founded Apple in Los Altos.'\nOutput: {\"person\": \"Steve Jobs\", \"location\": \"Los Altos\"}\n\nInput: 'Ada Lovelace wrote the first computer program in London.'\nOutput: {\"person\": \"Ada Lovelace\", \"location\": \"London\"}\n\nInput: 'Guido van Rossum released Python while working in Amsterdam.'\nOutput:'''\n\nprint(prompt)",
+      "codeLanguage": "python",
+      "canRunCode": true
     }
   ]
 }

@@ -2,26 +2,26 @@
   "id": "l4",
   "chapterId": "ch_1",
   "title": "Knowledge Representation & Expert Systems",
-  "description": "Discover how classical AI encoded human expertise into formal logic rules, inference engines, and knowledge graphs.",
+  "description": "Investigate propositional logic, semantic networks, production rules, forward/backward chaining, and the limitations of symbolic AI.",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Symbolic AI & Rules",
+  "estimatedMinutes": 5,
+  "section": "Symbolic Systems",
   "slides": [
     {
       "id": "s_ch1_l4_1",
       "type": "text",
-      "title": "Symbolic AI & The Knowledge Base 📚",
-      "content": "# Symbolic AI (Good Old-Fashioned AI)\n\nDuring the first golden age of AI, intelligence was modeled through explicit symbols and formal logic.\n\n### The Architecture of an Expert System:\n1. **Knowledge Base (KB):** Declarative facts and propositional rules (e.g. `IF fever AND cough THEN possible_infection`).\n2. **Inference Engine:** Applies logical axioms to deduce new knowledge from existing facts.\n   - **Forward Chaining:** Data-driven (start with observed facts, trigger rules until goal is proved).\n   - **Backward Chaining:** Goal-driven (start with hypothesis, recursively search for supporting facts).\n3. **User Interface / Explanation Facility:** Explains *why* a particular decision was reached."
+      "title": "The Symbolic Paradigm \ud83d\udcdc",
+      "content": "# Knowledge Representation & Expert Systems\n\nBefore modern statistical machine learning took center stage, the dominant AI paradigm was **Symbolic AI (Good Old-Fashioned AI / GOFAI)**.\n\n### The Architecture of an Expert System:\n1. **Knowledge Base (KB):** A repository of facts and domain-specific production rules (e.g. `IF patient_has_fever AND cough THEN suspect_influenza`).\n2. **Inference Engine:** The reasoning mechanism that derives new conclusions from known facts:\n   * **Forward Chaining (Data-Driven):** Starts with observed facts and applies rules iteratively to derive conclusions.\n   * **Backward Chaining (Goal-Driven):** Starts with a hypothesis (goal) and searches backwards for supporting facts.\n3. **User Interface / Explanation Facility:** Explains *why* a particular decision was made by displaying the rule execution trail."
     },
     {
       "id": "s_ch1_l4_2",
       "type": "quiz",
-      "title": "Concept Check: Forward vs Backward Chaining 🧠",
+      "title": "Concept Check: Chaining Strategies \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch1_l4_1",
         "type": "multiple_choice",
-        "question": "Which inference method starts with a hypothesis (like 'Does the patient have pneumonia?') and checks backward for supporting symptoms?",
+        "question": "A diagnostic system starts with the question 'Does the patient have pneumonia?' and queries symptoms in reverse to verify that hypothesis. What inference strategy is it using?",
         "options": [
           {
             "id": "opt1",
@@ -35,24 +35,30 @@
           },
           {
             "id": "opt3",
-            "text": "Random Sampling",
+            "text": "Reinforcement Learning",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Gradient Ascent",
+            "text": "Backpropagation",
             "isCorrect": false
           }
         ],
-        "explanation": "Backward chaining is goal-driven: it begins with the desired conclusion and works backward through the rules to check if known facts satisfy the premises.",
+        "explanation": "Backward chaining starts with a goal hypothesis and works backward to locate supporting assertions in the knowledge base.",
         "xpReward": 10
       }
     },
     {
       "id": "s_ch1_l4_3",
+      "type": "text",
+      "title": "Symbolic AI vs Statistical AI \u2696\ufe0f",
+      "content": "# The Paradigm Shift: Rules vs Data\n\n| Attribute | Symbolic Expert Systems (GOFAI) | Modern Statistical AI (ML / DL) |\n| :--- | :--- | :--- |\n| **Core Mechanism** | Deductive logic & handcrafted IF-THEN rules | Inductive statistical pattern recognition |\n| **Knowledge Acquisition**| Extracted manually through interviews with human experts | Learned automatically from massive datasets |\n| **Noise Handling** | Brittle; minor noise or contradictions break reasoning | Robust; tolerates noisy, missing, or corrupt features |\n| **Interpretability** | Transparent step-by-step logic audit trails | Often high-dimensional black boxes requiring XAI |\n| **Scalability** | Exponential maintenance cost as rules accumulate | Scales effectively with compute power and training tokens |\n\nThe inability of symbolic systems to handle ambiguous perception (speech, vision) paved the way for the statistical Machine Learning revolution."
+    },
+    {
+      "id": "s_ch1_l4_4",
       "type": "warning",
-      "title": "The Brittleness Problem ⚠️",
-      "content": "## Why did Expert Systems hit a wall?\nClassical expert systems were extremely brittle:\n* **Combinatorial Explosion:** Millions of edge cases required millions of manually written rules.\n* **Inability to Handle Uncertainty:** Real world data is noisy, probabilistic, and ambiguous.\n* **No Learning:** If a new disease emerged, the system could not learn from medical scans; a human engineer had to hand-craft new rules.\n\nThis limitation paved the way for the statistical revolution: **Machine Learning**!"
+      "title": "The Knowledge Acquisition Bottleneck \u26a0\ufe0f",
+      "content": "## Why Classic Expert Systems Stalled (The AI Winter)\nClassic expert systems (like MYCIN and DENDRAL in the 1970s and 1980s) suffered from the **Knowledge Acquisition Bottleneck**.\n\nHumans have vast amounts of tacit, intuitive knowledge that cannot be cleanly expressed as deterministic boolean rules (e.g. \"How do you recognize a handwritten letter 'A'?\"). Attempting to hardcode every edge case resulted in fragile, unmaintainable software rule jungles."
     }
   ]
 }

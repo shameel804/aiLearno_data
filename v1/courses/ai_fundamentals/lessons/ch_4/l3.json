@@ -2,25 +2,66 @@
   "id": "l3",
   "chapterId": "ch_4",
   "title": "The Backpropagation Algorithm",
-  "description": "Unravel the calculus behind AI: the Chain Rule, error attribution, and propagating gradients from output to input.",
+  "description": "Demystify backpropagation through computational graphs and chain rule partial derivatives.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Backprop Calculus",
+  "estimatedMinutes": 8,
+  "section": "Deep Learning Mechanics",
   "slides": [
     {
       "id": "s_ch4_l3_1",
       "type": "text",
-      "title": "The Chain Rule of Calculus ⛓️",
-      "content": "# The Core of Backpropagation\n\nHow does a weight in the first layer know how much it contributed to an error in the tenth layer? Through the **Chain Rule**!\n\nIf $y = f(u)$ and $u = g(x)$, then:\n$$\n\\frac{\\partial y}{\\partial x} = \\frac{\\partial y}{\\partial u} \\cdot \\frac{\\partial u}{\\partial x}\n$$\n\nIn a deep neural network, the gradient of the loss with respect to any hidden weight $w_{ij}$ is computed by multiplying local derivatives backwards from the loss node to that weight:\n\n$$\n\\frac{\\partial \\mathcal{L}}{\\partial w_{ij}} = \\frac{\\partial \\mathcal{L}}{\\partial \\hat{y}} \\cdot \\frac{\\partial \\hat{y}}{\\partial z_k} \\cdot \\dots \\cdot \\frac{\\partial z_j}{\\partial w_{ij}}\n$$"
+      "title": "The Engine of Deep Learning \ud83d\ude82",
+      "content": "# The Calculus of Backpropagation\n\nPopularized in 1986 by Rumelhart, Hinton, and Williams, **Backpropagation** is an efficient application of the calculus **Chain Rule** to compute gradients of the loss $\\mathcal{L}$ with respect to every weight $w_{ij}$ in the network.\n\n### The Chain Rule Decomposition:\nFor an output weight $w$ connecting hidden activation $a$ to output $z$ and loss $\\mathcal{L}$:\n\n$$\\frac{\\partial \\mathcal{L}}{\\partial w} = \\frac{\\partial \\mathcal{L}}{\\partial a} \\cdot \\frac{\\partial a}{\\partial z} \\cdot \\frac{\\partial z}{\\partial w}$$\n\n| Chain Rule Component | Interpretation | Mathematical Role |\n| :--- | :--- | :--- |\n| $\\frac{\\partial \\mathcal{L}}{\\partial a}$ | Upstream gradient flowing back from subsequent layer | Error signal propagated backwards |\n| $\\frac{\\partial a}{\\partial z}$ | Local derivative of the activation function | Modulates flow (e.g. ReLU passes 1 if $z>0$, 0 if $z\\le0$) |\n| $\\frac{\\partial z}{\\partial w}$ | Local derivative of linear pre-activation | Equals the incoming activation value $a_{\\text{in}}$ |\n| $\\frac{\\partial \\mathcal{L}}{\\partial w}$ | Final partial derivative for parameter update | Fed to the optimizer to adjust weight: $w \\leftarrow w - \\alpha \\frac{\\partial \\mathcal{L}}{\\partial w}$ |"
     },
     {
       "id": "s_ch4_l3_2",
+      "type": "quiz",
+      "title": "Concept Check: Backpropagation Flow \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch4_l3_1",
+        "type": "multiple_choice",
+        "question": "What mathematical principle enables backpropagation to compute gradients through dozens of composite network layers efficiently?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "The Calculus Chain Rule",
+            "isCorrect": true
+          },
+          {
+            "id": "opt2",
+            "text": "Euler's Identity",
+            "isCorrect": false
+          },
+          {
+            "id": "opt3",
+            "text": "Bayes' Theorem",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "The Central Limit Theorem",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Backpropagation recursively applies the Chain Rule backwards from loss to inputs, caching intermediate derivatives to avoid duplicate computation.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch4_l3_3",
       "type": "code",
-      "title": "Autograd in Action (PyTorch Style) 🐍",
-      "content": "Modern deep learning frameworks automate the chain rule using computational graphs and reverse-mode automatic differentiation:",
-      "codeSnippet": "# Conceptual PyTorch automatic differentiation\nimport torch\n\nw = torch.tensor([2.0], requires_grad=True)\nx = torch.tensor([3.0])\ny_true = torch.tensor([10.0])\n\n# Forward pass: y_pred = w * x\ny_pred = w * x\nloss = (y_pred - y_true) ** 2  # (6 - 10)^2 = 16\n\n# Backward pass (computes dLoss/dw via Chain Rule)\nloss.backward()\nprint('Gradient dLoss/dw:', w.grad.item())  # 2 * (6 - 10) * 3 = -24.0",
+      "title": "PyTorch Autograd in Action \ud83d\udc0d",
+      "content": "Witnessing automated computational graph backpropagation in PyTorch:",
+      "codeSnippet": "import torch\n\nx = torch.tensor(3.0, requires_grad=True)\nw = torch.tensor(2.0, requires_grad=True)\nb = torch.tensor(1.0, requires_grad=True)\n\n# Forward pass: y = w * x + b; loss = (y - 10)^2\ny = w * x + b      # 2*3 + 1 = 7.0\nloss = (y - 10)**2 # (7 - 10)^2 = 9.0\n\n# Backward pass\nloss.backward()\n\nprint('dL/dw (analytic: 2*(y-10)*x = 2*(-3)*3 = -18):', w.grad.item())\nprint('dL/db (analytic: 2*(y-10)*1 = 2*(-3) = -6):', b.grad.item())",
       "codeLanguage": "python",
       "canRunCode": true
+    },
+    {
+      "id": "s_ch4_l3_4",
+      "type": "tip",
+      "title": "AI Pro Tip: Computational Graphs \ud83d\udca1",
+      "content": "## Reverse-Mode Automatic Differentiation\nPyTorch builds a **Dynamic Computational Graph (DAG)** during the forward pass. Every operation records its input nodes and local derivative function.\n\nWhen `loss.backward()` is called, the graph is traversed in topological reverse order, executing vector-Jacobian products in $O(1)$ passes regardless of the number of parameters!"
     }
   ]
 }

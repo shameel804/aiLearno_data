@@ -2,57 +2,101 @@
   "id": "l3",
   "chapterId": "ch_2",
   "title": "Linear Regression & Classification",
-  "description": "Explore mathematical foundations: line fitting with Mean Squared Error (MSE) and binary classification with Logistic Regression.",
+  "description": "Derive simple linear regression, understand cost functions, transition to logistic regression, and evaluate with confusion matrices.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Foundational Models",
+  "estimatedMinutes": 8,
+  "section": "Core Machine Learning",
   "slides": [
     {
       "id": "s_ch2_l3_1",
       "type": "text",
-      "title": "Fitting Lines: Linear Regression 📈",
-      "content": "# Linear Regression\n\nLinear regression models the relationship between dependent scalar $y$ and explanatory variables $X$:\n\n$$\n\\hat{y} = w \\cdot x + b\n$$\n\n* **$w$ (Weight/Slope):** Multiplier determining the sensitivity of $y$ to $x$.\n* **$b$ (Bias/Intercept):** Baseline value when $x = 0$.\n\n### The Cost Function: Mean Squared Error (MSE)\nTo measure error across $N$ training points:\n\n$$\nMSE = \\frac{1}{N} \\sum_{i=1}^{N} (y_i - \\hat{y}_i)^2\n$$\n\nSquaring the errors penalizes large deviations severely and guarantees a smooth, convex parabola with a single global minimum!"
+      "title": "Regression vs Classification \ud83c\udfaf",
+      "content": "# Predicting Numbers vs Predicting Categories\n\nSupervised learning tasks fall into two fundamental problem formulations:\n\n| Attribute | Linear Regression | Logistic Regression |\n| :--- | :--- | :--- |\n| **Target Variable Type** | Continuous real value (e.g. stock price, house value) | Categorical class probability (e.g. fraud vs genuine) |\n| **Model Hypothesis** | $y = \\mathbf{w}^T \\mathbf{x} + b$ | $P(y=1) = \\sigma(\\mathbf{w}^T \\mathbf{x} + b) = \\frac{1}{1 + e^{-z}}$ |\n| **Loss / Cost Function** | Mean Squared Error (MSE): $\\frac{1}{N}\\sum(y - \\hat{y})^2$ | Binary Cross-Entropy: $-\\frac{1}{N}\\sum [y\\ln\\hat{y} + (1-y)\\ln(1-\\hat{y})]$ |\n| **Output Range** | $(-\\infty, +\\infty)$ | $[0, 1]$ (interpretable as class confidence) |\n| **Decision Threshold** | Not applicable | Typically $P \\ge 0.5 \\implies \\text{Class 1}$ |"
     },
     {
       "id": "s_ch2_l3_2",
-      "type": "text",
-      "title": "Classification with Logistic Regression 🎯",
-      "content": "# Logistic Regression & The Sigmoid Function\n\nWhen target $y \\in \\{0, 1\\}$, a straight line can predict outputs less than 0 or greater than 1, violating probability axioms.\n\nTo squash linear outputs into valid probabilities $(0, 1)$, we pass $z = w \\cdot x + b$ through the **Sigmoid (logistic) function**:\n\n$$\n\\sigma(z) = \\frac{1}{1 + e^{-z}}\n$$\n\n* When $z = 0$, $\\sigma(z) = 0.5$.\n* When $z \\to +\\infty$, $\\sigma(z) \\to 1.0$.\n* When $z \\to -\\infty$, $\\sigma(z) \\to 0.0$."
-    },
-    {
-      "id": "s_ch2_l3_3",
       "type": "quiz",
-      "title": "Concept Check: Sigmoid Squashing 🧠",
+      "title": "Concept Check: Regression vs Classification \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch2_l3_1",
         "type": "multiple_choice",
-        "question": "What is the exact output of the Sigmoid function $\\sigma(z)$ when the linear input $z = 0$?",
+        "question": "Which of the following problems should be formulated as a classification problem rather than a regression problem?",
         "options": [
           {
             "id": "opt1",
-            "text": "0.0",
+            "text": "Predicting tomorrow's temperature in Celsius",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "0.5",
+            "text": "Determining whether an uploaded transaction is fraudulent or legitimate",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "1.0",
+            "text": "Forecasting total quarterly company revenue",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "-1.0",
+            "text": "Estimating the travel duration of a delivery van in minutes",
             "isCorrect": false
           }
         ],
-        "explanation": "When z = 0, e^(-0) = 1, giving 1 / (1 + 1) = 0.5, representing the decision boundary cutoff.",
+        "explanation": "Fraud detection is a discrete categorical decision (fraudulent vs legitimate), which requires classification.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch2_l3_3",
+      "type": "text",
+      "title": "Evaluating Classification Models \ud83d\udcca",
+      "content": "# The Confusion Matrix & Metric Suite\n\nAccuracy alone is deeply misleading when dealing with imbalanced datasets (e.g. 99% legitimate emails, 1% phishing):\n\n| Evaluation Metric | Mathematical Formula | Ideal Real-World Use Case |\n| :--- | :--- | :--- |\n| **Accuracy** | $\\frac{TP + TN}{TP + TN + FP + FN}$ | Balanced class distributions where all mistakes have equal penalty |\n| **Precision** | $\\frac{TP}{TP + FP}$ | When False Positives are intolerable (e.g. blocking important non-spam emails) |\n| **Recall (Sensitivity)**| $\\frac{TP}{TP + FN}$ | When False Negatives are dangerous (e.g. missing a malignant tumor in an MRI) |\n| **F1-Score** | $2 \\cdot \\frac{\\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}}$ | Harmonic balance between precision and recall on imbalanced datasets |"
+    },
+    {
+      "id": "s_ch2_l3_4",
+      "type": "quiz",
+      "title": "Concept Check: Precision vs Recall \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch2_l3_2",
+        "type": "multiple_choice",
+        "question": "In an emergency hospital triage system detecting life-threatening cardiac arrest, which metric should be prioritized to minimize missed emergencies?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Precision",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Recall",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Specificity",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "L2 Loss",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "High recall ensures that virtually all true positive cases (cardiac events) are caught, keeping False Negatives as close to zero as possible.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch2_l3_5",
+      "type": "code",
+      "title": "Evaluating Predictions in Python \ud83d\udc0d",
+      "content": "Calculate precision, recall, and F1-score with scikit-learn:",
+      "codeSnippet": "from sklearn.metrics import classification_report, confusion_matrix\n\ny_true = [1, 0, 1, 1, 0, 1, 0, 0, 1, 0]\ny_pred = [1, 0, 1, 0, 0, 1, 0, 1, 1, 0]\n\nprint('Confusion Matrix:\\n', confusion_matrix(y_true, y_pred))\nprint('\\nClassification Report:\\n', classification_report(y_true, y_pred))",
+      "codeLanguage": "python",
+      "canRunCode": true
     }
   ]
 }

@@ -3,34 +3,34 @@
     {
       "id": "l1",
       "title": "Tokenization & Word Embeddings",
-      "description": "Convert raw human text into machine-readable continuous vector spaces using Byte-Pair Encoding and Word2Vec.",
+      "description": "Convert raw text strings to vector representations. Compare One-Hot, TF-IDF, Word2Vec, GloVe, and subword tokenization (BPE).",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Text Foundations"
+      "estimatedMinutes": 7,
+      "section": "Natural Language Processing"
     },
     {
       "id": "l2",
       "title": "Recurrent Neural Networks (RNNs) & LSTMs",
-      "description": "Model sequences using recurrent hidden states, diagnosing vanishing gradients in time, and gating information with LSTMs.",
+      "description": "Model sequential dependencies with hidden recurrence. Overcome vanishing gradients with LSTM and GRU gating mechanisms.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Recurrent Models"
+      "estimatedMinutes": 8,
+      "section": "Sequence Modeling"
     },
     {
       "id": "l3",
       "title": "The Attention Mechanism",
-      "description": "Understand why bottlenecking sequences into fixed vectors failed, and how Query-Key-Value attention revolutionizes context retrieval.",
+      "description": "Break the sequence-to-sequence information bottleneck. Derive Queries, Keys, Values, and Scaled Dot-Product Attention.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Attention Intuition"
+      "estimatedMinutes": 8,
+      "section": "The Attention Paradigm"
     },
     {
       "id": "l4",
       "title": "The Transformer Architecture",
-      "description": "Deconstruct the seminal 'Attention Is All You Need' architecture: Multi-Head Attention, Positional Encodings, and Feed-Forward sublayers.",
+      "description": "Explore the complete Transformer architecture: Multi-Head Attention, Positional Encoding, and Encoder vs Decoder families.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Transformers"
+      "estimatedMinutes": 8,
+      "section": "The Attention Paradigm"
     }
   ]
 }

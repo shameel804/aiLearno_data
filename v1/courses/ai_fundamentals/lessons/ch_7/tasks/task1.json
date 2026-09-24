@@ -1,14 +1,14 @@
 {
   "id": "task1",
   "chapterId": "ch_7",
-  "title": "Build a RAG Context Injector",
-  "description": "Construct an automated prompt injection utility that formats context excerpts and user questions with strict grounding instructions.",
+  "title": "Implement a Vector Similarity Document Retriever for RAG",
+  "description": "Compute cosine similarity between query embeddings and a collection of document embeddings to retrieve top-k documents.",
   "estimatedMinutes": 10,
-  "problemStatement": "Implement a Python function `build_rag_prompt(query: str, documents: list[str], max_chars: int = 1000) -> str` that concatenates retrieved documents into a context block up to `max_chars` characters, followed by the user question and instruction to answer strictly based on the context.",
+  "problemStatement": "Implement a Python function `retrieve_top_k(query_vec, doc_vecs, docs, k=2)` that returns the top-k most similar document strings based on cosine similarity. Cosine similarity = dot(q, d) / (norm(q) * norm(d)). Return the list of top-k document strings sorted in descending order of similarity score.",
   "hints": [
-    "Iterate over documents and accumulate text while len(accumulated) + len(doc) <= max_chars.",
-    "Format the return string with clear 'Context:' and 'Query:' sections."
+    "Compute cosine similarity for each document vector.",
+    "Use np.argsort(similarities)[::-1][:k] to retrieve top indices."
   ],
-  "expectedOutput": "String containing the structured RAG prompt within length limits.",
-  "solutionCode": "def build_rag_prompt(query: str, documents: list[str], max_chars: int = 1000) -> str:\n    context_parts = []\n    current_length = 0\n    for doc in documents:\n        if current_length + len(doc) + 1 > max_chars:\n            break\n        context_parts.append(doc)\n        current_length += len(doc) + 1\n    joined_context = '\\n'.join(context_parts)\n    return f'Context:\\n{joined_context}\\n\\nQuery: {query}\\nAnswer strictly based on the context above.'"
+  "expectedOutput": "List of top-k retrieved document text strings",
+  "solutionCode": "import numpy as np\n\ndef retrieve_top_k(query_vec, doc_vecs, docs, k=2):\n    q_norm = np.linalg.norm(query_vec)\n    sims = []\n    for d_vec in doc_vecs:\n        d_norm = np.linalg.norm(d_vec)\n        cos_sim = np.dot(query_vec, d_vec) / (q_norm * d_norm) if (q_norm * d_norm) > 0 else 0.0\n        sims.append(cos_sim)\n    top_indices = np.argsort(sims)[::-1][:k]\n    return [docs[idx] for idx in top_indices]\n\nq = np.array([0.8, 0.2, 0.0])\ndocs_vecs = [\n    np.array([0.1, 0.9, 0.1]),\n    np.array([0.85, 0.15, 0.0]),\n    np.array([0.7, 0.3, 0.1])\n]\ndocs = ['Cats and dogs', 'Neural network optimization', 'Gradient descent algorithm']\nprint(retrieve_top_k(q, docs_vecs, docs, k=2))"
 }

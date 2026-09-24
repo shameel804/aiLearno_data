@@ -2,23 +2,64 @@
   "id": "l4",
   "chapterId": "ch_6",
   "title": "The Transformer Architecture",
-  "description": "Deconstruct the seminal 'Attention Is All You Need' architecture: Multi-Head Attention, Positional Encodings, and Feed-Forward sublayers.",
+  "description": "Explore the complete Transformer architecture: Multi-Head Attention, Positional Encoding, and Encoder vs Decoder families.",
   "xpReward": 25,
-  "estimatedMinutes": 7,
-  "section": "Transformers",
+  "estimatedMinutes": 8,
+  "section": "The Attention Paradigm",
   "slides": [
     {
       "id": "s_ch6_l4_1",
       "type": "text",
-      "title": "Attention Is All You Need (Vaswani et al., 2017) ⚡",
-      "content": "# The Transformer Architecture\n\nThe Transformer eliminated recurrence entirely. Because there are no sequential loops, the entire sequence of tokens is processed **simultaneously in parallel** across GPUs!\n\n### Key Components:\n1. **Self-Attention:** Tokens attend to other tokens within the same sequence (e.g., resolving pronoun reference: 'The animal didn't cross the street because **it** was too tired').\n2. **Multi-Head Attention:** Multiple attention projections (heads) learn different relationship subspaces (e.g. grammar vs semantics vs coreference).\n3. **Positional Encoding:** Because attention is permutation-invariant, sine/cosine waves or learned vectors are added to inject word order information.\n4. **Feed-Forward Networks (FFN):** Two-layer MLP applied independently to each position."
+      "title": "Attention Is All You Need (2017) \ud83d\udcdc",
+      "content": "# The Transformer Revolution\n\nPublished by Vaswani et al. at Google Brain/Research, the **Transformer** completely discarded recurrence and convolutions in favor of **Self-Attention**.\n\n### The Core Innovations:\n1. **Massive Parallelism:** All tokens in a sequence are processed simultaneously in parallel matrices, saturating GPUs.\n2. **Positional Encoding:** Because attention is permutation-invariant, sinusoidal or rotary position embeddings (RoPE) are added to give tokens awareness of sequence order.\n3. **Multi-Head Attention:** Multiple attention projections run in parallel, allowing the model to attend simultaneously to syntactic structure, pronoun resolution, and semantic themes."
     },
     {
       "id": "s_ch6_l4_2",
+      "type": "text",
+      "title": "The Transformer Family Tree \ud83c\udf33",
+      "content": "# Encoder vs Decoder Paradigms\n\n| Architecture Branch | Landmark Models | Attention Masking | Ideal Applications |\n| :--- | :--- | :--- | :--- |\n| **Encoder-Only** | BERT, RoBERTa | Bidirectional (every token sees past and future tokens) | Classification, Named Entity Recognition, Vector Search |\n| **Decoder-Only** | GPT-4, LLaMA, Claude, Mistral | Causal (masked: tokens can only attend to past tokens) | Autoregressive text generation, chat assistants, code synthesis |\n| **Encoder-Decoder** | T5, BART | Bidirectional encoder + Causal decoder | Translation, Abstractive summarization |"
+    },
+    {
+      "id": "s_ch6_l4_3",
+      "type": "quiz",
+      "title": "Concept Check: Transformer Types \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch6_l4_1",
+        "type": "multiple_choice",
+        "question": "Why do modern autoregressive models (like GPT-4 and LLaMA) use a Causal Attention Mask in their decoder layers?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "To prevent future tokens from leaking into the prediction of the current token during training",
+            "isCorrect": true
+          },
+          {
+            "id": "opt2",
+            "text": "To force the model to output only lowercase text",
+            "isCorrect": false
+          },
+          {
+            "id": "opt3",
+            "text": "To convert token embeddings into audio files",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "To avoid matrix multiplication entirely",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "A causal mask sets attention scores for future positions to -infinity, ensuring the model predicts next tokens solely from previous context.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch6_l4_4",
       "type": "code",
-      "title": "Self-Attention in Pure Python 🐍",
-      "content": "A minimal implementation of scaled dot-product attention in Python:",
-      "codeSnippet": "import math\n\ndef softmax(vector: list[float]) -> list[float]:\n    exp_vals = [math.exp(v - max(vector)) for v in vector]\n    total = sum(exp_vals)\n    return [e / total for e in exp_vals]\n\n# Query and 2 Keys (d_k = 2)\nq = [1.0, 0.0]\nk1 = [1.0, 0.0]  # Exact match\nk2 = [0.0, 1.0]  # Orthogonal\n\nd_k = 2\nscore1 = (q[0]*k1[0] + q[1]*k1[1]) / math.sqrt(d_k)\nscore2 = (q[0]*k2[0] + q[1]*k2[1]) / math.sqrt(d_k)\n\nweights = softmax([score1, score2])\nprint('Attention weights:', [round(w, 3) for w in weights])",
+      "title": "Multi-Head Attention in PyTorch \ud83d\udc0d",
+      "content": "Executing Multi-Head Self-Attention with `nn.MultiheadAttention`:",
+      "codeSnippet": "import torch\nimport torch.nn as nn\n\n# Sequence: batch=2, seq_len=4, embed_dim=64\nseq = torch.randn(2, 4, 64)\n\n# 8 parallel attention heads (each head has dim = 64/8 = 8)\nmha = nn.MultiheadAttention(embed_dim=64, num_heads=8, batch_first=True)\nattn_output, attn_weights = mha(seq, seq, seq)\n\nprint('Output tensor shape: ', attn_output.shape)\nprint('Attention weights shape:', attn_weights.shape)",
       "codeLanguage": "python",
       "canRunCode": true
     }

@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": "task1",
-      "title": "Calculate Convolution Output Dimensions",
-      "description": "Write a formula to compute the spatial output dimensions of a 2D convolutional layer given input size, kernel, padding, and stride.",
+      "title": "Implement a 2D Convolution Operation in Python",
+      "description": "Compute a 2D spatial convolution across a single-channel image patch using a sliding 3x3 kernel and stride=1.",
       "estimatedMinutes": 10
     }
   ]

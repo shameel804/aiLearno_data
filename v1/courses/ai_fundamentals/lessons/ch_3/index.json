@@ -3,34 +3,34 @@
     {
       "id": "l1",
       "title": "Biological Inspiration & The Perceptron",
-      "description": "Trace biological neurons to Frank Rosenblatt's Perceptron, understanding weights, inputs, and the step threshold.",
+      "description": "Trace neural networks to biological neurons. Understand Frank Rosenblatt's Perceptron, weights, biases, and linear separability.",
       "xpReward": 25,
       "estimatedMinutes": 6,
-      "section": "Neuron Foundations"
+      "section": "Neural Network Fundamentals"
     },
     {
       "id": "l2",
       "title": "Activation Functions: Introducing Non-Linearity",
-      "description": "Explore why non-linearity is vital. Compare Sigmoid, Tanh, ReLU, Leaky ReLU, and Softmax.",
+      "description": "Why linear models fail. Explore Sigmoid, Tanh, ReLU, Leaky ReLU, and Softmax with output ranges and gradient properties.",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Activations"
+      "estimatedMinutes": 7,
+      "section": "Neural Network Fundamentals"
     },
     {
       "id": "l3",
       "title": "Multi-Layer Perceptrons (MLPs)",
-      "description": "Stack neurons into Input, Hidden, and Output layers to break linear separation limits like the XOR problem.",
+      "description": "Solve the XOR problem with hidden layers. Learn how stacking layers transforms feature spaces to solve non-linear problems.",
       "xpReward": 25,
       "estimatedMinutes": 7,
-      "section": "Network Architecture"
+      "section": "Network Architectures"
     },
     {
       "id": "l4",
       "title": "Forward Propagation in Action",
-      "description": "Step through the matrix multiplications and activation vector calculations that transform inputs into predictions.",
+      "description": "Step through vectorized forward passes with matrix multiplication, layer-by-layer shape transformations, and batch processing.",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Inference Math"
+      "estimatedMinutes": 8,
+      "section": "Network Architectures"
     }
   ]
 }

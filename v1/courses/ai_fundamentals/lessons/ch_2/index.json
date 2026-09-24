@@ -3,34 +3,34 @@
     {
       "id": "l1",
       "title": "The Machine Learning Paradigm",
-      "description": "Compare classical programming with machine learning, exploring Supervised, Unsupervised, and Reinforcement Learning paradigms.",
+      "description": "Discover how machine learning differs from traditional programming. Compare Supervised, Unsupervised, and Reinforcement Learning.",
       "xpReward": 25,
       "estimatedMinutes": 6,
-      "section": "Core Paradigms"
+      "section": "Core Machine Learning"
     },
     {
       "id": "l2",
       "title": "Data Preprocessing & Feature Engineering",
-      "description": "Master data preparation essentials: handling missing values, encoding categorical variables, normalization, and standardization.",
+      "description": "Master data preparation: handling missing values, standard vs min-max scaling, categorical encoding, and preventing data leakage.",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Data Pipeline"
+      "estimatedMinutes": 7,
+      "section": "Data Pipelines"
     },
     {
       "id": "l3",
       "title": "Linear Regression & Classification",
-      "description": "Explore mathematical foundations: line fitting with Mean Squared Error (MSE) and binary classification with Logistic Regression.",
+      "description": "Derive simple linear regression, understand cost functions, transition to logistic regression, and evaluate with confusion matrices.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Foundational Models"
+      "estimatedMinutes": 8,
+      "section": "Core Machine Learning"
     },
     {
       "id": "l4",
       "title": "Model Evaluation & Bias-Variance Tradeoff",
-      "description": "Diagnose underfitting vs overfitting, use train/val/test splits, and master evaluation metrics like Precision, Recall, and F1-Score.",
+      "description": "Master training/validation/test splits, cross-validation, precision vs recall, underfitting vs overfitting, and regularization techniques.",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Evaluation & Generalization"
+      "estimatedMinutes": 7,
+      "section": "Model Diagnostics"
     }
   ]
 }

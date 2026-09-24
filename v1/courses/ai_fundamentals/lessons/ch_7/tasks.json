@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": "task1",
-      "title": "Build a RAG Context Injector",
-      "description": "Construct an automated prompt injection utility that formats context excerpts and user questions with strict grounding instructions.",
+      "title": "Implement a Vector Similarity Document Retriever for RAG",
+      "description": "Compute cosine similarity between query embeddings and a collection of document embeddings to retrieve top-k documents.",
       "estimatedMinutes": 10
     }
   ]

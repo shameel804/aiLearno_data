@@ -3,34 +3,34 @@
     {
       "id": "l1",
       "title": "Algorithmic Bias & Fairness",
-      "description": "Examine how training datasets reflect and amplify human historical biases, and study mathematical definitions of algorithmic fairness.",
+      "description": "Uncover how historical biases infiltrate training data. Study mathematical fairness metrics: Demographic Parity vs Equalized Odds.",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Ethics & Fairness"
+      "estimatedMinutes": 7,
+      "section": "Ethics & Safety"
     },
     {
       "id": "l2",
       "title": "Explainability & Interpretability (XAI)",
-      "description": "Open the neural network black box using SHAP values, LIME, saliency maps, and attention attribution techniques.",
+      "description": "Demystify black-box models. Master SHAP values, LIME local surrogates, attention heatmaps, and regulatory requirements.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
+      "estimatedMinutes": 8,
       "section": "Explainable AI"
     },
     {
       "id": "l3",
-      "title": "Safety, Alignment, & Hallucination Mitigation",
-      "description": "Tackle the Alignment Problem, catastrophic reward hacking, jailbreaking risks, and output guardrails.",
+      "title": "AI Safety, Alignment & Red-Teaming",
+      "description": "Examine the Alignment Problem, jailbreaks, prompt injection, and Constitutional AI principles for building harmless agents.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "AI Safety"
+      "estimatedMinutes": 8,
+      "section": "AI Safety & Governance"
     },
     {
       "id": "l4",
-      "title": "Autonomous Agents, Tool Use & AGI",
-      "description": "Explore the frontier of AI: the ReAct loop, LLMs using APIs/code interpreters, multi-agent swarms, and the path to AGI.",
+      "title": "Autonomous Agents & The Path to AGI",
+      "description": "From chat models to autonomous coworkers. Master ReAct loops, planning, tool usage, memory buffers, and frontier benchmarks.",
       "xpReward": 25,
-      "estimatedMinutes": 7,
-      "section": "Frontier Systems"
+      "estimatedMinutes": 8,
+      "section": "Frontiers of AI"
     }
   ]
 }

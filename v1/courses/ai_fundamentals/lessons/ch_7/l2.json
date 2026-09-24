@@ -1,23 +1,64 @@
 {
   "id": "l2",
   "chapterId": "ch_7",
-  "title": "Large Language Models & Pretraining",
-  "description": "Explore causal autoregressive language modeling, predicting next tokens, compute scaling laws, and transformer decoders.",
+  "title": "Modern LLM Training Stages",
+  "description": "The 3-stage LLM pipeline: Pre-training on trillions of tokens, Supervised Fine-Tuning (SFT), and RLHF/DPO preference alignment.",
   "xpReward": 25,
   "estimatedMinutes": 7,
-  "section": "LLM Mechanics",
+  "section": "Large Language Models",
   "slides": [
     {
       "id": "s_ch7_l2_1",
       "type": "text",
-      "title": "The Simple Secret of LLMs 🤫",
-      "content": "# The Autoregressive Objective\n\nDespite their astonishing capabilities, modern Large Language Models (LLMs) like GPT-4, Claude, and LLaMA are trained on a deceptively simple objective:\n\n$$\\max_\\theta \\sum_{t} \\log P_\\theta(w_t \\mid w_1, w_2, \\dots, w_{t-1})$$\n\n* **Next Token Prediction:** Given all words seen so far, calculate a probability distribution over the entire vocabulary (50,000+ tokens) for the next token.\n* By scaling this objective across **trillions of tokens of human writing, code, mathematics, and science**, the model implicitly learns grammar, factual knowledge, coding logic, and reasoning patterns!"
+      "title": "The 3-Stage LLM Recipe \ud83c\udf72",
+      "content": "# How Frontier LLMs Are Built\n\nModern conversational assistants (ChatGPT, Claude, Gemini) undergo a rigorous 3-stage developmental pipeline:\n\n| Pipeline Stage | Training Data | Core Objective | Resulting Model State |\n| :--- | :--- | :--- | :--- |\n| **1. Unsupervised Pre-training** | Trillions of web tokens (Common Crawl, GitHub, books) | Next-token prediction: $\\arg\\max \\sum \\ln P(w_t \\mid w_{<t})$ | **Base Foundation Model** (raw document completer; cannot converse politely) |\n| **2. Supervised Fine-Tuning (SFT)** | Thousands of curated high-quality Q&A dialogues | Teach instruction-following conversational structure | **Instruct Model** (follows prompts, but may be toxic or misaligned) |\n| **3. Preference Alignment (RLHF / DPO)**| Pairs of model responses ranked by human annotators | Optimize reward model / direct preference optimization | **Aligned Assistant** (helpful, harmless, and calibrated) |"
     },
     {
       "id": "s_ch7_l2_2",
+      "type": "quiz",
+      "title": "Concept Check: LLM Pipeline \ud83e\udde0",
+      "content": "",
+      "quizData": {
+        "id": "q_ch7_l2_1",
+        "type": "multiple_choice",
+        "question": "If you prompt a raw pre-trained Base Model (without SFT or RLHF) with 'Write a poem about the sea', what is it most likely to do?",
+        "options": [
+          {
+            "id": "opt1",
+            "text": "Politely say 'Sure, here is your poem!'",
+            "isCorrect": false
+          },
+          {
+            "id": "opt2",
+            "text": "Continue the prompt with more bullet points or quiz questions like 'Write a poem about the sun'",
+            "isCorrect": true
+          },
+          {
+            "id": "opt3",
+            "text": "Throw a Python runtime syntax exception",
+            "isCorrect": false
+          },
+          {
+            "id": "opt4",
+            "text": "Refuse to generate text due to alignment safety rules",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Base models are text completers; they frequently treat instructions as homework assignment lists and predict subsequent questions rather than executing the instruction.",
+        "xpReward": 10
+      }
+    },
+    {
+      "id": "s_ch7_l2_3",
+      "type": "text",
+      "title": "Scaling Laws & Chinchilla Optimality \ud83d\udcc8",
+      "content": "# Compute, Parameters, and Data\n\nIn 2022, DeepMind published the **Chinchilla Scaling Laws** (Hoffmann et al.), disproving the notion that models should simply be made larger:\n\n* For compute-optimal training, model parameter count and training token count should scale in **equal proportion** (~20 tokens per model parameter).\n* A 7-billion parameter model trained on 2 trillion tokens (like LLaMA) dramatically outperforms a 70-billion parameter model trained on only 300 billion tokens, while running 10x faster during inference!"
+    },
+    {
+      "id": "s_ch7_l2_4",
       "type": "tip",
-      "title": "Chinchilla Scaling Laws (Hoffmann et al., 2022) 📏",
-      "content": "## Optimal Scaling\nFor compute-optimal model training, model parameters and training dataset size should be scaled in equal proportion:\n* For every doubling of model parameters, the training token count should also double.\n* Training smaller models on vastly more high-quality tokens produces faster, cheaper, and more accurate models at inference time!"
+      "title": "AI Pro Tip: Parameter-Efficient Fine-Tuning (LoRA) \ud83d\udca1",
+      "content": "## Low-Rank Adaptation (LoRA)\nFine-tuning all 70B parameters of an LLM requires massive GPU clusters. **LoRA (Hu et al., 2021)** freezes the original weights and injects low-rank decomposition matrices ($A \\in \\mathbb{R}^{d \\times r}, B \\in \\mathbb{R}^{r \\times d}$ with $r \\ll d$).\n\nThis reduces trainable parameters by **99%**, allowing custom LLMs to be fine-tuned on a single consumer GPU!"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": "task1",
-      "title": "Compute Dot-Product Attention Scores",
-      "description": "Calculate scaled dot-product scores between a query vector and a matrix of key vectors.",
+      "title": "Compute Scaled Dot-Product Attention in Python",
+      "description": "Implement the core attention equation: Softmax((Q @ K^T) / sqrt(d_k)) @ V from mathematical primitives in NumPy.",
       "estimatedMinutes": 10
     }
   ]

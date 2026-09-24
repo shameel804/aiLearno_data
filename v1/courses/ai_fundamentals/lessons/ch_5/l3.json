@@ -2,51 +2,66 @@
   "id": "l3",
   "chapterId": "ch_5",
   "title": "Pooling & Hierarchical Feature Learning",
-  "description": "Downsample feature maps using Max and Average Pooling, and observe how deep layers build abstractions from lines to faces.",
+  "description": "Downsample feature maps with Max Pooling and Average Pooling. Understand translation invariance and receptive fields.",
   "xpReward": 25,
   "estimatedMinutes": 6,
-  "section": "Downsampling & Hierarchy",
+  "section": "Convolutional Mechanics",
   "slides": [
     {
       "id": "s_ch5_l3_1",
       "type": "text",
-      "title": "Downsampling with Max Pooling 📉",
-      "content": "# Max Pooling\n\nConvolution layers are followed by **Pooling layers** to reduce spatial dimensions, lower memory usage, and provide translation tolerance.\n\n```\n2x2 Max Pooling with Stride 2:\n\n[ 12   20 ]  [ 30    0 ]        ==>       [ 20   30 ]\n[  8   15 ]  [  2   14 ]                  [ 112  37 ]\n\n[ 34  112 ]  [ 25   37 ]\n[  9   64 ]  [ 18   12 ]\n```\n\nMax pooling selects the most salient activation in each window, discarding background noise."
+      "title": "Compressing Spatial Information \ud83d\udcc9",
+      "content": "# Pooling Layers\n\nAs representations progress deeper through a CNN, we progressively decrease spatial dimensions $(H, W)$ while expanding channel depth $(C)$. This is accomplished using **Pooling Layers**.\n\n### The Purpose of Pooling:\n1. **Reduces Parameter Count & Compute:** Shrinking spatial dimensions cuts memory footprint for subsequent layers.\n2. **Translation Invariance:** A slight shift in pixel coordinates (e.g. 1 pixel left) yields the identical maximum activation.\n3. **Expands Receptive Field:** Deeper neurons perceive progressively larger chunks of the original input canvas."
     },
     {
       "id": "s_ch5_l3_2",
+      "type": "text",
+      "title": "Comparing Pooling Operations \u2696\ufe0f",
+      "content": "# Max Pooling vs Average Pooling\n\n| Pooling Method | Operation | Key Benefit | Typical Placement |\n| :--- | :--- | :--- | :--- |\n| **Max Pooling ($2 \\times 2$, Stride 2)** | Extracts maximum value in each $2 \\times 2$ window | Retains sharpest, most salient edge/feature activations | Intermediate layers throughout CNN backbone |\n| **Average Pooling ($2 \\times 2$)** | Computes arithmetic mean across window | Smooth feature aggregation; softer downsampling | Less common in intermediate stages |\n| **Global Average Pooling (GAP)** | Averages entire feature map $(H \\times W)$ to a single scalar | Eliminates dense FC layers; drastically suppresses overfitting | Final layer right before Softmax classifier |"
+    },
+    {
+      "id": "s_ch5_l3_3",
       "type": "quiz",
-      "title": "Concept Check: Max Pooling Dimension 🧠",
+      "title": "Concept Check: Max Pooling Mechanics \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch5_l3_1",
         "type": "multiple_choice",
-        "question": "If a 32x32 feature map passes through a 2x2 Max Pooling layer with stride 2, what is the output spatial dimension?",
+        "question": "What is the primary architectural advantage of Global Average Pooling (GAP) at the output of modern CNNs compared to traditional flattened fully connected layers?",
         "options": [
           {
             "id": "opt1",
-            "text": "32x32",
-            "isCorrect": false
-          },
-          {
-            "id": "opt2",
-            "text": "16x16",
+            "text": "It eliminates millions of dense weights that cause severe overfitting",
             "isCorrect": true
           },
           {
+            "id": "opt2",
+            "text": "It increases the spatial resolution of the image by 4x",
+            "isCorrect": false
+          },
+          {
             "id": "opt3",
-            "text": "8x8",
+            "text": "It forces all weights to become binary step functions",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "64x64",
+            "text": "It doubles the required GPU VRAM",
             "isCorrect": false
           }
         ],
-        "explanation": "A 2x2 pooling window with stride 2 halves both height and width: 32 / 2 = 16, resulting in a 16x16 output.",
+        "explanation": "Global Average Pooling computes the average of each feature map directly into class logits, removing millions of parameters and preventing overfitting.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch5_l3_4",
+      "type": "code",
+      "title": "Max Pooling in PyTorch \ud83d\udc0d",
+      "content": "Downsampling feature maps using `nn.MaxPool2d`:",
+      "codeSnippet": "import torch\nimport torch.nn as nn\n\n# Feature map: batch=1, channels=16, height=28, width=28\nfeat_map = torch.randn(1, 16, 28, 28)\n\n# Standard 2x2 max pool with stride 2\npool = nn.MaxPool2d(kernel_size=2, stride=2)\ndownsampled = pool(feat_map)\n\nprint('Before pooling shape:', feat_map.shape)\nprint('After pooling shape: ', downsampled.shape) # 14x14",
+      "codeLanguage": "python",
+      "canRunCode": true
     }
   ]
 }

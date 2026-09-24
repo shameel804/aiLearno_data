@@ -2,51 +2,72 @@
   "id": "l1",
   "chapterId": "ch_6",
   "title": "Tokenization & Word Embeddings",
-  "description": "Convert raw human text into machine-readable continuous vector spaces using Byte-Pair Encoding and Word2Vec.",
+  "description": "Convert raw text strings to vector representations. Compare One-Hot, TF-IDF, Word2Vec, GloVe, and subword tokenization (BPE).",
   "xpReward": 25,
-  "estimatedMinutes": 6,
-  "section": "Text Foundations",
+  "estimatedMinutes": 7,
+  "section": "Natural Language Processing",
   "slides": [
     {
       "id": "s_ch6_l1_1",
       "type": "text",
-      "title": "Converting Words to Numbers 🔤",
-      "content": "# From Strings to Vectors\n\nComputers cannot compute derivatives on raw strings. Text must undergo a two-step conversion:\n\n```\nRaw Text:       \"Artificial Intelligence is amazing\"\n                       |\n                       v  [Tokenization: BPE / WordPiece]\nTokens:         [\"Art\", \"ificial\", \"Intelligence\", \"is\", \"amazing\"]\nToken IDs:      [2410,   8912,      14920,          318,  7231]\n                       |\n                       v  [Embedding Lookup]\nDense Vectors:  [[0.12, -0.45, ...], [0.88, 0.14, ...], ...]\n```\n\n### Word Embeddings (Word2Vec, GloVe):\nEmbeddings map semantic meaning into geometric distance. Famous geometric relationship:\n$$\n\\vec{King} - \\vec{Man} + \\vec{Woman} \\approx \\vec{Queen}\n$$\nWords with similar meanings cluster together in continuous vector space."
+      "title": "From Strings to Continuous Vectors \ud83d\udd21",
+      "content": "# The Evolution of Text Representation\n\nComputers cannot compute derivatives on raw characters. Text must be parsed into integer **tokens** and mapped into continuous geometric vector space.\n\n| Representation Technique | Dimensionality | Semantic Awareness | Sparsity |\n| :--- | :--- | :--- | :--- |\n| **One-Hot Encoding** | Vocabulary size $V$ ($50,000+$) | Zero (all words are orthogonal unit vectors) | Extremely Sparse (99.99% zeros) |\n| **TF-IDF** | Vocabulary size $V$ | Frequency-based word importance | Sparse |\n| **Word2Vec / GloVe** | Dense low-dimensional ($100-300$) | High (geometric vector arithmetic: King - Man + Woman = Queen) | Dense Continuous |\n| **Contextual (BERT/GPT)** | $768 - 4096+$ | Deeply contextual (resolves polysemy: river \"bank\" vs money \"bank\") | Dense Continuous |"
     },
     {
       "id": "s_ch6_l1_2",
       "type": "quiz",
-      "title": "Concept Check: Embeddings 🧠",
+      "title": "Concept Check: Word Embeddings \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch6_l1_1",
         "type": "multiple_choice",
-        "question": "What mathematical metric is most commonly used to quantify the semantic similarity between two normalized embedding vectors?",
+        "question": "What is the critical advantage of dense word embeddings (like Word2Vec) over One-Hot vectors?",
         "options": [
           {
             "id": "opt1",
-            "text": "Cosine Similarity (dot product)",
-            "isCorrect": true
-          },
-          {
-            "id": "opt2",
-            "text": "Hamming Distance",
+            "text": "They assign every word an integer between 0 and 9",
             "isCorrect": false
           },
           {
+            "id": "opt2",
+            "text": "They capture semantic similarity as geometric proximity in continuous vector space",
+            "isCorrect": true
+          },
+          {
             "id": "opt3",
-            "text": "Cross-entropy loss",
+            "text": "They eliminate the need for GPU hardware",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Levenshtein edit distance",
+            "text": "They guarantee zero training loss",
             "isCorrect": false
           }
         ],
-        "explanation": "Cosine similarity measures the cosine of the angle between two multi-dimensional vectors, evaluating directional alignment regardless of magnitude.",
+        "explanation": "Word embeddings map semantically similar words (e.g. 'doctor' and 'physician') to vectors that have high cosine similarity in continuous space.",
         "xpReward": 10
       }
+    },
+    {
+      "id": "s_ch6_l1_3",
+      "type": "text",
+      "title": "Subword Tokenization: BPE & WordPiece \ud83e\udde9",
+      "content": "# Conquering Out-of-Vocabulary (OOV) Words\n\nEarly NLP tokenized on whitespace. If a user typed a rare word like \"unhappiness\", the model output an `[UNK]` (Unknown) token.\n\nModern models (GPT, Claude, LLaMA) use **Byte-Pair Encoding (BPE)**:\n\n* Starts at character level: `u, n, h, a, p, p, i, n, e, s, s`\n* Iteratively merges the most frequent adjacent character pairs into subwords: `un`, `happi`, `ness`\n* Any word\u2014even typos or foreign terms\u2014can be broken down into familiar subword constituents!"
+    },
+    {
+      "id": "s_ch6_l1_4",
+      "type": "code",
+      "title": "Vector Similarity in Python \ud83d\udc0d",
+      "content": "Computing cosine similarity between dense semantic vectors:",
+      "codeSnippet": "import numpy as np\n\ndef cosine_similarity(v1, v2):\n    return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))\n\n# Hypothetical 3D embeddings [Royalty, Femininity, Technology]\nking  = np.array([0.9, 0.1, 0.0])\nqueen = np.array([0.9, 0.8, 0.0])\napple = np.array([0.1, 0.0, 0.9])\n\nprint('Similarity (King, Queen):', round(cosine_similarity(king, queen), 3))\nprint('Similarity (King, Apple):', round(cosine_similarity(king, apple), 3))",
+      "codeLanguage": "python",
+      "canRunCode": true
+    },
+    {
+      "id": "s_ch6_l1_5",
+      "type": "tip",
+      "title": "AI Pro Tip: Token Counts \ud83d\udca1",
+      "content": "## Rule of Thumb: Tokens vs Words\nIn modern English LLMs using BPE, 1,000 tokens corresponds to approximately **750 words** (roughly 4 characters per token). Keep this ratio in mind when estimating API token costs!"
     }
   ]
 }

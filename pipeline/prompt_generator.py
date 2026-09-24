@@ -55,6 +55,7 @@ To ensure accuracy, you must track your own progress and constantly validate you
 
 **Important Requirements:**
 - Make sure all generated files are valid JSON without any markdown code blocks wrapped around them when you save them to disk.
+- For content inside the JSON, NEVER wrap tabular data in code blocks. Use standard Markdown tables (e.g. | Column | Column |).
 """
     with open(instructions_path, "w", encoding="utf-8") as f:
         f.write(content)

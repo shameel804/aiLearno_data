@@ -1,15 +1,14 @@
 {
   "id": "task1",
   "chapterId": "ch_8",
-  "title": "Implement an Output Safety Guardrail Checker",
-  "description": "Build an automated string filter that flags unsafe content, banned keywords, and prompt leaks in generated model outputs.",
+  "title": "Implement a Safe Tool-Calling Agent Loop",
+  "description": "Construct a function-calling execution loop with validation and error-handling safeguards.",
   "estimatedMinutes": 10,
-  "problemStatement": "Implement a Python function `safety_guardrail(output_text: str, banned_phrases: list[str]) -> tuple[bool, str]` that checks whether `output_text` contains any banned phrases (case-insensitively). If safe, return `(True, output_text)`. If unsafe, return `(False, '[CONTENT REDACTED BY SAFETY GUARDRAIL]')`.",
+  "problemStatement": "Implement a function `execute_agent_action(tool_registry, action_request)` that safely executes tool requests. `action_request` is a dict with `'name'` (string) and `'args'` (dict). If `'name'` is not in `tool_registry`, return `{'status': 'error', 'result': 'Unknown tool'}`. If execution raises an exception, catch it and return `{'status': 'error', 'result': str(exception)}`. Otherwise, return `{'status': 'success', 'result': output}`.",
   "hints": [
-    "Normalize output_text to lowercase.",
-    "Check if any phrase.lower() exists in the normalized text.",
-    "Return True with original text if safe, else False with redacted message."
+    "Check if action_request['name'] in tool_registry.",
+    "Call tool_registry[name](**action_request['args']) inside a try-except block."
   ],
-  "expectedOutput": "Tuple of (is_safe: bool, final_text: str).",
-  "solutionCode": "def safety_guardrail(output_text: str, banned_phrases: list[str]) -> tuple[bool, str]:\n    lowered = output_text.lower()\n    for phrase in banned_phrases:\n        if phrase.lower() in lowered:\n            return False, '[CONTENT REDACTED BY SAFETY GUARDRAIL]'\n    return True, output_text"
+  "expectedOutput": "Dictionary with status ('success' or 'error') and result",
+  "solutionCode": "def execute_agent_action(tool_registry, action_request):\n    tool_name = action_request.get('name')\n    args = action_request.get('args', {})\n    if tool_name not in tool_registry:\n        return {'status': 'error', 'result': 'Unknown tool'}\n    try:\n        output = tool_registry[tool_name](**args)\n        return {'status': 'success', 'result': output}\n    except Exception as e:\n        return {'status': 'error', 'result': str(e)}\n\nregistry = {'add': lambda a, b: a + b}\nprint(execute_agent_action(registry, {'name': 'add', 'args': {'a': 5, 'b': 7}}))\nprint(execute_agent_action(registry, {'name': 'subtract', 'args': {'a': 5, 'b': 2}}))"
 }

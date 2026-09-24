@@ -2,7 +2,7 @@
   "id": "l3",
   "chapterId": "ch_1",
   "title": "Problem Solving & State Space Search",
-  "description": "Learn how AI models formalize problems as state graphs, evaluating Breadth-First, Depth-First, and heuristic-driven A* search algorithms.",
+  "description": "Model problems as state spaces. Compare uninformed search (BFS, DFS) with informed heuristic search (A* and greedy search).",
   "xpReward": 25,
   "estimatedMinutes": 7,
   "section": "Classical AI Search",
@@ -10,58 +10,64 @@
     {
       "id": "s_ch1_l3_1",
       "type": "text",
-      "title": "Navigating State Spaces 🗺️",
-      "content": "# Classical Search in AI\n\nBefore deep neural networks, AI solved problems by treating the world as a **State Space Graph**:\n\n* **Initial State:** Where the agent starts (e.g. Robot at coordinate `(0, 0)`).\n* **Actions / Transitions:** Legal moves that transform state `S` into `S'`.\n* **Goal Test:** A condition verifying whether a state satisfies the objective.\n* **Path Cost:** Sum of costs along the sequence of actions.\n\n### Uninformed vs Informed Search:\n* **Uninformed (Blind) Search:** BFS (Breadth-First Search) and DFS (Depth-First Search) explore without domain knowledge.\n* **Informed (Heuristic) Search:** Utilizes a heuristic function `h(n)` estimating distance to the goal (e.g., A* Search)."
+      "title": "State Spaces & Search Problems \ud83d\uddfa\ufe0f",
+      "content": "# Formulating Search Problems\n\nWhen an agent cannot immediately deduce an action, it formulates a **search problem** across a state space graph.\n\n### The 5 Formal Components:\n1. **Initial State:** The state where the agent starts (e.g. `City: Seattle`).\n2. **Action Set:** Available valid transitions $\\text{Actions}(s)$ from state $s$.\n3. **Transition Model:** Result of taking action $a$ in state $s$: $\\text{Result}(s, a)$.\n4. **Goal Test:** Predicate function checking if current state matches target goal.\n5. **Path Cost:** Sum of step costs along a trajectory $g(n)$."
     },
     {
       "id": "s_ch1_l3_2",
       "type": "quiz",
-      "title": "Concept Check: Search Strategies 🧠",
+      "title": "Concept Check: Search Formulation \ud83e\udde0",
       "content": "",
       "quizData": {
         "id": "q_ch1_l3_1",
         "type": "multiple_choice",
-        "question": "Which search algorithm guarantees finding the shortest path on an unweighted graph by exploring layer-by-layer?",
+        "question": "In the formal definition of a search problem, what does the transition model specify?",
         "options": [
           {
             "id": "opt1",
-            "text": "Depth-First Search (DFS)",
+            "text": "The monetary cost of executing the entire search algorithm",
             "isCorrect": false
           },
           {
             "id": "opt2",
-            "text": "Breadth-First Search (BFS)",
+            "text": "The state that results from doing a specific action in a specific state",
             "isCorrect": true
           },
           {
             "id": "opt3",
-            "text": "Random Walk Search",
+            "text": "The heuristic estimate of distance to the goal state",
             "isCorrect": false
           },
           {
             "id": "opt4",
-            "text": "Greedy Best-First Search with bad heuristic",
+            "text": "Whether the current state is terminal",
             "isCorrect": false
           }
         ],
-        "explanation": "BFS systematically visits all nodes at depth d before moving to depth d+1, guaranteeing the shallowest (optimal) solution when step costs are identical.",
+        "explanation": "The transition model Result(s, a) defines the outcome state when action a is executed in state s.",
         "xpReward": 10
       }
     },
     {
       "id": "s_ch1_l3_3",
       "type": "text",
-      "title": "The Gold Standard: A* Search 🌟",
-      "content": "### The A* Evaluation Function\n\nA* evaluates nodes using the formula:\n\n$$\nf(n) = g(n) + h(n)\n$$\n\n* **$g(n)$:** The exact cost accumulated from the start node to current node $n$.\n* **$h(n)$:** The estimated heuristic cost from node $n$ to the goal.\n* **$f(n)$:** The total estimated cost of the cheapest solution passing through $n$.\n\n> 🎯 **Admissibility Condition:**\n> A heuristic is **admissible** if it never overestimates the true cost to reach the goal. If $h(n)$ is admissible, A* search is mathematically guaranteed to be **optimal**!"
+      "title": "Search Algorithms Comparison \ud83e\udded",
+      "content": "# Uninformed vs Informed Search\n\nSearch strategies differ in whether they exploit problem-specific clues (heuristics) or search blindly:\n\n| Algorithm | Frontier Queue | Time Complexity | Space Complexity | Optimality Guarantee |\n| :--- | :--- | :--- | :--- | :--- |\n| **Breadth-First Search (BFS)** | FIFO Queue | $O(b^d)$ | $O(b^d)$ | Optimal if step costs are identical |\n| **Depth-First Search (DFS)** | LIFO Stack | $O(b^m)$ | $O(bm)$ | Not optimal; can get trapped in deep branches |\n| **Dijkstra's Algorithm** | Priority Queue on $g(n)$ | $O((V+E)\\log V)$ | $O(V)$ | Optimal for all non-negative step costs |\n| **A\\* Search** | Priority Queue on $f(n)=g(n)+h(n)$ | $O(b^d)$ (worst-case) | $O(b^d)$ | Guaranteed optimal if heuristic $h(n)$ is admissible |\n\n* **$b$**: Branching factor (average choices per node)\n* **$d$**: Depth of the shallowest goal\n* **$m$**: Maximum tree depth\n* **Admissible Heuristic:** A heuristic $h(n)$ that *never overestimates* the true cost to reach the goal."
     },
     {
       "id": "s_ch1_l3_4",
       "type": "code",
-      "title": "A* Evaluation Formula in Action 💻",
-      "content": "Here is how priority queues in pathfinders prioritize nodes based on $f(n) = g(n) + h(n)$:",
-      "codeSnippet": "def evaluate_node(cost_so_far: float, current_pos: tuple, goal_pos: tuple) -> float:\n    # Manhattan distance heuristic\n    h = abs(current_pos[0] - goal_pos[0]) + abs(current_pos[1] - goal_pos[1])\n    g = cost_so_far\n    f = g + h\n    return f\n\nprint('Node A (g=3, pos=(1,2), goal=(5,5)):', evaluate_node(3, (1, 2), (5, 5)))\nprint('Node B (g=6, pos=(4,4), goal=(5,5)):', evaluate_node(6, (4, 4), (5, 5)))",
+      "title": "BFS Implementation in Python \ud83d\udc0d",
+      "content": "Here is an implementation of Breadth-First Search finding the shortest path on a graph:",
+      "codeSnippet": "from collections import deque\n\ndef bfs_shortest_path(graph, start, goal):\n    queue = deque([[start]])\n    visited = {start}\n    \n    while queue:\n        path = queue.popleft()\n        node = path[-1]\n        \n        if node == goal:\n            return path\n            \n        for neighbor in graph.get(node, []):\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(path + [neighbor])\n    return None\n\ngraph = {'A': ['B', 'C'], 'B': ['D'], 'C': ['E'], 'D': ['GOAL'], 'E': ['GOAL']}\nprint('Path found:', bfs_shortest_path(graph, 'A', 'GOAL'))",
       "codeLanguage": "python",
       "canRunCode": true
+    },
+    {
+      "id": "s_ch1_l3_5",
+      "type": "tip",
+      "title": "AI Pro Tip: Heuristic Admissibility \ud83d\ude80",
+      "content": "## Straight-Line Distance as an Admissible Heuristic\nIn GPS route planning, Euclidean (\"as-the-crow-flies\") distance to the destination is always admissible because no highway can ever be shorter than a straight physical line.\n\nUsing an admissible heuristic guarantees that A* never discards an optimal path in favor of a seemingly cheaper detour!"
     }
   ]
 }

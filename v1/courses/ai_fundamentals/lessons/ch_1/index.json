@@ -11,15 +11,15 @@
     {
       "id": "l2",
       "title": "Intelligent Agents & Environments",
-      "description": "Understand how AI agents perceive their world through sensors, make rational decisions, and act via actuators using the PEAS framework.",
+      "description": "Understand the perception-action cycle, agent architectures (reflex, goal-based, utility-based), and environmental properties.",
       "xpReward": 25,
       "estimatedMinutes": 6,
-      "section": "Agent Architectures"
+      "section": "Foundations of AI"
     },
     {
       "id": "l3",
       "title": "Problem Solving & State Space Search",
-      "description": "Learn how AI models formalize problems as state graphs, evaluating Breadth-First, Depth-First, and heuristic-driven A* search algorithms.",
+      "description": "Model problems as state spaces. Compare uninformed search (BFS, DFS) with informed heuristic search (A* and greedy search).",
       "xpReward": 25,
       "estimatedMinutes": 7,
       "section": "Classical AI Search"
@@ -27,10 +27,10 @@
     {
       "id": "l4",
       "title": "Knowledge Representation & Expert Systems",
-      "description": "Discover how classical AI encoded human expertise into formal logic rules, inference engines, and knowledge graphs.",
+      "description": "Investigate propositional logic, semantic networks, production rules, forward/backward chaining, and the limitations of symbolic AI.",
       "xpReward": 25,
-      "estimatedMinutes": 6,
-      "section": "Symbolic AI & Rules"
+      "estimatedMinutes": 5,
+      "section": "Symbolic Systems"
     }
   ]
 }

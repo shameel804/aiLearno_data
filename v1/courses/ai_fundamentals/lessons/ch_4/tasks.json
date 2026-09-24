@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": "task1",
-      "title": "Perform a Manual Gradient Descent Step",
-      "description": "Calculate the gradient of a quadratic loss function and update the parameter using a specified learning rate.",
+      "title": "Implement a Gradient Descent Weight Update Step",
+      "description": "Calculate analytical gradients for Mean Squared Error and apply a parameter update step with learning rate and L2 weight decay.",
       "estimatedMinutes": 10
     }
   ]
